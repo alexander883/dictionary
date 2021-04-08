@@ -6,6 +6,6 @@ import androidx.room.OnConflictStrategy
 
 @Dao
 interface WordDAO{
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun addWord(word: Words)
 }

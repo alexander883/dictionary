@@ -43,7 +43,7 @@ class Fragment1 : Fragment() {
     private fun insertWord(){
     val en_word=binding?.editTextTextPersonName?.text.toString()
     val ru_word=binding?.editTextTextPersonName2?.text.toString()
-        val word=Words(id, enWord = en_word,ruWord = ru_word)
+        val word=Words(id=0, enWord = en_word,ruWord = ru_word)
         wviewmodel.addWord(word)
         Toast.makeText(requireContext(),  en_word, Toast.LENGTH_LONG).show()
         findNavController().navigate(R.id.action_fragment1_to_fragment2)
