@@ -13,7 +13,7 @@ import com.example.youwords.data.WordViewModel
 import com.example.youwords.data.Words
 import com.example.youwords.databinding.Fragment1Binding
 
-
+//
 class Fragment1 : Fragment() {
     private var binding: Fragment1Binding? = null
     private lateinit var wviewmodel: WordViewModel

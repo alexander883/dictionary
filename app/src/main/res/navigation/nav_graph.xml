@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/fragment1">
+    app:startDestination="@id/fragment2">
 
     <fragment
         android:id="@+id/fragment1"
@@ -21,5 +21,13 @@
         <action
             android:id="@+id/action_fragment2_to_fragment1"
             app:destination="@id/fragment1" />
+        <action
+            android:id="@+id/action_fragment2_to_wordsFragment"
+            app:destination="@id/wordsFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/wordsFragment"
+        android:name="com.example.youwords.WordsFragment"
+        android:label="fragment_words"
+        tools:layout="@layout/fragment_words" />
 </navigation>
