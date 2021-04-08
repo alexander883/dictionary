@@ -7,7 +7,7 @@ import androidx.room.Query
 
 @Dao
 interface WordDAO{
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addWord(word: Words)
 
  //   @Query("SELECT *  FROM english WHERE id = :random_id")
