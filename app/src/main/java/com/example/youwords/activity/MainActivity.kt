@@ -1,10 +1,11 @@
-package com.example.youwords
+package com.example.youwords.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
+import com.example.youwords.R
 
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
     private lateinit var navController: NavController

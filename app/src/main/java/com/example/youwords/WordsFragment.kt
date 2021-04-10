@@ -31,8 +31,8 @@ class WordsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-wordviewmodel.allWords.observe(viewLifecycleOwner, Observer{
-    Toast.makeText(requireContext(),  it[0].toString(), Toast.LENGTH_LONG).show()})
+     wordviewmodel.allWords.observe(viewLifecycleOwner, Observer{
+         wordviewmodel.g(requireContext()) })
 
         }
 
