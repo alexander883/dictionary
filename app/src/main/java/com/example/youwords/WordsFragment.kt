@@ -8,11 +8,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.observe
-import androidx.navigation.fragment.findNavController
 import com.example.youwords.data.WordViewModel
 import com.example.youwords.data.Words
 import com.example.youwords.databinding.FragmentWordsBinding
+import kotlinx.coroutines.flow.map
 
 
 class WordsFragment : Fragment() {
@@ -31,15 +30,27 @@ class WordsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
+        //получаем список id
      wordviewmodel.allWords.observe(viewLifecycleOwner, Observer{
-         wordviewmodel.g(requireContext()) })
+         getList_ids(it)
+         val k=it[2]
+         Toast.makeText(requireContext(),  "$k", Toast.LENGTH_LONG).show()
+     })
 
-        }
+        wordviewmodel.ranWord.observe(viewLifecycleOwner, Observer {
+            binding?.enText?.text=it.enWord.toString()
+            binding?.ruText?.text=it.ruWord
+        })
 
-        // val list_id= wviewmodel.allId
-     //   val t=list_id.get(1)
-     //   Toast.makeText(requireContext(),  "$t", Toast.LENGTH_LONG).show()
-        //binding?.w?.setOnClickListener { findNavController().navigate(R.id.action_fragment2_to_fragment1) }
+    }
+
+        // получаем случайное id
+    // получаем случайный индекс, удаляем по индексу
+     private fun getList_ids(it:List<Int>){
+          wordviewmodel.get_Random_id(it)
+      }
 
     }
 

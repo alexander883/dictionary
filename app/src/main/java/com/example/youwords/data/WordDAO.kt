@@ -13,7 +13,7 @@ interface WordDAO {
     suspend fun addWord(word: Words)
 
     @Query("SELECT *  FROM english WHERE id = :random_id")
-    suspend fun selectWord(random_id: Int): Words
+     fun selectWord(random_id: Int): Flow<Words>
 
     @Query("SELECT id FROM english ") // получаем список id
      fun getId(): Flow<List<Int>>

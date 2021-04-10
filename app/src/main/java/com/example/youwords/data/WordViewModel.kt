@@ -7,30 +7,38 @@ import androidx.lifecycle.*
 import androidx.navigation.fragment.findNavController
 import com.example.youwords.R
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
 class WordViewModel(application:Application):AndroidViewModel(application) {
-private val repository:WordRepository
+    private val repository: WordRepository
     init {
-        val wordDao=WordDatabase.getDatabase(application).wordDao()
-        repository= WordRepository(wordDao)
+        val wordDao = WordDatabase.getDatabase(application).wordDao()
+        repository = WordRepository(wordDao)
     }
 
-    fun  addWord(word:Words){
-        viewModelScope.launch(Dispatchers.IO){
+    fun addWord(word: Words) {
+        viewModelScope.launch(Dispatchers.IO) {
             repository.addWord(word)
         }
     }
 
-
     val allWords: LiveData<List<Int>> = repository.allId.asLiveData()
-fun  g(c:Context){
-    Toast.makeText(c,  "it[0].toString()", Toast.LENGTH_LONG).show()
-}
 
+
+    ///////////////////////////////////////////
+    private var _list_id = MutableLiveData<List<Int>>()//cписок id
+    val list_id: LiveData<List<Int>> =_list_id
+    private val _random=MutableLiveData<Int>()
+    val random: LiveData<Int> =_random
+
+    fun get_Random_id(list:List<Int>){
+    _list_id.value=list.toMutableList()
+    val range:IntRange=_list_id.value?.indices ?: 1..1// диапазон id
+    _random.value=range.random()
+   (_list_id.value as MutableList<Int>).removeAt( _random.value  ?:0)
     }
+    val ranWord:LiveData<Words> =  repository.ranWord(_random.value ?: 1).asLiveData()
+}
 
 
 

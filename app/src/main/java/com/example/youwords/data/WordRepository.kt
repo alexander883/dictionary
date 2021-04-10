@@ -8,6 +8,7 @@ class WordRepository(private  val wordDao:WordDAO) {
     }
     val allId: Flow<List<Int>> =wordDao.getId()
 
+    val ranWord:(Int)-> Flow<Words> = { i:Int-> wordDao.selectWord(i) }
 
+   }
 
-}
