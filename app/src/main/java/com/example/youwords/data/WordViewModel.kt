@@ -1,9 +1,10 @@
 package com.example.youwords.data
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
 class WordViewModel(application:Application):AndroidViewModel(application) {
@@ -17,4 +18,11 @@ private val repository:WordRepository
             repository.addWord(word)
         }
     }
-}
+
+    val allWords: LiveData<List<String>> = repository.allId.asLiveData()
+
+
+    }
+
+
+

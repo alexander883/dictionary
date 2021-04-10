@@ -16,7 +16,7 @@ import com.example.youwords.databinding.Fragment1Binding
 //
 class Fragment1 : Fragment() {
     private var binding: Fragment1Binding? = null
-    private lateinit var wviewmodel: WordViewModel
+    private lateinit var wordviewmodel: WordViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,7 +24,7 @@ class Fragment1 : Fragment() {
     ): View? {
      //   val view = inflater.inflate(R.layout.fragment_1, container, false)
 
-        wviewmodel = ViewModelProvider(this).get(WordViewModel::class.java)
+        wordviewmodel = ViewModelProvider(this).get(WordViewModel::class.java)
 
          val fragmentBinding = Fragment1Binding.inflate(inflater, container, false)
            binding = fragmentBinding
@@ -44,7 +44,7 @@ class Fragment1 : Fragment() {
     val en_word=binding?.editTextTextPersonName?.text.toString()
     val ru_word=binding?.editTextTextPersonName2?.text.toString()
         val word=Words(id=0,enWord = en_word,ruWord = ru_word)
-        wviewmodel.addWord(word)
+        wordviewmodel.addWord(word)
         Toast.makeText(requireContext(),  en_word, Toast.LENGTH_LONG).show()
         findNavController().navigate(R.id.action_fragment1_to_fragment2)
     }

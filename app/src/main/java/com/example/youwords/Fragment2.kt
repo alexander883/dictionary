@@ -23,5 +23,6 @@ class Fragment2 : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding?.addWord?.setOnClickListener { findNavController().navigate(R.id.action_fragment2_to_fragment1) }
+        binding?.words?.setOnClickListener { findNavController().navigate(R.id.action_fragment2_to_wordsFragment) }
     }
 }
