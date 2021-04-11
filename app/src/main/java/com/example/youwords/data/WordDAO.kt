@@ -1,6 +1,5 @@
 package com.example.youwords.data
 
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -24,6 +23,6 @@ interface WordDAO {
     @Query("UPDATE english SET read=0") //Устанавливаем ВСе Слово не прочитано
     suspend fun updateAll_Read()
 
-    @Query("SELECT * FROM english  WHERE enWord or ruWord LIKE ''=:search")
-    fun searchWord(search: String): Flow<Words>
+    @Query("SELECT * FROM english WHERE( enWord  LIKE :search ) OR (ruWord LIKE :search )")
+    fun searchWord(search: String):  Flow<List<Words>>
 }

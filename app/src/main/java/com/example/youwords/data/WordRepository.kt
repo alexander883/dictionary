@@ -16,7 +16,7 @@ class WordRepository(private  val wordDao:WordDAO) {
     suspend fun updateAll_Read(){
         wordDao.updateAll_Read()
     }
-    val searchWord:(String)-> Flow<Words> = { i:String-> wordDao.searchWord(i) }
+    val searchWord:(String)-> Flow<List<Words>> = { i:String-> wordDao.searchWord(i) }
 
    }
 

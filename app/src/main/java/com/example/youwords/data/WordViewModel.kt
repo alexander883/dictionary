@@ -65,7 +65,7 @@ class WordViewModel(application:Application):AndroidViewModel(application) {
         }
     }
 
-  //  val searchWord:(String)-> LiveData<Words>  = { i:String-> repository.searchWord(i).asLiveData() }
+    val searchWord:(String)-> LiveData<List<Words>>  = { i:String-> repository.searchWord(i).asLiveData() }
 
 }
 
