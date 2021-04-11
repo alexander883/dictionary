@@ -8,4 +8,5 @@ data class Words(
     @PrimaryKey(autoGenerate = true) val id:Int,
     val enWord:String,
     val ruWord:String,
-    val read:Boolean=false)
+    val read:Boolean=false,
+    val remember:Boolean=false)

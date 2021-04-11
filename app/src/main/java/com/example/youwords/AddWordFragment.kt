@@ -32,17 +32,20 @@ class AddWordFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding?.button?.setOnClickListener { insertWord()
-        }
-
+        binding?.button?.setOnClickListener { insertWord() }
     }
 
     fun insertWord(){
         val en_word=binding?.editTextTextPersonName?.text.toString()
         val ru_word=binding?.editTextTextPersonName2?.text.toString()
-        val word=Words(id=0,enWord = en_word,ruWord = ru_word)
-        wordviewmodel.addWord(word)
-        Toast.makeText(requireContext(),  en_word, Toast.LENGTH_LONG).show()
-        findNavController().navigate(R.id.action_addWordFragment_to_startFragment)
+        if (en_word.isEmpty() or ru_word.isEmpty()){
+            Toast.makeText(requireContext(),  "Заполните все поля!", Toast.LENGTH_LONG).show()
+        }
+        else{
+            val word=Words(id=0,enWord = en_word,ruWord = ru_word)
+            wordviewmodel.addWord(word)
+            Toast.makeText(requireContext(),  en_word, Toast.LENGTH_LONG).show()
+            findNavController().navigate(R.id.action_addWordFragment_to_startFragment)}
+
     }
 }

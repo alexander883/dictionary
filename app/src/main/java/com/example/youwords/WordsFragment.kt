@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.os.trace
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.youwords.data.WordViewModel
@@ -27,31 +28,62 @@ class WordsFragment : Fragment() {
         binding = fragmentBinding
         return fragmentBinding.root
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        wordviewmodel.all_id.observe(viewLifecycleOwner, Observer{
+            // на этот фрагмент не попадаем, если БД пустая
+            // поэтому можем привести к List<Int>
+            val list= it as List<Int>
+            getList_ids(list)
+            changeText()
+            changeCount()
+     //    Toast.makeText(requireContext(),  "$f", Toast.LENGTH_LONG).show()
+
+            if (wordviewmodel.getSizeList()==0){
+                binding?.next?.setEnabled(false)
+            }
 
 
-        //получаем список id
-     wordviewmodel.allWords.observe(viewLifecycleOwner, Observer{
-         getList_ids(it)
-         val k=it[2]
-         Toast.makeText(requireContext(),  "$k", Toast.LENGTH_LONG).show()
      })
+        binding?.buttonReset?.setOnClickListener { wordviewmodel.updateAll_Read()
+            binding?.next?.setEnabled(true) }
+        binding?.next?.setOnClickListener {
+            // binding?.next?.setEnabled(false)
+            changeText()
+            changeCount()
+            update()
+            if (wordviewmodel.getSizeList()==0){
+                binding?.next?.setEnabled(false)
+            }
 
-        wordviewmodel.ranWord.observe(viewLifecycleOwner, Observer {
-            binding?.enText?.text=it.enWord.toString()
-            binding?.ruText?.text=it.ruWord
-        })
+        }
+}      private fun  update(){
+            wordviewmodel.updateRead()
 
     }
-
-        // получаем случайное id
-    // получаем случайный индекс, удаляем по индексу
-     private fun getList_ids(it:List<Int>){
-          wordviewmodel.get_Random_id(it)
-      }
-
+      private  fun changeText(){
+            wordviewmodel.randWord(getRandom_id()).observe(viewLifecycleOwner, Observer {
+                binding?.enText?.text=it.enWord
+                binding?.ruText?.text=it.ruWord
+            })
+        }
+     //получаем список id
+    private fun getList_ids(list:List<Int>){
+            wordviewmodel.getList_id(list)
     }
+    private fun getRandom_id():Int{
+             return wordviewmodel.get_Random_id()
+    }
+    private fun changeCount(){
+     binding?.count?.text=wordviewmodel.getSizeList().toString()
+    //if (wordviewmodel.getSizeList()){
+
+    }}
+
+
+
+
+
+
 
 

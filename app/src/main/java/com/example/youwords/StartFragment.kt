@@ -5,10 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.youwords.data.WordViewModel
 import com.example.youwords.databinding.FragmentStartBinding
-
+import android.widget.Toast
 class StartFragment : Fragment() {
     private var binding: FragmentStartBinding? = null
     private lateinit var wordviewmodel: WordViewModel
@@ -16,6 +18,7 @@ class StartFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        wordviewmodel = ViewModelProvider(this).get(WordViewModel::class.java)
         val fragmentBinding = FragmentStartBinding.inflate(inflater, container, false)
         binding = fragmentBinding
         return fragmentBinding.root
@@ -25,14 +28,25 @@ class StartFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding?.words?.setOnClickListener { go2_to_wordsFragment()}
         binding?.addWord?.setOnClickListener {addWord()}
+        binding?.buttonSearch?.setOnClickListener { goSearchFragment() }
 
     }
-    fun addWord(){
+    private fun addWord(){
         findNavController().navigate(R.id.action_startFragment_to_addWordFragment)
     }
-    fun go2_to_wordsFragment(){
+    private fun goSearchFragment(){
+        findNavController().navigate(R.id.action_startFragment_to_searchFragment)
+    }
 
-        findNavController().navigate(R.id.action_startFragment_to_wordsFragment)
+    private fun go2_to_wordsFragment(){ // если БД пустая выводим сообщение, на другой фрагмент не идем
+                               // иного способа обработать пустой List<Int>! не нашел
+        wordviewmodel.all_id.observe(viewLifecycleOwner, Observer {
+            val h=try { it.get(0).toString()
+                findNavController().navigate(R.id.action_startFragment_to_wordsFragment)
+            }
+            catch (e: Exception)
+            { Toast.makeText(requireContext(), "Словарь пуст!", Toast.LENGTH_LONG).show()}
+        })
     }
 
 }

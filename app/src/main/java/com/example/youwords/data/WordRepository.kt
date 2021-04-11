@@ -10,5 +10,13 @@ class WordRepository(private  val wordDao:WordDAO) {
 
     val ranWord:(Int)-> Flow<Words> = { i:Int-> wordDao.selectWord(i) }
 
+    suspend fun updateRead(random_id:Int){
+        wordDao.updateRead(random_id)
+    }
+    suspend fun updateAll_Read(){
+        wordDao.updateAll_Read()
+    }
+    val searchWord:(String)-> Flow<Words> = { i:String-> wordDao.searchWord(i) }
+
    }
 
