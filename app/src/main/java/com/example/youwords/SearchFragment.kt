@@ -12,7 +12,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.youwords.data.WordViewModel
 import com.example.youwords.data.Words
 import com.example.youwords.databinding.FragmentSearchBinding
-import com.example.youwords.databinding.FragmentStartBinding
+
 
 
 
@@ -31,29 +31,32 @@ class SearchFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding?.buttonSearchWord?.setOnClickListener {
-            val se=binding?.searchText?.text.toString()
-            wordviewmodel.searchWord(se).observe(viewLifecycleOwner, Observer {
+        binding?.apply {
+            lifecycleOwner = viewLifecycleOwner
+            wordViewModel=wordviewmodel
+            searchFragment=this@SearchFragment
+        }
+       // binding?.buttonSearchWord?.setOnClickListener {
+      ////  }
 
+    } fun searhWord(){
+        val se=binding?.searchText?.text.toString()
+        wordviewmodel.searchWord(se).observe(viewLifecycleOwner, Observer {
+            val h=try {val list= it as List<Words>
+                getSearchWords(list)
 
+                val j=it.size.toString()
+                Toast.makeText(requireContext(), j, Toast.LENGTH_LONG).show()
+                binding?.enSearch?.text=it.get(0).enWord
+                binding?.ruSearch?.text=it.get(0).ruWord
+                findNavController().navigate(R.id.action_searchFragment_to_foundFragment)}
 
-                val h=try {val list= it as List<Words>
-                    getSearchWords(list)
+            catch (e: Exception)
+            { Toast.makeText(requireContext(), "Не найдено ", Toast.LENGTH_LONG).show()}
 
-                    val j=it.size.toString()
-                    Toast.makeText(requireContext(), j, Toast.LENGTH_LONG).show()
-                    binding?.enSearch?.text=it.get(0).enWord
-                     binding?.ruSearch?.text=it.get(0).ruWord
-                    findNavController().navigate(R.id.action_searchFragment_to_foundFragment)}
-
-                catch (e: Exception)
-                { Toast.makeText(requireContext(), "Не найдено ", Toast.LENGTH_LONG).show()}
-
-            }
-
-        )
         }
 
+        )
     }
             private fun getSearchWords(list:List<Words>){
              wordviewmodel.getSearchWords(list)

@@ -17,7 +17,6 @@ import com.example.youwords.databinding.FragmentFoundBinding
 class FoundFragment : Fragment() {
     private var binding: FragmentFoundBinding?= null
     private lateinit var wordviewmodel: WordViewModel
-   // val recyclerView = findViewById<RecyclerView>(R.id.recycler_view)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,6 +29,12 @@ class FoundFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding?.apply {
+            lifecycleOwner = viewLifecycleOwner
+            wordViewModel=wordviewmodel
+            foundFragment=this@FoundFragment
+        }
       //  val adapter = FoundAdapter()
       //  binding?.foundWordList?.adapter=adapter
         wordviewmodel.searh_list_words.observe(viewLifecycleOwner, Observer {

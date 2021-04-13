@@ -3,7 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".StartFragment">
+    <data>
+        <variable
+            name="WordViewModel"
+            type="com.example.youwords.data.WordViewModel" />
 
+        <variable
+            name="startFragment"
+            type="com.example.youwords.StartFragment" />
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -12,7 +20,7 @@
 
         <Button
             android:id="@+id/words"
-
+            android:onClick="@{() ->startFragment.go2_to_wordsFragment()}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="132dp"
@@ -23,7 +31,7 @@
 
         <Button
             android:id="@+id/add_word"
-
+            android:onClick="@{() ->startFragment.addWord()"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="136dp"
@@ -34,6 +42,7 @@
 
         <Button
             android:id="@+id/button_search"
+            android:onClick="@{() ->startFragment.goSearchFragment()"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="212dp"

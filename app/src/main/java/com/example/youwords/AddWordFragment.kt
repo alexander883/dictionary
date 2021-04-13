@@ -23,7 +23,6 @@ class AddWordFragment : Fragment() {
             savedInstanceState: Bundle?
     ): View? {
         wordviewmodel = ViewModelProvider(this).get(WordViewModel::class.java)
-
         val fragmentBinding = FragmentAddwordBinding.inflate(inflater, container, false)
         binding = fragmentBinding
         return fragmentBinding.root
@@ -32,7 +31,11 @@ class AddWordFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding?.button?.setOnClickListener { insertWord() }
+        binding?.apply {
+            lifecycleOwner = viewLifecycleOwner
+            wordViewModel=wordviewmodel
+            addwordsFragment=this@AddWordFragment
+        }
     }
 
     fun insertWord(){

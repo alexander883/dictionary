@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.youwords.data.WordViewModel
 import com.example.youwords.databinding.FragmentStartBinding
 import android.widget.Toast
+
 class StartFragment : Fragment() {
     private var binding: FragmentStartBinding? = null
     private lateinit var wordviewmodel: WordViewModel
@@ -22,23 +23,25 @@ class StartFragment : Fragment() {
         val fragmentBinding = FragmentStartBinding.inflate(inflater, container, false)
         binding = fragmentBinding
         return fragmentBinding.root
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding?.words?.setOnClickListener { go2_to_wordsFragment()}
-        binding?.addWord?.setOnClickListener {addWord()}
-        binding?.buttonSearch?.setOnClickListener { goSearchFragment() }
-
+        binding?.apply {
+            lifecycleOwner = viewLifecycleOwner
+            wordViewModel=wordviewmodel
+            startFragment=this@StartFragment
+        }
     }
-    private fun addWord(){
+        fun addWord(){
         findNavController().navigate(R.id.action_startFragment_to_addWordFragment)
-    }
-    private fun goSearchFragment(){
+        }
+        fun goSearchFragment(){
         findNavController().navigate(R.id.action_startFragment_to_searchFragment)
-    }
+        }
 
-    private fun go2_to_wordsFragment(){ // если БД пустая выводим сообщение, на другой фрагмент не идем
+   fun go2_to_wordsFragment(){ // если БД пустая выводим сообщение, на другой фрагмент не идем
                                // иного способа обработать пустой List<Int>! не нашел
         wordviewmodel.all_id.observe(viewLifecycleOwner, Observer {
             val h=try { it.get(0).toString()

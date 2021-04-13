@@ -30,6 +30,11 @@ class WordsFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding?.apply {
+            lifecycleOwner = viewLifecycleOwner
+            wordViewModel=wordviewmodel
+            wordsFragment=this@WordsFragment
+        }
         wordviewmodel.all_id.observe(viewLifecycleOwner, Observer{
             // на этот фрагмент не попадаем, если БД пустая
             // поэтому можем привести к List<Int>
@@ -47,6 +52,7 @@ class WordsFragment : Fragment() {
      })
         binding?.buttonReset?.setOnClickListener { wordviewmodel.updateAll_Read()
             binding?.next?.setEnabled(true) }
+
         binding?.next?.setOnClickListener {
             // binding?.next?.setEnabled(false)
             changeText()
