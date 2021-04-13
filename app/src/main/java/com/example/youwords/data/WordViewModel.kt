@@ -34,6 +34,9 @@ class WordViewModel(application:Application):AndroidViewModel(application) {
     private val _random=MutableLiveData<Int>()//случайный id
     val random: LiveData<Int> =_random
 
+    private val _search_list_words=MutableLiveData<List<Words>>()
+    val searh_list_words :LiveData<List<Words>> = _search_list_words
+
     fun getList_id(list:List<Int>){
         _list_id.value=list
         _mutablelist_id.value=list.toMutableList()
@@ -49,7 +52,9 @@ class WordViewModel(application:Application):AndroidViewModel(application) {
     fun getSizeList():Int?{
         return  mutablelist_list_id.value?.size
     }
-
+    fun getSearchWords(list:List<Words>){
+        _search_list_words.value=list
+    }
 
 
     ////////////
