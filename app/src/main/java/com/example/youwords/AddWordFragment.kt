@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.youwords.data.WordViewModel
@@ -34,7 +33,7 @@ class AddWordFragment : Fragment() {
         binding?.apply {
             lifecycleOwner = viewLifecycleOwner
             wordViewModel=wordviewmodel
-            addwordsFragment=this@AddWordFragment
+            addwordFragment=this@AddWordFragment
         }
     }
 

@@ -7,9 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.example.youwords.data.WordViewModel
-import com.example.youwords.databinding.FragmentAddwordBinding
+
 import com.example.youwords.databinding.FragmentAllWordsBinding
-import com.example.youwords.databinding.FragmentSearchBinding
+
 
 
 

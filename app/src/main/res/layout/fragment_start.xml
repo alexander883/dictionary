@@ -31,7 +31,7 @@
 
         <Button
             android:id="@+id/add_word"
-            android:onClick="@{() ->startFragment.addWord()"
+            android:onClick="@{() ->startFragment.addWord()}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="136dp"
@@ -42,7 +42,7 @@
 
         <Button
             android:id="@+id/button_search"
-            android:onClick="@{() ->startFragment.goSearchFragment()"
+            android:onClick="@{() ->startFragment.goSearchFragment()}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="212dp"
