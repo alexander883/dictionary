@@ -3,23 +3,48 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/fragment1">
-
+    app:startDestination="@id/startFragment">
     <fragment
-        android:id="@+id/fragment1"
-        android:name="com.example.youwords.Fragment1"
-        android:label="fragment_1"
-        tools:layout="@layout/fragment_1" >
+        android:id="@+id/addWordFragment"
+        android:name="com.example.youwords.AddWordFragment"
+        android:label="fragment_addword"
+        tools:layout="@layout/fragment_addword" >
         <action
-            android:id="@+id/action_fragment1_to_fragment2"
-            app:destination="@id/fragment2" />
+            android:id="@+id/action_addWordFragment_to_startFragment"
+            app:destination="@id/startFragment" />
     </fragment>
     <fragment
-        android:id="@+id/fragment2"
-        android:name="com.example.youwords.Fragment2"
-        android:label="Fragment2" >
+        android:id="@+id/wordsFragment"
+        android:name="com.example.youwords.WordsFragment"
+        android:label="fragment_words"
+        tools:layout="@layout/fragment_words" />
+    <fragment
+        android:id="@+id/startFragment"
+        android:name="com.example.youwords.StartFragment"
+        android:label="fragment_start"
+        tools:layout="@layout/fragment_start" >
         <action
-            android:id="@+id/action_fragment2_to_fragment1"
-            app:destination="@id/fragment1" />
+            android:id="@+id/action_startFragment_to_addWordFragment"
+            app:destination="@id/addWordFragment" />
+        <action
+            android:id="@+id/action_startFragment_to_wordsFragment"
+            app:destination="@id/wordsFragment" />
+        <action
+            android:id="@+id/action_startFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.example.youwords.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_searchFragment_to_foundFragment"
+            app:destination="@id/foundFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/foundFragment"
+        android:name="com.example.youwords.FoundFragment"
+        android:label="fragment_found"
+        tools:layout="@layout/fragment_found" />
 </navigation>
