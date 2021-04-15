@@ -6,11 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.youwords.data.WordViewModel
 import com.example.youwords.data.Words
 import com.example.youwords.databinding.FragmentAddwordBinding
+import java.lang.Exception
 
 
 class AddWordFragment : Fragment() {
@@ -35,8 +37,18 @@ class AddWordFragment : Fragment() {
             wordViewModel=wordviewmodel
             addwordFragment=this@AddWordFragment
         }
-    }
 
+    }
+fun del(){ wordviewmodel.all_id.observe(viewLifecycleOwner, Observer {
+    val h=try { it.get(0).toString()
+        Toast.makeText(requireContext(), "$it", Toast.LENGTH_LONG).show()
+       // findNavController().navigate(R.id.action_startFragment_to_wordsFragment)
+    }
+    catch (e: Exception)
+    { Toast.makeText(requireContext(), "Слgbggbgbgст!", Toast.LENGTH_LONG).show()}
+})
+
+}
     fun insertWord(){
         val en_word=binding?.editTextTextPersonName?.text.toString()
         val ru_word=binding?.editTextTextPersonName2?.text.toString()
@@ -51,3 +63,4 @@ class AddWordFragment : Fragment() {
 
     }
 }
+
