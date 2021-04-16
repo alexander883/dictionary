@@ -39,15 +39,8 @@ class AddWordFragment : Fragment() {
         }
 
     }
-fun del(){ wordviewmodel.all_id.observe(viewLifecycleOwner, Observer {
-    val h=try { it.get(0).toString()
-        Toast.makeText(requireContext(), "$it", Toast.LENGTH_LONG).show()
-       // findNavController().navigate(R.id.action_startFragment_to_wordsFragment)
-    }
-    catch (e: Exception)
-    { Toast.makeText(requireContext(), "Слgbggbgbgст!", Toast.LENGTH_LONG).show()}
-})
-
+fun del(){ val k=wordviewmodel.ex.value
+    Toast.makeText(requireContext(),  "$k", Toast.LENGTH_LONG).show()
 }
     fun insertWord(){
         val en_word=binding?.editTextTextPersonName?.text.toString()

@@ -1,5 +1,6 @@
-package com.example.youwords
+package com.example.youwords.start
 
+import android.app.Application
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,18 +9,21 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.example.youwords.data.WordViewModel
 import com.example.youwords.databinding.FragmentStartBinding
 import android.widget.Toast
+import com.example.youwords.R
+import com.example.youwords.data.WordViewModel
 
 class StartFragment : Fragment() {
     private var binding: FragmentStartBinding? = null
-    private lateinit var wordviewmodel: WordViewModel
+    private lateinit  var startviewmodel: StartViewModel
+    private var  wordModel=WordViewModel(application = Application())
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        wordviewmodel = ViewModelProvider(this).get(WordViewModel::class.java)
+        val viewModelFactory = StartViewModelFactory(wordModel)
+        startviewmodel = ViewModelProvider(this, viewModelFactory ).get(StartViewModel::class.java)
         val fragmentBinding = FragmentStartBinding.inflate(inflater, container, false)
         binding = fragmentBinding
         return fragmentBinding.root
@@ -30,9 +34,10 @@ class StartFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding?.apply {
             lifecycleOwner = viewLifecycleOwner
-            wordViewModel=wordviewmodel
+            viewModel=startviewmodel
             startFragment=this@StartFragment
         }
+
     }
         fun addWord(){
         findNavController().navigate(R.id.action_startFragment_to_addWordFragment)
@@ -43,7 +48,7 @@ class StartFragment : Fragment() {
 
    fun go2_to_wordsFragment(){ // если БД пустая выводим сообщение, на другой фрагмент не идем
                                // иного способа обработать пустой List<Int>! не нашел
-        wordviewmodel.all_id.observe(viewLifecycleOwner, Observer {
+        startviewmodel.all_id.observe(viewLifecycleOwner, Observer {
             val h=try { it.get(0).toString()
                 findNavController().navigate(R.id.action_startFragment_to_wordsFragment)
             }

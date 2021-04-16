@@ -2,15 +2,15 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".StartFragment">
+    tools:context=".start.StartFragment">
     <data>
         <variable
-            name="WordViewModel"
-            type="com.example.youwords.data.WordViewModel" />
+            name="viewModel"
+            type="com.example.youwords.start.StartViewModel" />
 
         <variable
             name="startFragment"
-            type="com.example.youwords.StartFragment" />
+            type="com.example.youwords.start.StartFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
