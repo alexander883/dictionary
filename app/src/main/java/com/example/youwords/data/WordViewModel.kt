@@ -10,7 +10,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
-class WordViewModel(application:Application):AndroidViewModel(application) {
+open class WordViewModel(application:Application):AndroidViewModel(application) {
     val repository: WordRepository
 
     init {
@@ -18,22 +18,15 @@ class WordViewModel(application:Application):AndroidViewModel(application) {
         repository = WordRepository(wordDao)
     }
 
-}
-/*
+    val all_id: LiveData<List<Int>> = repository.allId.asLiveData()
+
     fun addWord(word: Words) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.addWord(word)
         }
     }
 
-    private val _ex=MutableLiveData<String>()//случайный id
-    val ex: LiveData<String> =_ex
-    fun exp(){
-        _ex.value="Сохранено"
-    }
 
-
-    val all_id: LiveData<List<Int>> = repository.allId.asLiveData()
      //получаем cлово по id
     val randWord:(Int)->LiveData<Words> ={id->repository.ranWord(id).asLiveData()}
     ///////////////////////////////////////////
@@ -84,5 +77,5 @@ class WordViewModel(application:Application):AndroidViewModel(application) {
 
 }
 
-*/
+
 

@@ -2,17 +2,17 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".SearchFragment">
+    tools:context=".search.SearchFragment">
 
     <data>
 
         <variable
-            name="WordViewModel"
-            type="com.example.youwords.data.WordViewModel" />
+            name="SearchViewModel"
+            type="com.example.youwords.search.SearchViewModel" />
 
         <variable
             name="searchFragment"
-            type="com.example.youwords.SearchFragment" />
+            type="com.example.youwords.search.SearchFragment" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

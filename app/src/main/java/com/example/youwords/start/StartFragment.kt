@@ -17,13 +17,13 @@ import com.example.youwords.data.WordViewModel
 class StartFragment : Fragment() {
     private var binding: FragmentStartBinding? = null
     private lateinit  var startviewmodel: StartViewModel
-    private var  wordModel=WordViewModel(application = Application())
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val viewModelFactory = StartViewModelFactory(wordModel)
-        startviewmodel = ViewModelProvider(this, viewModelFactory ).get(StartViewModel::class.java)
+
+        startviewmodel = ViewModelProvider(this).get(StartViewModel::class.java)
         val fragmentBinding = FragmentStartBinding.inflate(inflater, container, false)
         binding = fragmentBinding
         return fragmentBinding.root

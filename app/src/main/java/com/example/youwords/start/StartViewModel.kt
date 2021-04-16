@@ -10,7 +10,7 @@ import com.example.youwords.data.WordRepository
 import com.example.youwords.data.WordViewModel
 
 
-class StartViewModel(wordModel: WordViewModel) : ViewModel()   {
+class StartViewModel(application:Application) : WordViewModel(application)  {
 
-    val all_id: LiveData<List<Int>> =wordModel.repository.allId.asLiveData()
+
 }

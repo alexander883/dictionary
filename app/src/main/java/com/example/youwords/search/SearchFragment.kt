@@ -1,4 +1,4 @@
-package com.example.youwords
+package com.example.youwords.search
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.example.youwords.R
 import com.example.youwords.RecyclerView.FoundAdapter
 import com.example.youwords.data.WordViewModel
 import com.example.youwords.data.Words
@@ -19,13 +20,13 @@ import com.example.youwords.databinding.FragmentSearchBinding
 
 class SearchFragment : Fragment() {
     private var binding: FragmentSearchBinding? = null
-    private lateinit var wordviewmodel: WordViewModel
+    private lateinit var searchviewmodel:SearchViewModel
     val adapter = FoundAdapter()
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        wordviewmodel = ViewModelProvider(this).get(WordViewModel::class.java)
+        searchviewmodel = ViewModelProvider(this).get(SearchViewModel::class.java)
         val fragmentBinding = FragmentSearchBinding.inflate(inflater, container, false)
         binding = fragmentBinding
         return fragmentBinding.root
@@ -35,15 +36,15 @@ class SearchFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding?.apply {
             lifecycleOwner = viewLifecycleOwner
-            wordViewModel=wordviewmodel
+            searchViewModel=searchviewmodel
             searchFragment=this@SearchFragment
         }
        // binding?.buttonSearchWord?.setOnClickListener {
       ////  }
 
     } fun searhWord(){
-        val se=binding?.searchText?.text.toString()
-        wordviewmodel.searchWord(se).observe(viewLifecycleOwner, Observer {
+        val search=binding?.searchText?.text.toString()
+        searchviewmodel.searchWord( search).observe(viewLifecycleOwner, Observer {
             val h=try {val list= it as List<Words>
                 getSearchWords(list)
 
@@ -62,6 +63,6 @@ class SearchFragment : Fragment() {
         )
     }
             private fun getSearchWords(list:List<Words>){
-             wordviewmodel.getSearchWords(list)
+             searchviewmodel.getSearchWords(list)
             }
 }

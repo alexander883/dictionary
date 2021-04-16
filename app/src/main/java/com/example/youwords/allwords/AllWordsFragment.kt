@@ -1,4 +1,4 @@
-package com.example.youwords
+package com.example.youwords.allwords
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -15,12 +15,12 @@ import com.example.youwords.databinding.FragmentAllWordsBinding
 
 class AllWordsFragment : Fragment() {
     private var binding: FragmentAllWordsBinding? = null
-    private lateinit var wordviewmodel: WordViewModel
+    private lateinit var allwordsviewmodel: AllWordsViewModel
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        wordviewmodel = ViewModelProvider(this).get(WordViewModel::class.java)
+        allwordsviewmodel = ViewModelProvider(this).get(AllWordsViewModel::class.java)
         val fragmentBinding = FragmentAllWordsBinding.inflate(inflater, container, false)
         binding = fragmentBinding
         return fragmentBinding.root
@@ -30,7 +30,7 @@ class AllWordsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding?.apply {
             lifecycleOwner = viewLifecycleOwner
-            wordViewModel=wordviewmodel
+            allWordsViewModel=allwordsviewmodel
             allwordsFragment=this@AllWordsFragment
         }
 
