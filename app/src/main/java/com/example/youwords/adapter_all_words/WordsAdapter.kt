@@ -1,4 +1,4 @@
-package com.example.youwords.Adapter
+package com.example.youwords.adapter_all_words
 
 
 import android.view.LayoutInflater
@@ -21,7 +21,7 @@ class AllWordsAdapter: RecyclerView.Adapter<AllWordsAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = data[position]
-        holder.bind(item)
+        holder.bind(item, position)
     }
 
 
@@ -33,12 +33,13 @@ class AllWordsAdapter: RecyclerView.Adapter<AllWordsAdapter.ViewHolder>() {
     class ViewHolder private constructor(itemView: View) : RecyclerView.ViewHolder(itemView){
         val en_word: TextView = itemView.findViewById(R.id.en_word)
         val ru_word: TextView = itemView.findViewById(R.id.rus_word)
+        val posit:TextView=itemView.findViewById(R.id.posit)
 
 
-        fun bind(item: Words) {
+        fun bind(item: Words, position: Int) {
             en_word.text = item.enWord
             ru_word.text = item.ruWord
-
+            posit.text=(position+1).toString()
         }
 
         companion object {

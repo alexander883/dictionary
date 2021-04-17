@@ -1,4 +1,4 @@
-package com.example.youwords.found
+package com.example.youwords.search_and_found
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,24 +6,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.example.youwords.Adapter.AllWordsAdapter
-import com.example.youwords.data.WordViewModel
-import com.example.youwords.data.Words
 import com.example.youwords.databinding.FragmentFoundBinding
-
 
 class FoundFragment : Fragment() {
     private var binding: FragmentFoundBinding?= null
-    private lateinit var foundviewmodel: FoundViewModel
-    val adapter = AllWordsAdapter()
+    private lateinit var  searchviewmodel: SearchViewModel
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        foundviewmodel = ViewModelProvider(this).get(FoundViewModel::class.java)
+    ): View? {///////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!requireActivity()
+        searchviewmodel = ViewModelProvider(requireActivity()).get(SearchViewModel::class.java)
         val fragmentBinding = FragmentFoundBinding.inflate(inflater, container, false)
         binding = fragmentBinding
         return fragmentBinding.root
@@ -31,22 +26,13 @@ class FoundFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //binding?.wordList?.adapter=adapter
-        binding?.button?.setOnClickListener {  foundviewmodel.allWords.observe(viewLifecycleOwner,Observer {
-
-
-            adapter.data=it
-
-          //  val h=it.count()
-           // Toast.makeText(requireContext(), "$h", Toast.LENGTH_LONG).show()
-       })
-        }
         binding?.apply {
             lifecycleOwner = viewLifecycleOwner
-            foundViewModel=foundviewmodel
+            searchViewModel=searchviewmodel
             foundFragment=this@FoundFragment
-            wordList.adapter=adapter
-          }
 
+          }
+        val h=searchviewmodel.search_words.value?.get(0)?.enWord
+        Toast.makeText(requireContext(), "$h", Toast.LENGTH_LONG).show()
      }
 }

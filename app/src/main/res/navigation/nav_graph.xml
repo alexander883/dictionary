@@ -27,10 +27,13 @@
         <action
             android:id="@+id/action_startFragment_to_wordsReadFragment"
             app:destination="@id/wordsReadFragment" />
+        <action
+            android:id="@+id/action_startFragment_to_allWordsFragment"
+            app:destination="@id/allWordsFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
-        android:name="com.example.youwords.search.SearchFragment"
+        android:name="com.example.youwords.search_and_found.SearchFragment"
         android:label="fragment_search"
         tools:layout="@layout/fragment_search" >
         <action
@@ -39,11 +42,16 @@
     </fragment>
     <fragment
         android:id="@+id/foundFragment"
-        android:name="com.example.youwords.found.FoundFragment"
+        android:name="com.example.youwords.search_and_found.FoundFragment"
         android:label="fragment_found"
         tools:layout="@layout/fragment_found" />
     <fragment
         android:id="@+id/wordsReadFragment"
         android:name="com.example.youwords.words.WordsReadFragment"
         android:label="WordsReadFragment" />
+    <fragment
+        android:id="@+id/allWordsFragment"
+        android:name="com.example.youwords.allwords.AllWordsFragment"
+        android:label="fragment_all_words"
+        tools:layout="@layout/fragment_all_words" />
 </navigation>

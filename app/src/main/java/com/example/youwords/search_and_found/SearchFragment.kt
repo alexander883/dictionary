@@ -1,4 +1,4 @@
-package com.example.youwords.search
+package com.example.youwords.search_and_found
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,8 +10,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.youwords.R
-
-import com.example.youwords.data.WordViewModel
 import com.example.youwords.data.Words
 import com.example.youwords.databinding.FragmentSearchBinding
 
@@ -21,12 +19,12 @@ import com.example.youwords.databinding.FragmentSearchBinding
 class SearchFragment : Fragment() {
     private var binding: FragmentSearchBinding? = null
     private lateinit var searchviewmodel:SearchViewModel
-   // val adapter = FoundAdapter()
+
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        searchviewmodel = ViewModelProvider(this).get(SearchViewModel::class.java)
+        searchviewmodel = ViewModelProvider(requireActivity()).get(SearchViewModel::class.java)
         val fragmentBinding = FragmentSearchBinding.inflate(inflater, container, false)
         binding = fragmentBinding
         return fragmentBinding.root
@@ -47,7 +45,7 @@ class SearchFragment : Fragment() {
         searchviewmodel.searchWord( search).observe(viewLifecycleOwner, Observer {
             val h=try {val list= it as List<Words>
                // getSearchWords(list)
-
+           searchviewmodel.getSearchWords(list)
                 val j=it.size.toString()
                 Toast.makeText(requireContext(), j, Toast.LENGTH_LONG).show()
 
@@ -60,7 +58,5 @@ class SearchFragment : Fragment() {
 
         )
     }
-            private fun getSearchWords(list:List<Words>){
-             searchviewmodel.getSearchWords(list)
-            }
+
 }
