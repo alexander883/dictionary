@@ -6,17 +6,19 @@ import androidx.lifecycle.MutableLiveData
 import com.example.youwords.data.WordViewModel
 
 class WordsReadViewModel(application: Application) : WordViewModel(application)  {
+ val k=super.all_id_read
+   // private val _list_id= MutableLiveData<List<Int>>()// список id получаемый из БД и неизменяемый
 
-    private val _list_id= MutableLiveData<List<Int>>()// список id получаемый из БД и неизменяемый
-    private var _mutablelist_id = MutableLiveData<List<Int>>()//cписок id который изменяем
+//cписок id который изменяем при нахождении во фрагменте, чтобы не обращаться к БД
+    private var _mutablelist_id = MutableLiveData<List<Int>>()
     val mutablelist_list_id: LiveData<List<Int>> =_mutablelist_id
 
 
     private val _random=MutableLiveData<Int>()//случайный id
     val random: LiveData<Int> =_random
 
-    fun getList_id(list:List<Int>){
-        _list_id.value=list
+    fun getList_id(list:List<Int>){ //получаем список id при создании фрагмента, который храним во viewmodel  фрагмента
+      //  _list_id.value=list
         _mutablelist_id.value=list.toMutableList()
     }
     fun get_Random_id():Int{

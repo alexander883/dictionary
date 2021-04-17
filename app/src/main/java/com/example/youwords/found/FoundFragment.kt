@@ -8,15 +8,16 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.example.youwords.RecyclerView.FoundAdapter
+import com.example.youwords.Adapter.AllWordsAdapter
 import com.example.youwords.data.WordViewModel
+import com.example.youwords.data.Words
 import com.example.youwords.databinding.FragmentFoundBinding
 
 
 class FoundFragment : Fragment() {
     private var binding: FragmentFoundBinding?= null
     private lateinit var foundviewmodel: FoundViewModel
-    val adapter = FoundAdapter()
+    val adapter = AllWordsAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,7 +32,7 @@ class FoundFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //binding?.wordList?.adapter=adapter
-        binding?.button?.setOnClickListener {  foundviewmodel.all_id_read.observe(viewLifecycleOwner,Observer {
+        binding?.button?.setOnClickListener {  foundviewmodel.allWords.observe(viewLifecycleOwner,Observer {
 
 
             adapter.data=it

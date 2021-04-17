@@ -1,10 +1,12 @@
 package com.example.youwords.words
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 
@@ -12,6 +14,7 @@ import com.example.youwords.databinding.FragmentWordsreadBinding
 
 
 class WordsReadFragment : Fragment() {
+
     private var binding: FragmentWordsreadBinding?=null
     private lateinit var wordsreadviewmodel: WordsReadViewModel
 
@@ -19,6 +22,7 @@ class WordsReadFragment : Fragment() {
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
+
         wordsreadviewmodel = ViewModelProvider(this).get( WordsReadViewModel::class.java)
         val fragmentBinding = FragmentWordsreadBinding.inflate(inflater, container, false)
         binding = fragmentBinding
@@ -26,19 +30,46 @@ class WordsReadFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+g()
         binding?.apply {
             lifecycleOwner = viewLifecycleOwner
-            wordsViewModel=wordsreadviewmodel
-           wordsreadFragment=this@WordsReadFragment
+            wordsViewModel = wordsreadviewmodel
+            wordsreadFragment = this@WordsReadFragment
+
         }
+
+
+        binding?.buttonReset?.setOnClickListener {
+            wordsreadviewmodel.updateAll_Read()
+            binding?.next?.setEnabled(true)
+        }
+
+        binding?.next?.setOnClickListener {
+           // g()
+            //  binding?.next?.setEnabled(false)
+            changeText()
+            changeCount()
+            update()
+            if (wordsreadviewmodel.getSizeList() == 0) {
+                binding?.next?.setEnabled(false)
+            }
+
+        }
+
+    }
+
+    fun g() {
+        if (wordsreadviewmodel.random.value==null) {
+            Toast.makeText(requireContext(),  "Cо!!!!исок", Toast.LENGTH_LONG).show()
         wordsreadviewmodel.all_id_read.observe(viewLifecycleOwner, Observer{
             // на этот фрагмент не попадаем, если БД пустая
             // поэтому можем привести к List<Int>
             val list= it as List<Int>
-            getList_ids(list)
+            wordsreadviewmodel.getList_id(list)
+
             changeText()
             changeCount()
-            //    Toast.makeText(requireContext(),  "$f", Toast.LENGTH_LONG).show()
+            val p=  Toast.makeText(requireContext(),  "Cоздан список8", Toast.LENGTH_LONG).show()
 
             if (wordsreadviewmodel.getSizeList()==0){
                 binding?.next?.setEnabled(false)
@@ -46,25 +77,13 @@ class WordsReadFragment : Fragment() {
 
 
         })
-        binding?.buttonReset?.setOnClickListener {wordsreadviewmodel.updateAll_Read()
-            binding?.next?.setEnabled(true) }
-
-        binding?.next?.setOnClickListener {
-            // binding?.next?.setEnabled(false)
-            changeText()
-            changeCount()
-            update()
-            if (wordsreadviewmodel.getSizeList()==0){
-                binding?.next?.setEnabled(false)
-            }
-
         }
+    else {    Toast.makeText(requireContext(),  "else", Toast.LENGTH_LONG).show()}}
 
 
-    }
 
     private fun  update(){
-        wordsreadviewmodel.updateRead(5)
+        wordsreadviewmodel.updateRead(wordsreadviewmodel.random.value!!)
 
     }
     private  fun changeText(){

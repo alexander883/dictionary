@@ -28,29 +28,15 @@ open class WordViewModel(application:Application):AndroidViewModel(application) 
 
     val searchWord:(String)-> LiveData<List<Words>>  = { i:String-> repository.searchWord(i).asLiveData() }
 
+    val allWords:LiveData<List<Words>> = repository.allWords.asLiveData()
 
     fun updateRead(id:Int) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.updateRead(id)
         }
     }
-
      //получаем cлово по id
     val randWord:(Int)->LiveData<Words> ={id->repository.ranWord(id).asLiveData()}
-    ///////////////////////////////////////////
-
-
-
-
-
-
-
-
-
-
-
-    ////////////
-
 
     fun updateAll_Read() {
         viewModelScope.launch(Dispatchers.IO) {

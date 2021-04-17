@@ -25,4 +25,7 @@ interface WordDAO {
 
     @Query("SELECT * FROM english WHERE( enWord  LIKE :search ) OR (ruWord LIKE :search )")
     fun searchWord(search: String):  Flow<List<Words>>
+
+    @Query("SELECT * FROM english ")
+    fun allWords():  Flow<List<Words>>
 }

@@ -18,5 +18,6 @@ class WordRepository(private  val wordDao:WordDAO) {
     }
     val searchWord:(String)-> Flow<List<Words>> = { i:String-> wordDao.searchWord(i) }
 
+    val allWords:Flow<List<Words>> =  wordDao.allWords()
    }
 
