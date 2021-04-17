@@ -38,7 +38,7 @@ class AddWordFragment : Fragment() {
         }
 
     }
-    fun insertWord(){
+    fun insertWord(){// проверяем заполненность
         val en_word=binding?.editTextTextPersonName?.text.toString()
         val ru_word=binding?.editTextTextPersonName2?.text.toString()
         if (en_word.isEmpty() or ru_word.isEmpty()){

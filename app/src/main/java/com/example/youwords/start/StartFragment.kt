@@ -48,9 +48,9 @@ class StartFragment : Fragment() {
 
    fun go2_to_wordsFragment(){ // если БД пустая выводим сообщение, на другой фрагмент не идем
                                // иного способа обработать пустой List<Int>! не нашел
-        startviewmodel.all_id.observe(viewLifecycleOwner, Observer {
+        startviewmodel.all_id_read.observe(viewLifecycleOwner, Observer {
             val h=try { it.get(0).toString()
-                findNavController().navigate(R.id.action_startFragment_to_wordsFragment)
+                findNavController().navigate(R.id.action_startFragment_to_wordsReadFragment)
             }
             catch (e: Exception)
             { Toast.makeText(requireContext(), "Словарь пуст!", Toast.LENGTH_LONG).show()}

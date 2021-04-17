@@ -6,11 +6,11 @@
     <data>
         <variable
             name="WordsViewModel"
-            type="com.example.youwords.words.WordsViewModel" />
+            type="com.example.youwords.words.WordsReadViewModel" />
 
         <variable
-            name="wordsFragment"
-            type="com.example.youwords.words.WordsFragment" />
+            name="wordsreadFragment"
+            type="com.example.youwords.words.WordsReadFragment" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

@@ -6,16 +6,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.example.youwords.RecyclerView.FoundAdapter
+import com.example.youwords.Adapter.AllWordsAdapter
 import com.example.youwords.data.WordViewModel
+import com.example.youwords.data.Words
 import com.example.youwords.databinding.FragmentFoundBinding
 
 
 class FoundFragment : Fragment() {
     private var binding: FragmentFoundBinding?= null
     private lateinit var foundviewmodel: FoundViewModel
-    val adapter = FoundAdapter()
+    val adapter = AllWordsAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,18 +32,15 @@ class FoundFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //binding?.wordList?.adapter=adapter
-        binding?.button?.setOnClickListener {  // wordviewmodel.all_id.observe(viewLifecycleOwner, Observer {
-            val list= foundviewmodel.mutablelist_list_id.value ?: listOf(1)
+        binding?.button?.setOnClickListener {  foundviewmodel.allWords.observe(viewLifecycleOwner,Observer {
 
-            adapter.data=list
+
+            adapter.data=it
 
           //  val h=it.count()
            // Toast.makeText(requireContext(), "$h", Toast.LENGTH_LONG).show()
-     //   })
+       })
         }
-binding?.buttoncc?.setOnClickListener {
-    val b=foundviewmodel.mutablelist_list_id.value
-    Toast.makeText(requireContext(),  "$b", Toast.LENGTH_LONG).show() }
         binding?.apply {
             lifecycleOwner = viewLifecycleOwner
             foundViewModel=foundviewmodel

@@ -15,7 +15,7 @@ interface WordDAO {
      fun selectWord(random_id: Int): Flow<Words>
 
     @Query("SELECT id FROM english WHERE read=0") // получаем список id
-     fun getId(): Flow<List<Int>>
+     fun getId_read(): Flow<List<Int>>
 
     @Query("UPDATE english SET read=1 WHERE id=:random_id") //Устанавливаем Слово прочитано
     suspend fun updateRead(random_id:Int)
@@ -25,4 +25,7 @@ interface WordDAO {
 
     @Query("SELECT * FROM english WHERE( enWord  LIKE :search ) OR (ruWord LIKE :search )")
     fun searchWord(search: String):  Flow<List<Words>>
+
+    @Query("SELECT * FROM english ")
+    fun allWords():  Flow<List<Words>>
 }
