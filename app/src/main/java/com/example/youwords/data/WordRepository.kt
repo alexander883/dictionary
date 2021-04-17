@@ -6,7 +6,7 @@ class WordRepository(private  val wordDao:WordDAO) {
     suspend fun addWord(word:Words){
         wordDao.addWord(word)
     }
-    val allId: Flow<List<Int>> =wordDao.getId()
+    val allId_read: Flow<List<Int>> =wordDao.getId_read()
 
     val ranWord:(Int)-> Flow<Words> = { i:Int-> wordDao.selectWord(i) }
 

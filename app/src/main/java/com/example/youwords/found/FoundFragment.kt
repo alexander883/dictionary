@@ -31,7 +31,7 @@ class FoundFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //binding?.wordList?.adapter=adapter
-        binding?.button?.setOnClickListener {  foundviewmodel.all_id.observe(viewLifecycleOwner,Observer {
+        binding?.button?.setOnClickListener {  foundviewmodel.all_id_read.observe(viewLifecycleOwner,Observer {
 
 
             adapter.data=it

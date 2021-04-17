@@ -6,7 +6,7 @@
     <data>
         <variable
             name="WordsViewModel"
-            type="com.example.youwords.words.WordsViewModel" />
+            type="com.example.youwords.words.WordsReadViewModel" />
 
         <variable
             name="wordsreadFragment"

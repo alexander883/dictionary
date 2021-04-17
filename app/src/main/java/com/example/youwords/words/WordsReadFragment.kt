@@ -13,13 +13,13 @@ import com.example.youwords.databinding.FragmentWordsreadBinding
 
 class WordsReadFragment : Fragment() {
     private var binding: FragmentWordsreadBinding?=null
-    private lateinit var wordsviewmodel: WordsViewModel
+    private lateinit var wordsreadviewmodel: WordsReadViewModel
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        wordsviewmodel = ViewModelProvider(this).get(WordsViewModel::class.java)
+        wordsreadviewmodel = ViewModelProvider(this).get( WordsReadViewModel::class.java)
         val fragmentBinding = FragmentWordsreadBinding.inflate(inflater, container, false)
         binding = fragmentBinding
         return fragmentBinding.root
@@ -28,10 +28,10 @@ class WordsReadFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding?.apply {
             lifecycleOwner = viewLifecycleOwner
-            wordsViewModel=wordsviewmodel
+            wordsViewModel=wordsreadviewmodel
            wordsreadFragment=this@WordsReadFragment
         }
-        wordsviewmodel.all_id.observe(viewLifecycleOwner, Observer{
+        wordsreadviewmodel.all_id_read.observe(viewLifecycleOwner, Observer{
             // на этот фрагмент не попадаем, если БД пустая
             // поэтому можем привести к List<Int>
             val list= it as List<Int>
@@ -40,13 +40,13 @@ class WordsReadFragment : Fragment() {
             changeCount()
             //    Toast.makeText(requireContext(),  "$f", Toast.LENGTH_LONG).show()
 
-            if (wordsviewmodel.getSizeList()==0){
+            if (wordsreadviewmodel.getSizeList()==0){
                 binding?.next?.setEnabled(false)
             }
 
 
         })
-        binding?.buttonReset?.setOnClickListener { wordsviewmodel.updateAll_Read()
+        binding?.buttonReset?.setOnClickListener {wordsreadviewmodel.updateAll_Read()
             binding?.next?.setEnabled(true) }
 
         binding?.next?.setOnClickListener {
@@ -54,7 +54,7 @@ class WordsReadFragment : Fragment() {
             changeText()
             changeCount()
             update()
-            if (wordsviewmodel.getSizeList()==0){
+            if (wordsreadviewmodel.getSizeList()==0){
                 binding?.next?.setEnabled(false)
             }
 
@@ -64,24 +64,24 @@ class WordsReadFragment : Fragment() {
     }
 
     private fun  update(){
-        wordsviewmodel.updateRead(5)
+        wordsreadviewmodel.updateRead(5)
 
     }
     private  fun changeText(){
-        wordsviewmodel.randWord(getRandom_id()).observe(viewLifecycleOwner, Observer {
+        wordsreadviewmodel.randWord(getRandom_id()).observe(viewLifecycleOwner, Observer {
             binding?.enText?.text=it.enWord
             binding?.ruText?.text=it.ruWord
         })
     }
     //получаем список id
     private fun getList_ids(list:List<Int>){
-        wordsviewmodel.getList_id(list)
+        wordsreadviewmodel.getList_id(list)
     }
     private fun getRandom_id():Int{
-        return wordsviewmodel.get_Random_id()
+        return wordsreadviewmodel.get_Random_id()
     }
     private fun changeCount(){
-        binding?.count?.text=wordsviewmodel.getSizeList().toString()
+        binding?.count?.text=wordsreadviewmodel.getSizeList().toString()
         //if (wordviewmodel.getSizeList()){
 
     }}

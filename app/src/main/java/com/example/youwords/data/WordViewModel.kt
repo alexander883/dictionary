@@ -18,7 +18,7 @@ open class WordViewModel(application:Application):AndroidViewModel(application) 
         repository = WordRepository(wordDao)
     }
 
-    val all_id: LiveData<List<Int>> = repository.allId.asLiveData()
+    val all_id_read: LiveData<List<Int>> = repository.allId_read.asLiveData()
 
     fun addWord(word: Words) {
         viewModelScope.launch(Dispatchers.IO) {
