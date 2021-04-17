@@ -4,18 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
-            name="FoundViewModel"
-            type="com.example.youwords.found.FoundViewModel" />
+            name="SearchViewModel"
+            type="com.example.youwords.search_and_found.SearchViewModel" />
 
         <variable
             name="foundFragment"
-            type="com.example.youwords.found.FoundFragment" />
+            type="com.example.youwords.search_and_found.FoundFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".found.FoundFragment">
+        tools:context=".search_and_found.FoundFragment">
 
 
 
@@ -29,16 +29,6 @@
             android:text="Button"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/buttoncc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="147dp"
-            android:layout_marginBottom="59dp"
-            android:text="Button"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

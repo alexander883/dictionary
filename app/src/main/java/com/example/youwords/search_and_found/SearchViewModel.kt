@@ -1,4 +1,4 @@
-package com.example.youwords.search
+package com.example.youwords.search_and_found
 
 import android.app.Application
 import androidx.lifecycle.LiveData
@@ -7,11 +7,10 @@ import com.example.youwords.data.WordViewModel
 import com.example.youwords.data.Words
 
 class SearchViewModel(application: Application) : WordViewModel(application)  {
+    private val _search_words=MutableLiveData<List<Words>>()
+    val search_words: LiveData<List<Words>> =_search_words
 
- //   private val _search_list_words= MutableLiveData<List<Words>>()
-            //  val search_list_words : LiveData<List<Words>> = _search_list_words
     fun getSearchWords(list:List<Words>){
-       // _search_list_words.value=list
+        _search_words.value=list
     }
-
 }

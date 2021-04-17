@@ -1,4 +1,4 @@
-package com.example.youwords.Adapter
+package com.example.youwords.adapter_all_words
 
 
 import android.view.LayoutInflater
