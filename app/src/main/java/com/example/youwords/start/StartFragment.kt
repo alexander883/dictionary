@@ -45,6 +45,9 @@ class StartFragment : Fragment() {
         fun goSearchFragment(){
         findNavController().navigate(R.id.action_startFragment_to_searchFragment)
         }
+    fun goAllWords(){
+        findNavController().navigate(R.id.action_startFragment_to_allWordsFragment)
+    }
 
    fun go2_to_wordsFragment(){ // если БД пустая выводим сообщение, на другой фрагмент не идем
                                // иного способа обработать пустой List<Int>! не нашел

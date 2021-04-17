@@ -5,9 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.example.youwords.data.WordViewModel
-
+import com.example.youwords.Adapter.AllWordsAdapter
 import com.example.youwords.databinding.FragmentAllWordsBinding
 
 
@@ -16,6 +16,7 @@ import com.example.youwords.databinding.FragmentAllWordsBinding
 class AllWordsFragment : Fragment() {
     private var binding: FragmentAllWordsBinding? = null
     private lateinit var allwordsviewmodel: AllWordsViewModel
+    val adapter = AllWordsAdapter()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,7 +33,18 @@ class AllWordsFragment : Fragment() {
             lifecycleOwner = viewLifecycleOwner
             allWordsViewModel=allwordsviewmodel
             allwordsFragment=this@AllWordsFragment
+            allWordsList.adapter=adapter
         }
+
+
+         allwordsviewmodel.allWords.observe(viewLifecycleOwner, Observer {
+
+
+            adapter.data=it
+
+            //  val h=it.count()
+            // Toast.makeText(requireContext(), "$h", Toast.LENGTH_LONG).show()
+        })
 
 
     }
