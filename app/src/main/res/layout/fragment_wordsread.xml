@@ -9,8 +9,8 @@
             type="com.example.youwords.words.WordsViewModel" />
 
         <variable
-            name="wordsFragment"
-            type="com.example.youwords.words.WordsFragment" />
+            name="wordsreadFragment"
+            type="com.example.youwords.words.WordsReadFragment" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

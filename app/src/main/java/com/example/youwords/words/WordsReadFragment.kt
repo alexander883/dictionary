@@ -7,12 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.example.youwords.data.WordViewModel
-import com.example.youwords.databinding.FragmentWordsBinding
+
+import com.example.youwords.databinding.FragmentWordsreadBinding
 
 
-class WordsFragment : Fragment() {
-    private var binding: FragmentWordsBinding?=null
+class WordsReadFragment : Fragment() {
+    private var binding: FragmentWordsreadBinding?=null
     private lateinit var wordsviewmodel: WordsViewModel
 
     override fun onCreateView(
@@ -20,7 +20,7 @@ class WordsFragment : Fragment() {
             savedInstanceState: Bundle?
     ): View? {
         wordsviewmodel = ViewModelProvider(this).get(WordsViewModel::class.java)
-        val fragmentBinding = FragmentWordsBinding.inflate(inflater, container, false)
+        val fragmentBinding = FragmentWordsreadBinding.inflate(inflater, container, false)
         binding = fragmentBinding
         return fragmentBinding.root
     }
@@ -29,7 +29,7 @@ class WordsFragment : Fragment() {
         binding?.apply {
             lifecycleOwner = viewLifecycleOwner
             wordsViewModel=wordsviewmodel
-            wordsFragment=this@WordsFragment
+           wordsreadFragment=this@WordsReadFragment
         }
         wordsviewmodel.all_id.observe(viewLifecycleOwner, Observer{
             // на этот фрагмент не попадаем, если БД пустая
@@ -38,14 +38,14 @@ class WordsFragment : Fragment() {
             getList_ids(list)
             changeText()
             changeCount()
-     //    Toast.makeText(requireContext(),  "$f", Toast.LENGTH_LONG).show()
+            //    Toast.makeText(requireContext(),  "$f", Toast.LENGTH_LONG).show()
 
             if (wordsviewmodel.getSizeList()==0){
                 binding?.next?.setEnabled(false)
             }
 
 
-     })
+        })
         binding?.buttonReset?.setOnClickListener { wordsviewmodel.updateAll_Read()
             binding?.next?.setEnabled(true) }
 
@@ -59,26 +59,30 @@ class WordsFragment : Fragment() {
             }
 
         }
-}      private fun  update(){
-            wordsviewmodel.updateRead()
+
 
     }
-      private  fun changeText(){
-            wordsviewmodel.randWord(getRandom_id()).observe(viewLifecycleOwner, Observer {
-                binding?.enText?.text=it.enWord
-                binding?.ruText?.text=it.ruWord
-            })
-        }
-     //получаем список id
+
+    private fun  update(){
+        wordsviewmodel.updateRead(5)
+
+    }
+    private  fun changeText(){
+        wordsviewmodel.randWord(getRandom_id()).observe(viewLifecycleOwner, Observer {
+            binding?.enText?.text=it.enWord
+            binding?.ruText?.text=it.ruWord
+        })
+    }
+    //получаем список id
     private fun getList_ids(list:List<Int>){
-            wordsviewmodel.getList_id(list)
+        wordsviewmodel.getList_id(list)
     }
     private fun getRandom_id():Int{
-             return wordsviewmodel.get_Random_id()
+        return wordsviewmodel.get_Random_id()
     }
     private fun changeCount(){
-     binding?.count?.text=wordsviewmodel.getSizeList().toString()
-    //if (wordviewmodel.getSizeList()){
+        binding?.count?.text=wordsviewmodel.getSizeList().toString()
+        //if (wordviewmodel.getSizeList()){
 
     }}
 

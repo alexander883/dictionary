@@ -46,12 +46,10 @@ class SearchFragment : Fragment() {
         val search=binding?.searchText?.text.toString()
         searchviewmodel.searchWord( search).observe(viewLifecycleOwner, Observer {
             val h=try {val list= it as List<Words>
-                getSearchWords(list)
+               // getSearchWords(list)
 
                 val j=it.size.toString()
                 Toast.makeText(requireContext(), j, Toast.LENGTH_LONG).show()
-                binding?.enSearch?.text=it.get(0).enWord
-                binding?.ruSearch?.text=it.get(0).ruWord
 
                 findNavController().navigate(R.id.action_searchFragment_to_foundFragment)}
 

@@ -50,7 +50,7 @@ class StartFragment : Fragment() {
                                // иного способа обработать пустой List<Int>! не нашел
         startviewmodel.all_id.observe(viewLifecycleOwner, Observer {
             val h=try { it.get(0).toString()
-                findNavController().navigate(R.id.action_startFragment_to_wordsFragment)
+                findNavController().navigate(R.id.action_startFragment_to_wordsReadFragment)
             }
             catch (e: Exception)
             { Toast.makeText(requireContext(), "Словарь пуст!", Toast.LENGTH_LONG).show()}

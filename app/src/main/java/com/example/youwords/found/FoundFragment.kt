@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.youwords.RecyclerView.FoundAdapter
 import com.example.youwords.data.WordViewModel
@@ -30,18 +31,15 @@ class FoundFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //binding?.wordList?.adapter=adapter
-        binding?.button?.setOnClickListener {  // wordviewmodel.all_id.observe(viewLifecycleOwner, Observer {
-            val list= foundviewmodel.mutablelist_list_id.value ?: listOf(1)
+        binding?.button?.setOnClickListener {  foundviewmodel.all_id.observe(viewLifecycleOwner,Observer {
 
-            adapter.data=list
+
+            adapter.data=it
 
           //  val h=it.count()
            // Toast.makeText(requireContext(), "$h", Toast.LENGTH_LONG).show()
-     //   })
+       })
         }
-binding?.buttoncc?.setOnClickListener {
-    val b=foundviewmodel.mutablelist_list_id.value
-    Toast.makeText(requireContext(),  "$b", Toast.LENGTH_LONG).show() }
         binding?.apply {
             lifecycleOwner = viewLifecycleOwner
             foundViewModel=foundviewmodel

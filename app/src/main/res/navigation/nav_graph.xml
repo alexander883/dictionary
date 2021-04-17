@@ -14,11 +14,6 @@
             app:destination="@id/startFragment" />
     </fragment>
     <fragment
-        android:id="@+id/wordsFragment"
-        android:name="com.example.youwords.words.WordsFragment"
-        android:label="fragment_words"
-        tools:layout="@layout/fragment_words" />
-    <fragment
         android:id="@+id/startFragment"
         android:name="com.example.youwords.start.StartFragment"
         android:label="fragment_start"
@@ -27,11 +22,11 @@
             android:id="@+id/action_startFragment_to_addWordFragment"
             app:destination="@id/addWordFragment" />
         <action
-            android:id="@+id/action_startFragment_to_wordsFragment"
-            app:destination="@id/wordsFragment" />
-        <action
             android:id="@+id/action_startFragment_to_searchFragment"
             app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_startFragment_to_wordsReadFragment"
+            app:destination="@id/wordsReadFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
@@ -47,4 +42,8 @@
         android:name="com.example.youwords.found.FoundFragment"
         android:label="fragment_found"
         tools:layout="@layout/fragment_found" />
+    <fragment
+        android:id="@+id/wordsReadFragment"
+        android:name="com.example.youwords.words.WordsReadFragment"
+        android:label="WordsReadFragment" />
 </navigation>
