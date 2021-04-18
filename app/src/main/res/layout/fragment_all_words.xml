@@ -14,7 +14,7 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
+        android:layout_width="392dp"
         android:layout_height="wrap_content">
 
         <TextView
@@ -30,12 +30,12 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/all_words_list"
-            android:layout_width="wrap_content"
+            android:layout_width="394dp"
             android:layout_height="wrap_content"
 
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="355dp"
+
             android:scrollbars="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
@@ -50,10 +50,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="2dp"
             android:layout_marginTop="16dp"
-            android:text= "@{AllWordsViewModel.size.toString()}"
-            tools:text="435"
+            android:text="@{AllWordsViewModel.size.toString()}"
             app:layout_constraintStart_toEndOf="@+id/textView_w"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="435" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

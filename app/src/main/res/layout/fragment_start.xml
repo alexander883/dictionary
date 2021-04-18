@@ -7,7 +7,6 @@
         <variable
             name="viewModel"
             type="com.example.youwords.start.StartViewModel" />
-
         <variable
             name="startFragment"
             type="com.example.youwords.start.StartFragment" />
@@ -17,6 +16,20 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="171dp"
+            android:layout_height="97dp"
+            android:layout_marginStart="11dp"
+            android:layout_marginTop="29dp"
+            android:layout_marginEnd="11dp"
+
+
+            android:text="TextViewыыыыыыыыыыыыыыыыывввввввсвмммммммммccccccccccccccccccмммы vvvvvvv vcdsvdv vfvdv, hhhhhhhhhhhhhhhh fd f"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.9"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/button_words"
@@ -61,6 +74,8 @@
             android:text="Все слова"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
