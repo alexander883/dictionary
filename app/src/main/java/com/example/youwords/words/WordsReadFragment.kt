@@ -33,11 +33,14 @@ class WordsReadFragment : Fragment() {
 g()
         binding?.apply {
             lifecycleOwner = viewLifecycleOwner
-            wordsViewModel = wordsreadviewmodel
+            wordsReadViewModel=wordsreadviewmodel
             wordsreadFragment = this@WordsReadFragment
 
         }
-
+        // для подсчета всех слов в словаре
+        wordsreadviewmodel.allWords.observe(viewLifecycleOwner, Observer {
+            wordsreadviewmodel.getSize(it.size)
+        })
 
         binding?.buttonReset?.setOnClickListener {
             wordsreadviewmodel.updateAll_Read()
@@ -54,13 +57,14 @@ g()
                 binding?.next?.setEnabled(false)
             }
 
+
         }
+
 
     }
 
     fun g() {
         if (wordsreadviewmodel.random.value==null) {
-            Toast.makeText(requireContext(),  "Cо!!!!исок", Toast.LENGTH_LONG).show()
         wordsreadviewmodel.all_id_read.observe(viewLifecycleOwner, Observer{
             // на этот фрагмент не попадаем, если БД пустая
             // поэтому можем привести к List<Int>
@@ -69,7 +73,7 @@ g()
 
             changeText()
             changeCount()
-            val p=  Toast.makeText(requireContext(),  "Cоздан список8", Toast.LENGTH_LONG).show()
+
 
             if (wordsreadviewmodel.getSizeList()==0){
                 binding?.next?.setEnabled(false)

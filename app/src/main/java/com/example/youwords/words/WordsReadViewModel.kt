@@ -17,6 +17,12 @@ class WordsReadViewModel(application: Application) : WordViewModel(application) 
     private val _random=MutableLiveData<Int>()//случайный id
     val random: LiveData<Int> =_random
 
+            // количество всех слов в словаре
+    private var _size = MutableLiveData<Int>()
+    val size : LiveData<Int> = _size
+
+
+
     fun getList_id(list:List<Int>){ //получаем список id при создании фрагмента, который храним во viewmodel  фрагмента
       //  _list_id.value=list
         _mutablelist_id.value=list.toMutableList()
@@ -30,6 +36,10 @@ class WordsReadViewModel(application: Application) : WordViewModel(application) 
     }
     fun getSizeList():Int?{
         return  mutablelist_list_id.value?.size
+    }
+
+    fun getSize(size:Int){
+        _size.value=size
     }
 
 }

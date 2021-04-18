@@ -17,6 +17,7 @@ class AllWordsFragment : Fragment() {
     private var binding: FragmentAllWordsBinding? = null
     private lateinit var allwordsviewmodel: AllWordsViewModel
     val adapter = AllWordsAdapter()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -38,12 +39,8 @@ class AllWordsFragment : Fragment() {
 
 
          allwordsviewmodel.allWords.observe(viewLifecycleOwner, Observer {
-
-
-            adapter.data=it
-
-            //  val h=it.count()
-            // Toast.makeText(requireContext(), "$h", Toast.LENGTH_LONG).show()
+              allwordsviewmodel.getSize(it.size)
+              adapter.data=it
         })
 
 

@@ -5,7 +5,7 @@
     tools:context=".words.WordsFragment">
     <data>
         <variable
-            name="WordsViewModel"
+            name="WordsReadViewModel"
             type="com.example.youwords.words.WordsReadViewModel" />
 
         <variable
@@ -21,8 +21,8 @@
             style="@style/Widget.TipTime.TextView"
             android:layout_width="116dp"
             android:layout_height="76dp"
-            android:layout_marginStart="128dp"
-            android:layout_marginTop="125dp"
+            android:layout_marginStart="120dp"
+            android:layout_marginTop="64dp"
             android:text="TextView"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/en_text" />
@@ -42,8 +42,8 @@
             style="@style/Widget.TipTime.TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="154dp"
-            android:layout_marginTop="124dp"
+            android:layout_marginStart="144dp"
+            android:layout_marginTop="212dp"
             android:text="TextView"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -53,8 +53,8 @@
             style="@style/Widget.TipTime.TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="36dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="124dp"
             android:text="Ос"
             app:layout_constraintStart_toEndOf="@+id/textView"
             app:layout_constraintTop_toTopOf="parent" />
@@ -63,8 +63,8 @@
             android:id="@+id/button_reset"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="37dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="124dp"
             android:text="Сброс"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -74,11 +74,34 @@
             style="@style/Widget.TipTime.TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="36dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="124dp"
             android:text="Осталось слов"
             app:layout_constraintStart_toEndOf="@+id/button_reset"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView_w1"
+            style="@style/Widget.TipTime.TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="16dp"
+            android:text="Всего слов в словаре:"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView_total"
+            style="@style/Widget.TipTime.TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@{WordsReadViewModel.size.toString()}"
+            app:layout_constraintStart_toEndOf="@+id/textView_w1"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="44" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

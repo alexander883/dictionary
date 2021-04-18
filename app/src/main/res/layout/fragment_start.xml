@@ -19,8 +19,8 @@
 
 
         <Button
-            android:id="@+id/words"
-            android:onClick="@{() ->startFragment.go2_to_wordsFragment()}"
+            android:id="@+id/button_words"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="132dp"
@@ -42,7 +42,7 @@
 
         <Button
             android:id="@+id/button_search"
-            android:onClick="@{() ->startFragment.goSearchFragment()}"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="212dp"
@@ -53,7 +53,7 @@
 
         <Button
             android:id="@+id/button_to_all_words"
-            android:onClick="@{() ->startFragment.goAllWords()}"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="128dp"

@@ -36,7 +36,18 @@ class StartFragment : Fragment() {
             lifecycleOwner = viewLifecycleOwner
             viewModel=startviewmodel
             startFragment=this@StartFragment
+
         }
+        startviewmodel.all_id_read.observe(viewLifecycleOwner, Observer {
+            try {it[0]
+               binding?.buttonSearch?.setOnClickListener { findNavController().navigate(R.id.action_startFragment_to_searchFragment) }
+                binding?.buttonToAllWords?.setOnClickListener {  findNavController().navigate(R.id.action_startFragment_to_allWordsFragment) }
+                binding?.buttonWords?.setOnClickListener {  findNavController().navigate(R.id.action_startFragment_to_wordsReadFragment) }
+            }
+            catch (e:Exception){
+                Toast.makeText(requireContext(), "Словарь пуст!", Toast.LENGTH_LONG).show()
+            }
+        } )
 
     }
         fun addWord(){
@@ -44,34 +55,6 @@ class StartFragment : Fragment() {
         }
 
 
-        fun goSearchFragment(){
-            if(!dictionary_is_empty()) {
-                findNavController().navigate(R.id.action_startFragment_to_searchFragment)
-            }
-        }
-         fun goAllWords(){
-               if (!dictionary_is_empty()) {
-           findNavController().navigate(R.id.action_startFragment_to_allWordsFragment)
-       }
-    }
 
-   fun go2_to_wordsFragment(){
-       if(!dictionary_is_empty()){
-           findNavController().navigate(R.id.action_startFragment_to_wordsReadFragment)
-       }
-    }
-
-       // пытаемся получить первое значение Id БД, если не выходит=> cловарь пуст
-    fun dictionary_is_empty():Boolean{
-        var is_empty=true
-        startviewmodel.all_id_read.observe(viewLifecycleOwner, Observer {
-       try {it[0]
-           is_empty=false
-        }
-        catch (e:Exception){
-            Toast.makeText(requireContext(), "Словарь пуст!", Toast.LENGTH_LONG).show()
-        }
-    } )
-     return is_empty}
 
 }

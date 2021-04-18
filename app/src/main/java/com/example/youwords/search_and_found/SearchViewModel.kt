@@ -13,4 +13,5 @@ class SearchViewModel(application: Application) : WordViewModel(application)  {
     fun getSearchWords(list:List<Words>){
         _search_words.value=list
     }
+
 }

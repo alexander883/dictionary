@@ -37,28 +37,24 @@ class SearchFragment : Fragment() {
             searchViewModel=searchviewmodel
             searchFragment=this@SearchFragment
         }
-       // binding?.buttonSearchWord?.setOnClickListener {
-      ////  }
 
     } fun searhWord(){
-        val search=binding?.searchText?.text ?: Toast.makeText(requireContext(), "Введите значение", Toast.LENGTH_LONG).show()
-        val rsearch=binding?.searchText?.text.toString()
+      //  binding?.searchText?.text ?: Toast.makeText(requireContext(), "Введите значение", Toast.LENGTH_LONG).show()
+       val search=binding?.searchText?.text.toString()
 
-        searchviewmodel.searchWord( rsearch).observe(viewLifecycleOwner, Observer {
-            val h=(try {val list= it as List<Words>
-               // getSearchWords(list)
-           searchviewmodel.getSearchWords(list)
-                val j=it.size.toString()
+        searchviewmodel.searchWord(search).observe(viewLifecycleOwner, Observer {
+            try { it[0]/// если it[0] не существует=> catch
+                searchviewmodel.getSearchWords(it)
+                val j = it.size.toString()
                 Toast.makeText(requireContext(), j, Toast.LENGTH_LONG).show()
 
-                findNavController().navigate(R.id.action_searchFragment_to_foundFragment)}
-
-            catch (e: Exception)
-            { Toast.makeText(requireContext(), "Не найдено ", Toast.LENGTH_LONG).show()}
-                    )
+                findNavController().navigate(R.id.action_searchFragment_to_foundFragment)
+            } catch (e: Exception) {
+                Toast.makeText(requireContext(), "Не найдено ", Toast.LENGTH_LONG).show()
+            }
+        }        )
         }
 
-        )
+
     }
 
-}
