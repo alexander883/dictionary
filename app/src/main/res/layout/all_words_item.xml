@@ -8,51 +8,50 @@
      -->
 
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/posit"
+            style="@style/Widget.TipTime.TextView"
 
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-               >
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="102" />
 
-                <TextView
-                    android:id="@+id/posit"
-                    style="@style/Widget.TipTime.TextView"
+        <TextView
+            android:id="@+id/en_word"
+            style="@style/Widget.TipTime.TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:gravity="start"
 
+            android:inputType="textMultiLine"
+            app:layout_constraintStart_toEndOf="@+id/posit"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="TextViewEdits"
+            tools:text="englr4rfffffffffffffff" />
 
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginTop="24dp"
-                    tools:text="102"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/rus_word"
+            style="@style/Widget.TipTime.TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
 
-                <TextView
-                    android:id="@+id/en_word"
-                    style="@style/Widget.TipTime.TextView"
-
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="27dp"
-                    android:layout_marginTop="24dp"
-                    app:layout_constraintStart_toEndOf="@+id/posit"
-                    app:layout_constraintTop_toTopOf="parent"
-
-                    tools:text="engl" />
-
-                <TextView
-                    android:id="@+id/rus_word"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    style="@style/Widget.TipTime.TextView"
-
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="20dp"
-                    app:layout_constraintStart_toEndOf="@+id/posit"
-                    app:layout_constraintTop_toBottomOf="@+id/en_word"
-                    tools:text="русское слово" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintStart_toEndOf="@+id/posit"
+            app:layout_constraintTop_toBottomOf="@+id/en_word"
+            tools:text="русское слово" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 
