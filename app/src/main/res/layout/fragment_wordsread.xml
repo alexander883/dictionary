@@ -18,6 +18,7 @@
 
         <TextView
             android:id="@+id/ru_text"
+            style="@style/Widget.TipTime.TextView"
             android:layout_width="116dp"
             android:layout_height="76dp"
             android:layout_marginStart="128dp"
@@ -38,6 +39,7 @@
 
         <TextView
             android:id="@+id/en_text"
+            style="@style/Widget.TipTime.TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="154dp"
@@ -48,12 +50,13 @@
 
         <TextView
             android:id="@+id/count"
+            style="@style/Widget.TipTime.TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="260dp"
+            android:layout_marginStart="24dp"
             android:layout_marginTop="36dp"
             android:text="Ос"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
@@ -68,9 +71,10 @@
 
         <TextView
             android:id="@+id/textView"
+            style="@style/Widget.TipTime.TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
+            android:layout_marginStart="24dp"
             android:layout_marginTop="36dp"
             android:text="Осталось слов"
             app:layout_constraintStart_toEndOf="@+id/button_reset"

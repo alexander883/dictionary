@@ -41,9 +41,11 @@ class SearchFragment : Fragment() {
       ////  }
 
     } fun searhWord(){
-        val search=binding?.searchText?.text.toString()
-        searchviewmodel.searchWord( search).observe(viewLifecycleOwner, Observer {
-            val h=try {val list= it as List<Words>
+        val search=binding?.searchText?.text ?: Toast.makeText(requireContext(), "Введите значение", Toast.LENGTH_LONG).show()
+        val rsearch=binding?.searchText?.text.toString()
+
+        searchviewmodel.searchWord( rsearch).observe(viewLifecycleOwner, Observer {
+            val h=(try {val list= it as List<Words>
                // getSearchWords(list)
            searchviewmodel.getSearchWords(list)
                 val j=it.size.toString()
@@ -53,7 +55,7 @@ class SearchFragment : Fragment() {
 
             catch (e: Exception)
             { Toast.makeText(requireContext(), "Не найдено ", Toast.LENGTH_LONG).show()}
-
+                    )
         }
 
         )
