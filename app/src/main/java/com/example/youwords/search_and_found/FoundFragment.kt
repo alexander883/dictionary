@@ -33,12 +33,8 @@ class FoundFragment : Fragment() {
             foundFragment = this@FoundFragment
             foundWordsList.adapter = adapter
         }
-        val h = searchviewmodel.search_words.value?.get(0)?.enWord
-        Toast.makeText(requireContext(), "$h", Toast.LENGTH_LONG).show()
-    //    searchviewmodel.search_words.value?.let {
-            adapter.data = searchviewmodel.search_words.value!!
-       // }
-         binding?.textViewTotalWords?.text=searchviewmodel.search_words.value?.size.toString()
+
+      binding?.textViewTotalWords?.text=   searchviewmodel.getSize()
 
     }
 }

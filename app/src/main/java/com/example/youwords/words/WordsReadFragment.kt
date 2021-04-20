@@ -37,6 +37,9 @@ g()
             wordsreadFragment = this@WordsReadFragment
 
         }
+
+
+
         // для подсчета всех слов в словаре
         wordsreadviewmodel.allWords.observe(viewLifecycleOwner, Observer {
             wordsreadviewmodel.getSize(it.size)
@@ -107,7 +110,12 @@ g()
         binding?.count?.text=wordsreadviewmodel.getSizeList().toString()
         //if (wordviewmodel.getSizeList()){
 
-    }}
+    }
+    fun setRemember(){Toast.makeText(requireContext(), "Запомрил", Toast.LENGTH_LONG).show()
+        wordsreadviewmodel.updateRead(wordsreadviewmodel.random.value!!)
+    }
+
+}
 
 
 

@@ -33,13 +33,13 @@
             android:id="@+id/search_text"
             android:layout_width="267dp"
             android:layout_height="47dp"
-            android:layout_marginStart="86dp"
-            android:layout_marginTop="85dp"
+            android:layout_marginStart="52dp"
+            android:layout_marginTop="88dp"
             android:ems="10"
             android:inputType="textPersonName"
-            tools:text="Искомое слово"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Искомое слово" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

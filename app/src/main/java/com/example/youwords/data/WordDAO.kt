@@ -11,10 +11,10 @@ interface WordDAO {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun addWord(word: Words)
 
-    @Query("SELECT *  FROM english WHERE id = :random_id ")// получаем Words по id
+    @Query("SELECT *  FROM english WHERE id = :random_id  ")// получаем Words по id
      fun selectWord(random_id: Int): Flow<Words>
 
-    @Query("SELECT id FROM english WHERE read=0") // получаем список id
+    @Query("SELECT id FROM english WHERE read=0 AND remember=0") // получаем список id
      fun getId_read(): Flow<List<Int>>
 
     @Query("UPDATE english SET read=1 WHERE id=:random_id") //Устанавливаем Слово прочитано
@@ -28,4 +28,7 @@ interface WordDAO {
 
     @Query("SELECT * FROM english ")
     fun allWords():  Flow<List<Words>>
+
+    @Query("UPDATE english SET remember=1 WHERE id=:id") //Устанавливаем Слово запомнено
+    suspend fun updateRemember(id:Int)
 }

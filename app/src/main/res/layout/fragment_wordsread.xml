@@ -19,34 +19,38 @@
         <TextView
             android:id="@+id/ru_text"
             style="@style/Widget.TipTime.TextView"
-            android:layout_width="116dp"
-            android:layout_height="76dp"
-            android:layout_marginStart="120dp"
-            android:layout_marginTop="64dp"
-            android:text="TextView"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/en_text" />
-
-        <Button
-            android:id="@+id/next"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="128dp"
-            android:layout_marginTop="105dp"
-            android:text="Следующее"
+
+            android:layout_marginStart="120dp"
+            android:layout_marginTop="64dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ru_text" />
+
+            app:layout_constraintTop_toBottomOf="@+id/en_text"
+            tools:text="Русское слово" />
 
         <TextView
             android:id="@+id/en_text"
             style="@style/Widget.TipTime.TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="144dp"
+            android:layout_marginStart="120dp"
             android:layout_marginTop="212dp"
-            android:text="TextView"
+            tools:text="english"
+
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+
+        <Button
+            android:id="@+id/next"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="532dp"
+            android:text="Следующее"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_w1" />
 
         <TextView
             android:id="@+id/count"
@@ -55,7 +59,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="124dp"
-            android:text="Ос"
+            tools:text="345"
             app:layout_constraintStart_toEndOf="@+id/textView"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -63,9 +67,9 @@
             android:id="@+id/button_reset"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="124dp"
-            android:text="Сброс"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="156dp"
+            android:text="Заново"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -102,6 +106,17 @@
             app:layout_constraintStart_toEndOf="@+id/textView_w1"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="44" />
+
+        <Button
+            android:id="@+id/button_remember"
+            android:onClick="@{() ->wordsreadFragment.setRemember()}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="16dp"
+            android:text="Запомнил"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/count" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

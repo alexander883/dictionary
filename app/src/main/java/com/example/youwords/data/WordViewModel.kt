@@ -44,6 +44,12 @@ open class WordViewModel(application:Application):AndroidViewModel(application) 
         }
     }
 
+    fun updateRemember(id:Int) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.updateRemember(id)
+        }
+    }
+
 
 
 }

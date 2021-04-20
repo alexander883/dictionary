@@ -1,14 +1,21 @@
 package com.example.youwords.adapter_found_word
 
+import android.annotation.SuppressLint
+import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.example.youwords.R
 import com.example.youwords.data.Words
+import com.example.youwords.search_and_found.SearchViewModel
+import com.example.youwords.words.WordsReadViewModel
 
 class FoundAdapter: RecyclerView.Adapter<FoundAdapter.ViewHolder>() {
+
 
     var data =  listOf<Words>()
         set(value) {
@@ -21,6 +28,7 @@ class FoundAdapter: RecyclerView.Adapter<FoundAdapter.ViewHolder>() {
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = data[position]
         holder.bind(item, position)
+
     }
 
 
@@ -35,8 +43,11 @@ class FoundAdapter: RecyclerView.Adapter<FoundAdapter.ViewHolder>() {
         val posit: TextView =itemView.findViewById(R.id.posit)
 
 
+
         fun bind(item: Words, position: Int) {
             en_word.text =item.enWord
+
+            //en_word.setTextColor(Color.RED)
             ru_word.text = item.ruWord
             posit.text=(position+1).toString()
         }
