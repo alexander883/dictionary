@@ -31,8 +31,8 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/found_words_list"
-            android:layout_width="358dp"
-            android:layout_height="396dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:scrollbars="vertical"
 
 
@@ -54,10 +54,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="2dp"
             android:layout_marginTop="16dp"
+
             app:layout_constraintStart_toEndOf="@+id/textView_w"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="35" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
-

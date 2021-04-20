@@ -48,13 +48,12 @@ class SearchFragment : Fragment() {
         searchviewmodel.searchWord(search).observe(viewLifecycleOwner, Observer {
             try { it[0]/// если it[0] не существует=> catch
                 searchviewmodel.getSearchWords(it)
-                val k=it[0].enWord.toString()
-                Toast.makeText(requireContext(), "$k", Toast.LENGTH_LONG).show()
+
                 findNavController().navigate(R.id.action_searchFragment_to_foundFragment)
             } catch (e: Exception) {
                 Toast.makeText(requireContext(), "Не найдено ", Toast.LENGTH_LONG).show()
             }
-        }        )
+            }        )
         }
 
 

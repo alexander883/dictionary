@@ -31,10 +31,9 @@ class FoundFragment : Fragment() {
             lifecycleOwner = viewLifecycleOwner
             searchViewModel = searchviewmodel
             foundFragment = this@FoundFragment
-            foundWordsList.adapter = adapter
+            foundWordsList.adapter=adapter
         }
-
-      binding?.textViewTotalWords?.text=   searchviewmodel.getSize()
-
+        adapter.data=searchviewmodel.search_words.value!!
+        binding?.textViewTotalWords?.text=searchviewmodel.getSize()
     }
 }
