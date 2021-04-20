@@ -10,6 +10,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.youwords.R
+import com.example.youwords.adapter_all_words.AllWordsAdapter
+import com.example.youwords.adapter_found_word.FoundAdapter
 import com.example.youwords.data.Words
 import com.example.youwords.databinding.FragmentSearchBinding
 
@@ -36,6 +38,7 @@ class SearchFragment : Fragment() {
             lifecycleOwner = viewLifecycleOwner
             searchViewModel=searchviewmodel
             searchFragment=this@SearchFragment
+
         }
 
     } fun searhWord(){

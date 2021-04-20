@@ -7,16 +7,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import com.example.youwords.adapter_found_word.FoundAdapter
 import com.example.youwords.databinding.FragmentFoundBinding
 
 class FoundFragment : Fragment() {
-    private var binding: FragmentFoundBinding?= null
-    private lateinit var  searchviewmodel: SearchViewModel
-
+    private var binding: FragmentFoundBinding? = null
+    private lateinit var searchviewmodel: SearchViewModel
+    val adapter = FoundAdapter()
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {///////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!requireActivity()
         searchviewmodel = ViewModelProvider(requireActivity()).get(SearchViewModel::class.java)
         val fragmentBinding = FragmentFoundBinding.inflate(inflater, container, false)
@@ -28,11 +29,16 @@ class FoundFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding?.apply {
             lifecycleOwner = viewLifecycleOwner
-            searchViewModel=searchviewmodel
-            foundFragment=this@FoundFragment
-
-          }
-        val h=searchviewmodel.search_words.value?.get(0)?.enWord
+            searchViewModel = searchviewmodel
+            foundFragment = this@FoundFragment
+            foundWordsList.adapter = adapter
+        }
+        val h = searchviewmodel.search_words.value?.get(0)?.enWord
         Toast.makeText(requireContext(), "$h", Toast.LENGTH_LONG).show()
-     }
+    //    searchviewmodel.search_words.value?.let {
+            adapter.data = searchviewmodel.search_words.value!!
+       // }
+         binding?.textViewTotalWords?.text=searchviewmodel.search_words.value?.size.toString()
+
+    }
 }

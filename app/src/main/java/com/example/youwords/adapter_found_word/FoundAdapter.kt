@@ -36,7 +36,7 @@ class FoundAdapter: RecyclerView.Adapter<FoundAdapter.ViewHolder>() {
 
 
         fun bind(item: Words, position: Int) {
-            en_word.text = item.enWord
+            en_word.text =item.enWord
             ru_word.text = item.ruWord
             posit.text=(position+1).toString()
         }
@@ -45,7 +45,7 @@ class FoundAdapter: RecyclerView.Adapter<FoundAdapter.ViewHolder>() {
             fun from(parent: ViewGroup): ViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
                 val view = layoutInflater
-                        .inflate(R. layout.all_words_item, parent, false)
+                        .inflate(R. layout.found_words_item, parent, false)
 
                 return ViewHolder(view)
             }
