@@ -6,7 +6,7 @@ class WordRepository(private  val wordDao:WordDAO) {
     suspend fun addWord(word:Words){
         wordDao.addWord(word)
     }
-    val allId_read: Flow<List<Int>> =wordDao.getId_read()
+    val allId_read_not_remember: Flow<List<Int>> =wordDao.getId_read_notremember()
 
     val ranWord:(Int)-> Flow<Words> = { i:Int-> wordDao.selectWord(i) }
 
@@ -22,6 +22,9 @@ class WordRepository(private  val wordDao:WordDAO) {
 
     suspend fun updateRemember(id:Int){
         wordDao.updateRemember(id)
+    }
+    suspend fun updateAll_Remember(){
+        wordDao.updateAll_Remember()
     }
    }
 

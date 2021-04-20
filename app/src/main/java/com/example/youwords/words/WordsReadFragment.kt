@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 
 import com.example.youwords.databinding.FragmentWordsreadBinding
+import java.lang.Exception
 
 
 class WordsReadFragment : Fragment() {
@@ -30,16 +31,13 @@ class WordsReadFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-g()
+
         binding?.apply {
             lifecycleOwner = viewLifecycleOwner
             wordsReadViewModel=wordsreadviewmodel
             wordsreadFragment = this@WordsReadFragment
 
         }
-
-
-
         // для подсчета всех слов в словаре
         wordsreadviewmodel.allWords.observe(viewLifecycleOwner, Observer {
             wordsreadviewmodel.getSize(it.size)
@@ -49,44 +47,59 @@ g()
             wordsreadviewmodel.updateAll_Read()
             binding?.next?.setEnabled(true)
         }
+        binding?.buttonSetRemember?.setOnClickListener {
+            wordsreadviewmodel.updateAll_Remember()
+        }
 
-        binding?.next?.setOnClickListener {
-           // g()
-            //  binding?.next?.setEnabled(false)
-            changeText()
-            changeCount()
-            update()
-            if (wordsreadviewmodel.getSizeList() == 0) {
+        wordsreadviewmodel.all_id_read_not_remember.observe(viewLifecycleOwner, Observer{
+            // на этот фрагмент не попадаем, если БД пустая
+            // поэтому можем привести к List<Int>
+            try {it[0]
+                val list= it //as List<Int>
+                wordsreadviewmodel.getList_id(list)
+                changeEnable()
+                changeText()
+                changeCount()
+
+
+                binding?.next?.setOnClickListener {
+                    changeEnable()
+                    // g()
+                    //  binding?.next?.setEnabled(false)
+                    changeText()
+                    changeCount()
+                    update()
+                }
+                binding?.buttonRemember?.setOnClickListener {
+                    Toast.makeText(requireContext(), "Запомнил", Toast.LENGTH_LONG).show()
+                   wordsreadviewmodel.updateRemember(wordsreadviewmodel.random.value!!)
+                }
+            }
+            catch (e:Exception){
+                Toast.makeText(requireContext(), "Вы запомнили все слова", Toast.LENGTH_LONG).show()
+                binding?.buttonRemember?.setEnabled(false)
                 binding?.next?.setEnabled(false)
             }
 
 
-        }
+
+        })
+
+
+
+
+
+
+
 
 
     }
 
-    fun g() {
-        if (wordsreadviewmodel.random.value==null) {
-        wordsreadviewmodel.all_id_read.observe(viewLifecycleOwner, Observer{
-            // на этот фрагмент не попадаем, если БД пустая
-            // поэтому можем привести к List<Int>
-            val list= it as List<Int>
-            wordsreadviewmodel.getList_id(list)
-
-            changeText()
-            changeCount()
-
-
-            if (wordsreadviewmodel.getSizeList()==0){
-                binding?.next?.setEnabled(false)
-            }
-
-
-        })
-        }
-    else {    Toast.makeText(requireContext(),  "else", Toast.LENGTH_LONG).show()}}
-
+private fun changeEnable(){//если кончились слова блокируем кнопку next
+    if (wordsreadviewmodel.getSizeList() == 1) {
+        binding?.next?.setEnabled(false)
+    }
+}
 
 
     private fun  update(){
@@ -99,10 +112,7 @@ g()
             binding?.ruText?.text=it.ruWord
         })
     }
-    //получаем список id
-    private fun getList_ids(list:List<Int>){
-        wordsreadviewmodel.getList_id(list)
-    }
+
     private fun getRandom_id():Int{
         return wordsreadviewmodel.get_Random_id()
     }
@@ -111,9 +121,7 @@ g()
         //if (wordviewmodel.getSizeList()){
 
     }
-    fun setRemember(){Toast.makeText(requireContext(), "Запомрил", Toast.LENGTH_LONG).show()
-        wordsreadviewmodel.updateRead(wordsreadviewmodel.random.value!!)
-    }
+
 
 }
 

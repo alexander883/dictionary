@@ -15,7 +15,7 @@ interface WordDAO {
      fun selectWord(random_id: Int): Flow<Words>
 
     @Query("SELECT id FROM english WHERE read=0 AND remember=0") // получаем список id
-     fun getId_read(): Flow<List<Int>>
+     fun getId_read_notremember(): Flow<List<Int>>
 
     @Query("UPDATE english SET read=1 WHERE id=:random_id") //Устанавливаем Слово прочитано
     suspend fun updateRead(random_id:Int)
@@ -31,4 +31,7 @@ interface WordDAO {
 
     @Query("UPDATE english SET remember=1 WHERE id=:id") //Устанавливаем Слово запомнено
     suspend fun updateRemember(id:Int)
+
+    @Query("UPDATE english SET remember=0") //Устанавливаем ВСе Слово не запомнено
+    suspend fun updateAll_Remember()
 }

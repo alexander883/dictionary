@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import com.example.youwords.data.WordViewModel
 
 class WordsReadViewModel(application: Application) : WordViewModel(application)  {
- val k=super.all_id_read
+
    // private val _list_id= MutableLiveData<List<Int>>()// список id получаемый из БД и неизменяемый
 
 //cписок id который изменяем при нахождении во фрагменте, чтобы не обращаться к БД

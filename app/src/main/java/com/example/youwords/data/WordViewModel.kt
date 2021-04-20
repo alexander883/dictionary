@@ -18,7 +18,7 @@ open class WordViewModel(application:Application):AndroidViewModel(application) 
         repository = WordRepository(wordDao)
     }
 
-    val all_id_read: LiveData<List<Int>> = repository.allId_read.asLiveData()
+    val all_id_read_not_remember: LiveData<List<Int>> = repository.allId_read_not_remember.asLiveData()
 
     fun addWord(word: Words) {
         viewModelScope.launch(Dispatchers.IO) {
@@ -47,6 +47,11 @@ open class WordViewModel(application:Application):AndroidViewModel(application) 
     fun updateRemember(id:Int) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.updateRemember(id)
+        }
+    }
+    fun updateAll_Remember() {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.updateAll_Remember()
         }
     }
 

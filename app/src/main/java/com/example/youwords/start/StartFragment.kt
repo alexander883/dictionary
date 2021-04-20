@@ -38,7 +38,7 @@ class StartFragment : Fragment() {
             startFragment=this@StartFragment
 
         }
-        startviewmodel.all_id_read.observe(viewLifecycleOwner, Observer {
+        startviewmodel.allWords.observe(viewLifecycleOwner, Observer {
             try {it[0]
                binding?.buttonSearch?.setOnClickListener { findNavController().navigate(R.id.action_startFragment_to_searchFragment) }
                 binding?.buttonToAllWords?.setOnClickListener {  findNavController().navigate(R.id.action_startFragment_to_allWordsFragment) }
