@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp">
 
     <!-- Wrapping the layout into /layout to make it available with data binding.
 
      -->
 
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:padding="8dp">
 
         <TextView
             android:id="@+id/posit"
@@ -19,12 +20,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:layout_marginStart="16dp"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="16dp"/>
 
-
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="1025" />
 
         <TextView
             android:id="@+id/en_word"
@@ -34,36 +31,20 @@
             android:layout_height="wrap_content"
 
             android:layout_marginStart="15dp"
-            android:layout_marginEnd="15dp"
-
-
-            app:layout_constraintEnd_toEndOf="parent"
-
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintRight_toRightOf="parent"
-
-
-            app:layout_constraintStart_toEndOf="@id/posit"
-
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="englr4rfffffffffffffff" />
+            android:layout_marginEnd="15dp"/>
 
         <TextView
 
             android:id="@+id/rus_word"
             style="@style/Widget.TipTime.TextView"
+
             android:layout_width="325dp"
             android:layout_height="wrap_content"
-
             android:layout_marginStart="12dp"
-            android:layout_marginTop="20dp"
-            app:layout_constraintStart_toEndOf="@+id/posit"
-            app:layout_constraintTop_toBottomOf="@+id/en_word"
-            tools:text="русское слово" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            android:layout_marginTop="20dp" />
 
 
+    </RelativeLayout>
 
+</androidx.cardview.widget.CardView>
 
-
-</layout>
