@@ -1,5 +1,6 @@
 package com.example.youwords.allwords
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.provider.UserDictionary
 import androidx.fragment.app.Fragment
@@ -7,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.youwords.adapter_all_words.AllWordsAdapter
@@ -51,10 +53,28 @@ class AllWordsFragment : Fragment(), AllWordsAdapter.OnItemClickListener {
     }
 
     override fun onItemClick(position: Int) {
-        Toast.makeText(requireContext(), "position clicked", Toast.LENGTH_SHORT).show()
-     //   val clickedItem = Words[position]
+        Toast.makeText(requireContext(), "Item $position clicked", Toast.LENGTH_SHORT).show()
+        val clickedItem =adapter.data[position]
+alertDialog()
+
     //    clickedItem.text1 = "Clicked"
       //  adapter.notifyItemChanged(position)
     }
+     ///alert dialog
+   fun alertDialog(){
+         val items = arrayOf("Удалить из словаря", "Orange", "Yellow", "Blue")
+         val builder = AlertDialog.Builder(requireContext())
+         with(builder)
+         {
+             setTitle("List of Items")
+             setItems(items) { dialog, which ->
+
+                 Toast.makeText(requireContext(), items[which] + " is clicked", Toast.LENGTH_SHORT).show()
+             }
+
+          //   setPositiveButton("OK", positiveButtonClick)
+             show()
+         }
+     }
 
 }

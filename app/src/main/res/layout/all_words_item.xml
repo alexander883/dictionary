@@ -2,6 +2,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_margin="4dp">
 
     <!-- Wrapping the layout into /layout to make it available with data binding.
@@ -13,15 +14,16 @@
         android:layout_height="match_parent"
         android:padding="8dp">
 
+
         <TextView
             android:id="@+id/posit"
             style="@style/Widget.TipTime.TextView"
 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
 
-            android:layout_marginStart="16dp"/>
-
+            tools:text="123"/>
 
         <TextView
             android:id="@+id/en_word"
@@ -30,8 +32,8 @@
             android:layout_width="324dp"
             android:layout_height="wrap_content"
 
-            android:layout_marginStart="15dp"
-            android:layout_marginEnd="15dp"/>
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="15dp" />
 
         <TextView
 
@@ -40,8 +42,8 @@
 
             android:layout_width="325dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="20dp" />
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="40dp" />
 
 
     </RelativeLayout>

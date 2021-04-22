@@ -1,9 +1,6 @@
 package com.example.youwords.data
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -36,4 +33,7 @@ interface WordDAO {
 
     @Query("UPDATE english SET remember=0") //Устанавливаем ВСе Слово не запомнено
     suspend fun updateAll_Remember()
+
+    @Delete
+    suspend fun deleteWord(word: Words)
 }
