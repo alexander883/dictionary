@@ -11,8 +11,13 @@ class  AllWordsViewModel(application: Application) : WordViewModel(application) 
     private var _size = MutableLiveData<Int>()
     val size : LiveData<Int> = _size
 
+    private var _clickedWord = MutableLiveData<Words>()
+    val clickedWord : LiveData<Words> = _clickedWord
+
     fun getSize(size:Int){
         _size.value=size
     }
-
+    fun getClickedWord(word:Words){
+        _clickedWord.value=word
+    }
 }

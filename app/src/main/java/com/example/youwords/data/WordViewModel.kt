@@ -64,6 +64,11 @@ open class WordViewModel(application:Application):AndroidViewModel(application) 
             repository.deleteWord(word)
         }
     }
+    fun updateRedact(w:Words) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.updateRedact(w)
+        }
+    }
 
 
 

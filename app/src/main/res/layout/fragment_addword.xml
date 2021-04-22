@@ -5,8 +5,8 @@
     tools:context=".addword.AddWordFragment">
     <data>
         <variable
-            name="AddViewModel"
-            type="com.example.youwords.addword.AddViewModel" />
+            name="AllWordsViewModel"
+            type="com.example.youwords.allwords.AllWordsViewModel" />
 
         <variable
             name="addwordFragment"
@@ -25,11 +25,11 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2"
+            app:layout_constraintTop_toBottomOf="@+id/rus_editText"
             app:layout_constraintVertical_bias="0.245" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName"
+            android:id="@+id/en_editText"
             android:hint="english word"
 
             android:layout_width="wrap_content"
@@ -43,7 +43,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName2"
+            android:id="@+id/rus_editText"
             android:hint="русское слово"
 
             android:layout_width="wrap_content"
@@ -54,7 +54,7 @@
             android:inputType="textPersonName"
 
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+            app:layout_constraintTop_toBottomOf="@+id/en_editText" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

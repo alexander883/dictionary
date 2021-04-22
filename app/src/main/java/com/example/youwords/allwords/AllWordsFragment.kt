@@ -11,6 +11,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import com.example.youwords.R
 import com.example.youwords.adapter_all_words.AllWordsAdapter
 import com.example.youwords.data.Words
 import com.example.youwords.databinding.FragmentAllWordsBinding
@@ -27,7 +29,7 @@ class AllWordsFragment : Fragment(), AllWordsAdapter.OnItemClickListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        allwordsviewmodel = ViewModelProvider(this).get(AllWordsViewModel::class.java)
+        allwordsviewmodel = ViewModelProvider(requireActivity()).get(AllWordsViewModel::class.java)
         val fragmentBinding = FragmentAllWordsBinding.inflate(inflater, container, false)
         binding = fragmentBinding
         return fragmentBinding.root
@@ -54,6 +56,7 @@ class AllWordsFragment : Fragment(), AllWordsAdapter.OnItemClickListener {
     override fun onItemClick(position: Int) {
         Toast.makeText(requireContext(), "Item $position clicked", Toast.LENGTH_SHORT).show()
         val clickedItem =adapter.data[position]
+        allwordsviewmodel.getClickedWord(clickedItem)
         alertDialog(clickedItem)
     }
 
@@ -81,6 +84,10 @@ class AllWordsFragment : Fragment(), AllWordsAdapter.OnItemClickListener {
                      else{
                         setRemember(word)
                      }}
+                     2->{
+                         findNavController().navigate(R.id.action_allWordsFragment_to_addWordFragment)
+
+                     }
                  }
 
 
@@ -91,9 +98,9 @@ class AllWordsFragment : Fragment(), AllWordsAdapter.OnItemClickListener {
              show()
          }
      }
-    private fun deletWord(list:Words){
-                 allwordsviewmodel.deleteWord(list)
-                 val en=list.enWord
+    private fun deletWord(word:Words){
+                 allwordsviewmodel.deleteWord(word)
+                 val en=word.enWord
                  Toast.makeText(requireContext(), "$en удален", Toast.LENGTH_SHORT).show()
          }
     private fun setRemember(word: Words){
