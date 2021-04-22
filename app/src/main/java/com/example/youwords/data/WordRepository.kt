@@ -23,6 +23,9 @@ class WordRepository(private  val wordDao:WordDAO) {
     suspend fun updateRemember(id:Int){
         wordDao.updateRemember(id)
     }
+    suspend fun updateNotRemember(id:Int){
+        wordDao.updateNotRemember(id)
+    }
     suspend fun updateAll_Remember(){
         wordDao.updateAll_Remember()
     }

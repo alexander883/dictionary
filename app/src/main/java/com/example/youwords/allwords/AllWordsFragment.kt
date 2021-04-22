@@ -27,7 +27,6 @@ class AllWordsFragment : Fragment(), AllWordsAdapter.OnItemClickListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-     //   val k=requireContext()
         allwordsviewmodel = ViewModelProvider(this).get(AllWordsViewModel::class.java)
         val fragmentBinding = FragmentAllWordsBinding.inflate(inflater, container, false)
         binding = fragmentBinding
@@ -55,26 +54,53 @@ class AllWordsFragment : Fragment(), AllWordsAdapter.OnItemClickListener {
     override fun onItemClick(position: Int) {
         Toast.makeText(requireContext(), "Item $position clicked", Toast.LENGTH_SHORT).show()
         val clickedItem =adapter.data[position]
-alertDialog()
-
-    //    clickedItem.text1 = "Clicked"
-      //  adapter.notifyItemChanged(position)
+        alertDialog(clickedItem)
     }
-     ///alert dialog
-   fun alertDialog(){
-         val items = arrayOf("Удалить из словаря", "Orange", "Yellow", "Blue")
+
+
+
+    ///alert dialog
+   fun alertDialog(word:Words){
+        lateinit var str_items_1: String
+        if (word.remember==true)
+        {  str_items_1="Добавить в карточки"}
+        else{
+             str_items_1="Удалить из карточек"
+        }
+         val items = arrayOf("Удалить из словаря",str_items_1 , "Редактировать")
+
          val builder = AlertDialog.Builder(requireContext())
          with(builder)
          {
              setTitle("List of Items")
              setItems(items) { dialog, which ->
+                 when(which){
+                     0-> deletWord(word)
+                     1->{if (word.remember==true)
+                     {  setNotRemember(word)}
+                     else{
+                        setRemember(word)
+                     }}
+                 }
+
 
                  Toast.makeText(requireContext(), items[which] + " is clicked", Toast.LENGTH_SHORT).show()
              }
 
-          //   setPositiveButton("OK", positiveButtonClick)
+           // setPositiveButton("OK",alertDialog(list))
              show()
          }
      }
+    private fun deletWord(list:Words){
+                 allwordsviewmodel.deleteWord(list)
+                 val en=list.enWord
+                 Toast.makeText(requireContext(), "$en удален", Toast.LENGTH_SHORT).show()
+         }
+    private fun setRemember(word: Words){
+        allwordsviewmodel.updateRemember(word.id)
+    }
+    private fun setNotRemember(word: Words){
+        allwordsviewmodel.updateNotRemember(word.id)
+    }
 
 }

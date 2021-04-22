@@ -31,6 +31,9 @@ interface WordDAO {
     @Query("UPDATE english SET remember=1 WHERE id=:id") //Устанавливаем Слово запомнено
     suspend fun updateRemember(id:Int)
 
+    @Query("UPDATE english SET remember=0 WHERE id=:id")
+    suspend fun updateNotRemember(id:Int)
+
     @Query("UPDATE english SET remember=0") //Устанавливаем ВСе Слово не запомнено
     suspend fun updateAll_Remember()
 

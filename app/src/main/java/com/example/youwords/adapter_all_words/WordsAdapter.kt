@@ -62,19 +62,10 @@ class AllWordsAdapter( private  val listener: OnItemClickListener
             posit.text=(position+1).toString()
         }
 
-      //  companion object {
-
-            fun from(parent: ViewGroup): ViewHolder {
-                val layoutInflater = LayoutInflater.from(parent.context)
-                val view = layoutInflater
-                        .inflate(R. layout.all_words_item, parent, false)
-
-                return ViewHolder(view)
-            //}
-        }
 
 }
     interface OnItemClickListener {
         fun onItemClick(position: Int)
+
     }}
 
