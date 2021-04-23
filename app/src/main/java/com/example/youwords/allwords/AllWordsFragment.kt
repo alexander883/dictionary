@@ -75,14 +75,17 @@ class AllWordsFragment : Fragment(), AllWordsAdapter.OnItemClickListener {
          val builder = AlertDialog.Builder(requireContext())
          with(builder)
          {
-             setTitle("List of Items")
+             setTitle(word.enWord)
              setItems(items) { dialog, which ->
                  when(which){
                      0-> deletWord(word)
                      1->{if (word.remember==true)
-                     {  setNotRemember(word)}
+                     {  setNotRemember(word)
+                         fragmentManager
+                         findNavController().navigate(R.id.action_allWordsFragment_self)}
                      else{
                         setRemember(word)
+                         findNavController().navigate(R.id.action_allWordsFragment_self)
                      }}
                      2->{
                          findNavController().navigate(R.id.action_allWordsFragment_to_addWordFragment)
@@ -91,7 +94,7 @@ class AllWordsFragment : Fragment(), AllWordsAdapter.OnItemClickListener {
                  }
 
 
-                 Toast.makeText(requireContext(), items[which] + " is clicked", Toast.LENGTH_SHORT).show()
+              //   Toast.makeText(requireContext(), items[which] + " is clicked", Toast.LENGTH_SHORT).show()
              }
 
            // setPositiveButton("OK",alertDialog(list))
