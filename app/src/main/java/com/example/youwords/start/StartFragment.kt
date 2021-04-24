@@ -31,6 +31,7 @@ class StartFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
         super.onViewCreated(view, savedInstanceState)
         binding?.apply {
             lifecycleOwner = viewLifecycleOwner
@@ -38,6 +39,7 @@ class StartFragment : Fragment() {
             startFragment=this@StartFragment
 
         }
+
         startviewmodel.allWords.observe(viewLifecycleOwner, Observer {
             try {it[0]
                binding?.buttonSearch?.setOnClickListener { findNavController().navigate(R.id.action_startFragment_to_searchFragment) }

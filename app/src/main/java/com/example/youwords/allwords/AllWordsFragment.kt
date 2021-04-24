@@ -1,5 +1,7 @@
 package com.example.youwords.allwords
 
+import android.app.Activity
+import android.content.Context
 import android.content.DialogInterface
 import android.os.Bundle
 import android.provider.UserDictionary
@@ -7,6 +9,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
@@ -50,8 +53,9 @@ class AllWordsFragment : Fragment(), AllWordsAdapter.OnItemClickListener {
               adapter.data=it
         })
 
-
-    }
+//findNavController().popBackStack(R.id.allWordsFragment, false)
+   //     findNavController().navigate(R.id.startFragment)
+          }
 
     override fun onItemClick(position: Int) {
         Toast.makeText(requireContext(), "Item $position clicked", Toast.LENGTH_SHORT).show()
@@ -81,14 +85,16 @@ class AllWordsFragment : Fragment(), AllWordsAdapter.OnItemClickListener {
                      0-> deletWord(word)
                      1->{if (word.remember==true)
                      {  setNotRemember(word)
-                         fragmentManager
-                         findNavController().navigate(R.id.action_allWordsFragment_self)}
+
+                      //   findNavController().navigate(R.id.action_allWordsFragment_self)
+                           }
                      else{
                         setRemember(word)
-                         findNavController().navigate(R.id.action_allWordsFragment_self)
+                       //  findNavController().navigate(R.id.action_allWordsFragment_self)
                      }}
                      2->{
                          findNavController().navigate(R.id.action_allWordsFragment_to_addWordFragment)
+
 
                      }
                  }
@@ -114,3 +120,4 @@ class AllWordsFragment : Fragment(), AllWordsAdapter.OnItemClickListener {
     }
 
 }
+

@@ -20,4 +20,8 @@ class  AllWordsViewModel(application: Application) : WordViewModel(application) 
     fun getClickedWord(word:Words){
         _clickedWord.value=word
     }
+    fun reset(){
+        _size.value=null
+        _clickedWord.value=null
+    }
 }
