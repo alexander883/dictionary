@@ -2,10 +2,8 @@ package com.example.youwords.start
 
 import android.app.Application
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -22,13 +20,27 @@ class StartFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
+      //  setHasOptionsMenu(true)
         startviewmodel = ViewModelProvider(this).get(StartViewModel::class.java)
         val fragmentBinding = FragmentStartBinding.inflate(inflater, container, false)
         binding = fragmentBinding
         return fragmentBinding.root
 
     }
+/*
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_main, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+       // menu.findItem(R.id.action_sort).isVisible=false //Для скрытия
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id=item.itemId
+        if(id==R.id.menu)
+        {     Toast.makeText(requireContext(), "MENU! ", Toast.LENGTH_LONG).show()}
+        return super.onOptionsItemSelected(item)
+    }
+*/
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
