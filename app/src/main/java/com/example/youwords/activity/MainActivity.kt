@@ -43,22 +43,44 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
         bottomNavigationView.background=null
 
-    //  supportFragmentManager.beginTransaction().replace(R.id.startFragment, startF).commit()
+
         //    bottomNavigationView.background=null
       //  val g:AllWordsFragment
 
+       // val currentFragment = supportFragmentManager.primaryNavigationFragment
 
 
         val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { menuItem ->
+            var currentFragment = NavHostFragment.findNavController(navHostFragment).currentDestination?.id
             when (menuItem.itemId) {
+                R.id.home -> {
+                    when(currentFragment){
+                        R.id.startFragment->{}
+                        R.id.allWordsFragment-> navHostFragment.findNavController().navigate(R.id.action_allWordsFragment_to_StartFragment)
+                        R.id.searchFragment->navHostFragment.findNavController().navigate(R.id.action_searchFragment_to_startFragment)
+                    }
+
+
+
+                    return@OnNavigationItemSelectedListener true
+                }
                 R.id.search -> {
-                    navHostFragment.findNavController().navigate(R.id.action_startFragment_to_searchFragment)
+                    if (currentFragment == R.id.searchFragment) {
+                        Toast.makeText(this, " Я на поиск", Toast.LENGTH_SHORT).show()
+                    } else {
+                        navHostFragment.findNavController().navigate(R.id.action_startFragment_to_searchFragment)
+                    }
                     return@OnNavigationItemSelectedListener true
                 }
                 R.id.list -> {
+                    if (currentFragment == R.id.allWordsFragment) {
+                        Toast.makeText(this, " Я на all", Toast.LENGTH_SHORT).show()
+                    } else {
                     navHostFragment.findNavController().navigate(R.id.action_startFragment_to_allWordsFragment)
+                    }
                     return@OnNavigationItemSelectedListener true
                 }
+
             }
             false
         }
