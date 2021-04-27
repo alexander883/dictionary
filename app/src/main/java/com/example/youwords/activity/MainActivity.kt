@@ -42,24 +42,21 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         lateinit  var  sF: Fragment
 
         bottomNavigationView.background=null
-       val  startF=StartFragment()
-        //supportFragmentManager.beginTransaction().replace(R.id.nav_host_fragment, startF).commit()
+
+    //  supportFragmentManager.beginTransaction().replace(R.id.startFragment, startF).commit()
         //    bottomNavigationView.background=null
       //  val g:AllWordsFragment
-       // supportFragmentManager.beginTransaction().replace(R.id.nav_host_fragment_container, startF).commit()
+
+
 
         val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.search -> {
-                    val fragment = SearchFragment()
-                    supportFragmentManager.beginTransaction().replace(R.id.nav_host_fragment, fragment, fragment.javaClass.getSimpleName())
-                            .commit()
+                    navHostFragment.findNavController().navigate(R.id.action_startFragment_to_searchFragment)
                     return@OnNavigationItemSelectedListener true
                 }
                 R.id.list -> {
-                    val fragment =StartFragment()
-                    supportFragmentManager.beginTransaction().replace(R.id.nav_host_fragment, fragment, fragment.javaClass.getSimpleName())
-                            .commit()
+                    navHostFragment.findNavController().navigate(R.id.action_startFragment_to_allWordsFragment)
                     return@OnNavigationItemSelectedListener true
                 }
             }
