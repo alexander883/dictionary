@@ -20,7 +20,6 @@ import com.example.youwords.start.StartFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
-
     private lateinit var navController: NavController
     private lateinit var toolbar: Toolbar
     private lateinit var bottomNavigationView: BottomNavigationView
@@ -37,6 +36,11 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         toolbar=findViewById(R.id.toolbar)
 
         setSupportActionBar(toolbar)
+      //supportActionBar?.setDisplayShowHomeEnabled(true)
+toolbar.setNavigationIcon(R.drawable.ic_baseline_24)
+        toolbar.setNavigationOnClickListener{
+            Toast.makeText(this, "Введите значение", Toast.LENGTH_LONG).show() }
+
 
         bottomNavigationView=findViewById(R.id.bottomNavigationView)
         lateinit  var  sF: Fragment
@@ -51,32 +55,45 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
 
         val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { menuItem ->
-            var currentFragment = NavHostFragment.findNavController(navHostFragment).currentDestination?.id
+            val currentFragment = NavHostFragment.findNavController(navHostFragment).currentDestination?.id
             when (menuItem.itemId) {
                 R.id.home -> {
                     when(currentFragment){
                         R.id.startFragment->{}
                         R.id.allWordsFragment-> navHostFragment.findNavController().navigate(R.id.action_allWordsFragment_to_StartFragment)
                         R.id.searchFragment->navHostFragment.findNavController().navigate(R.id.action_searchFragment_to_startFragment)
+                        R.id.addWordFragment->navHostFragment.findNavController().navigate(R.id.action_addWordFragment_to_startFragment)
+                        R.id.wordsReadFragment->navHostFragment.findNavController().navigate(R.id.action_wordsReadFragment_to_startFragment)
                     }
-
-
-
                     return@OnNavigationItemSelectedListener true
                 }
+                R.id.add-> {
+                    when(currentFragment){
+                        R.id.startFragment->{navHostFragment.findNavController().navigate(R.id.action_startFragment_to_addWordFragment)}
+                        R.id.allWordsFragment-> navHostFragment.findNavController().navigate(R.id.action_allWordsFragment_to_addWordFragment)
+                        R.id.searchFragment->navHostFragment.findNavController().navigate(R.id.action_searchFragment_to_addWordFragment)
+                        R.id.addWordFragment->{}
+                        R.id.wordsReadFragment->navHostFragment.findNavController().navigate(R.id.action_wordsReadFragment_to_addWordFragment)
+                    }
+                        return@OnNavigationItemSelectedListener true
+                 }
                 R.id.search -> {
-                    if (currentFragment == R.id.searchFragment) {
-                        Toast.makeText(this, " Я на поиск", Toast.LENGTH_SHORT).show()
-                    } else {
-                        navHostFragment.findNavController().navigate(R.id.action_startFragment_to_searchFragment)
+                    when(currentFragment){
+                        R.id.startFragment->{navHostFragment.findNavController().navigate(R.id.action_startFragment_to_searchFragment)}
+                        R.id.allWordsFragment-> navHostFragment.findNavController().navigate(R.id.action_allWordsFragment_to_searchFragment)
+                        R.id.searchFragment->{}
+                        R.id.addWordFragment->{navHostFragment.findNavController().navigate(R.id.action_addWordFragment_to_searchFragment)}
+                        R.id.wordsReadFragment->navHostFragment.findNavController().navigate(R.id.action_wordsReadFragment_to_searchFragment)
                     }
                     return@OnNavigationItemSelectedListener true
                 }
                 R.id.list -> {
-                    if (currentFragment == R.id.allWordsFragment) {
-                        Toast.makeText(this, " Я на all", Toast.LENGTH_SHORT).show()
-                    } else {
-                    navHostFragment.findNavController().navigate(R.id.action_startFragment_to_allWordsFragment)
+                    when(currentFragment){
+                        R.id.startFragment->{navHostFragment.findNavController().navigate(R.id.action_startFragment_to_allWordsFragment)}
+                        R.id.allWordsFragment->{}
+                        R.id.searchFragment->{navHostFragment.findNavController().navigate(R.id.action_searchFragment_to_allWordsFragment)}
+                        R.id.addWordFragment->{navHostFragment.findNavController().navigate(R.id.action_addWordFragment_to_allWordsFragment)}
+                        R.id.wordsReadFragment->navHostFragment.findNavController().navigate(R.id.action_wordsReadFragment_to_allWordsFragment)
                     }
                     return@OnNavigationItemSelectedListener true
                 }
@@ -102,6 +119,7 @@ fun listner() {///// этот метод работает не так-по вт�
  //   override fun onSupportNavigateUp(): Boolean {
  //       return navController.navigateUp() || super.onSupportNavigateUp()
  //   }
+    /*
      override fun onCreateOptionsMenu(menu: Menu?): Boolean {
 
      menuInflater.inflate(R.menu.menu_main, menu)
@@ -116,6 +134,6 @@ fun listner() {///// этот метод работает не так-по вт�
      return super.onOptionsItemSelected(item)
 
    }
-
+*/
 
 }
