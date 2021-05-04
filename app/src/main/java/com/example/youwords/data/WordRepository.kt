@@ -8,7 +8,7 @@ class WordRepository(private  val wordDao:WordDAO) {
     }
     val allId_read_not_remember: Flow<List<Int>> =wordDao.getId_read_notremember()
 
-    val ranWord:(Int)-> Flow<Words> = { i:Int-> wordDao.selectWord(i) }
+    val word_by_id:(Int)-> Flow<Words> = { id:Int-> wordDao.selectWord(id) }
 
     suspend fun updateRead(random_id:Int){
         wordDao.updateRead(random_id)

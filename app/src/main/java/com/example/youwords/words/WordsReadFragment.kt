@@ -72,7 +72,7 @@ class WordsReadFragment : Fragment() {
                 }
                 binding?.buttonRemember?.setOnClickListener {
                     Toast.makeText(requireContext(), "Запомнил", Toast.LENGTH_LONG).show()
-                   wordsreadviewmodel.updateRemember(wordsreadviewmodel.random.value!!)
+                    wordsreadviewmodel.updateRemember(wordsreadviewmodel.random.value!!)
                 }
             }
             catch (e:Exception){
@@ -95,11 +95,11 @@ class WordsReadFragment : Fragment() {
 
     }
 
-private fun changeEnable(){//если кончились слова блокируем кнопку next
-    if (wordsreadviewmodel.getSizeList() == 1) {
-        binding?.next?.setEnabled(false)
+    private fun changeEnable(){//если кончились слова блокируем кнопку next
+        if (wordsreadviewmodel.getSizeList() == 1) {
+            binding?.next?.setEnabled(false)
+        }
     }
-}
 
 
     private fun  update(){
@@ -107,7 +107,7 @@ private fun changeEnable(){//если кончились слова блокир
 
     }
     private  fun changeText(){
-        wordsreadviewmodel.randWord(getRandom_id()).observe(viewLifecycleOwner, Observer {
+        wordsreadviewmodel.word_by_id(getRandom_id()).observe(viewLifecycleOwner, Observer {
             binding?.enText?.text=it.enWord
             binding?.ruText?.text=it.ruWord
         })
@@ -124,11 +124,3 @@ private fun changeEnable(){//если кончились слова блокир
 
 
 }
-
-
-
-
-
-
-
-

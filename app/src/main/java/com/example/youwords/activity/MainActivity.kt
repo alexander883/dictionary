@@ -24,7 +24,6 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     private lateinit var toolbar: Toolbar
     private lateinit var bottomNavigationView: BottomNavigationView
 
-
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
 

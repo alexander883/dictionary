@@ -36,7 +36,7 @@ open class WordViewModel(application:Application):AndroidViewModel(application) 
         }
     }
      //получаем cлово по id
-    val randWord:(Int)->LiveData<Words> ={id->repository.ranWord(id).asLiveData()}
+    val word_by_id:(Int)->LiveData<Words> ={id->repository.word_by_id(id).asLiveData()}
 
     fun updateAll_Read() {
         viewModelScope.launch(Dispatchers.IO) {

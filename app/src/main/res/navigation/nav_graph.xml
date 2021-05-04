@@ -8,7 +8,7 @@
         android:id="@+id/addWordFragment"
         android:name="com.example.youwords.addword.AddWordFragment"
         android:label="fragment_addword"
-        tools:layout="@layout/fragment_addword" >
+        tools:layout="@layout/fragment_addword">
         <action
             android:id="@+id/action_addWordFragment_to_allWordsFragment"
             app:destination="@id/allWordsFragment" />
@@ -27,7 +27,7 @@
         android:id="@+id/startFragment"
         android:name="com.example.youwords.start.StartFragment"
         android:label="fragment_start"
-        tools:layout="@layout/fragment_start" >
+        tools:layout="@layout/fragment_start">
         <action
             android:id="@+id/action_startFragment_to_addWordFragment"
             app:destination="@id/addWordFragment" />
@@ -45,7 +45,7 @@
         android:id="@+id/searchFragment"
         android:name="com.example.youwords.search_and_found.SearchFragment"
         android:label="fragment_search"
-        tools:layout="@layout/fragment_search" >
+        tools:layout="@layout/fragment_search">
         <action
             android:id="@+id/action_searchFragment_to_foundFragment"
             app:destination="@id/foundFragment" />
@@ -63,7 +63,7 @@
         android:id="@+id/foundFragment"
         android:name="com.example.youwords.search_and_found.FoundFragment"
         android:label="fragment_found"
-        tools:layout="@layout/fragment_found" >
+        tools:layout="@layout/fragment_found">
         <action
             android:id="@+id/action_foundFragment_to_startFragment"
             app:destination="@id/startFragment" />
@@ -71,7 +71,7 @@
     <fragment
         android:id="@+id/wordsReadFragment"
         android:name="com.example.youwords.words.WordsReadFragment"
-        android:label="WordsReadFragment" >
+        android:label="WordsReadFragment">
         <action
             android:id="@+id/action_wordsReadFragment_to_startFragment"
             app:destination="@id/startFragment" />
@@ -89,24 +89,50 @@
         android:id="@+id/allWordsFragment"
         android:name="com.example.youwords.allwords.AllWordsFragment"
         android:label="fragment_all_words"
-        tools:layout="@layout/fragment_all_words"
-        >
+        tools:layout="@layout/fragment_all_words">
         <action
             android:id="@+id/action_allWordsFragment_to_addWordFragment"
-            app:destination="@id/addWordFragment"
-           />
+            app:destination="@id/addWordFragment" />
         <action
             android:id="@+id/action_allWordsFragment_to_StartFragment"
             app:destination="@id/startFragment"
 
-         />
+            />
         <action
             android:id="@+id/action_allWordsFragment_to_searchFragment"
             app:destination="@id/searchFragment" />
         <action
             android:id="@+id/action_allWordsFragment_to_wordsReadFragment"
             app:destination="@id/wordsReadFragment" />
+        <action
+            android:id="@+id/action_allWordsFragment_to_redactActivity"
+            app:destination="@id/redactActivity" />
 
 
     </fragment>
+    <fragment
+        android:id="@+id/FirstFragment"
+        android:name="com.example.youwords.activity.FirstFragment"
+        android:label="@string/first_fragment_label"
+        tools:layout="@layout/fragment_first">
+
+        <action
+            android:id="@+id/action_FirstFragment_to_SecondFragment"
+            app:destination="@id/SecondFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/SecondFragment"
+        android:name="com.example.youwords.activity.SecondFragment"
+        android:label="@string/second_fragment_label"
+        tools:layout="@layout/fragment_second">
+
+        <action
+            android:id="@+id/action_SecondFragment_to_FirstFragment"
+            app:destination="@id/FirstFragment" />
+    </fragment>
+    <activity
+        android:id="@+id/redactActivity"
+        android:name="com.example.youwords.activity.RedactActivity"
+        android:label="activity_redact"
+        tools:layout="@layout/activity_redact" />
 </navigation>

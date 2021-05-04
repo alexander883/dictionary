@@ -8,8 +8,8 @@ interface WordDAO {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun addWord(word: Words)
 
-    @Query("SELECT *  FROM english WHERE id = :random_id  ")// получаем Words по id
-     fun selectWord(random_id: Int): Flow<Words>
+    @Query("SELECT *  FROM english WHERE id = :id  ")// получаем Words по id
+     fun selectWord(id: Int): Flow<Words>
 
     @Query("SELECT id FROM english WHERE read=0 AND remember=0") // получаем список id
      fun getId_read_notremember(): Flow<List<Int>>
