@@ -21,7 +21,7 @@
             android:onClick="@{() ->addwordFragment.insertWord()}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Добавить слово"
+            android:text="@string/add_word"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -30,29 +30,31 @@
 
         <EditText
             android:id="@+id/en_editText"
-            android:hint="english word"
 
             android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_marginStart="64dp"
-            android:layout_marginTop="64dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="35dp"
             android:ems="10"
+            android:hint="english word"
             android:inputType="textPersonName"
-
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
             android:id="@+id/rus_editText"
-            android:hint="русское слово"
-
             android:layout_width="wrap_content"
-            android:layout_height="45dp"
-            android:layout_marginStart="64dp"
-            android:layout_marginTop="76dp"
-            android:ems="10"
-            android:inputType="textPersonName"
 
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+
+
+            android:layout_marginTop="35dp"
+            android:ems="10"
+            android:hint="русское слово"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/en_editText" />
 

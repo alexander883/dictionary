@@ -36,13 +36,12 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
         setSupportActionBar(toolbar)
       //supportActionBar?.setDisplayShowHomeEnabled(true)
-toolbar.setNavigationIcon(R.drawable.ic_baseline_24)
+        toolbar.setNavigationIcon(R.drawable.ic_baseline_24)
         toolbar.setNavigationOnClickListener{
             Toast.makeText(this, "Введите значение", Toast.LENGTH_LONG).show() }
 
 
         bottomNavigationView=findViewById(R.id.bottomNavigationView)
-        lateinit  var  sF: Fragment
 
         bottomNavigationView.background=null
 
@@ -102,16 +101,6 @@ toolbar.setNavigationIcon(R.drawable.ic_baseline_24)
         }
         bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
-
-fun listner() {///// этот метод работает не так-по второму клику кнопки бара
-    bottomNavigationView.setOnNavigationItemReselectedListener {
-        Toast.makeText(this, " is clicked", Toast.LENGTH_SHORT).show()
-        when (it.itemId) {
-            R.id.search -> sF = SearchFragment()
-        }
-        supportFragmentManager.beginTransaction().replace(R.id.nav_host_fragment, sF).commit()
-    }
-}
 
 }
 

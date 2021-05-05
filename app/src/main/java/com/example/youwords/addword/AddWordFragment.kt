@@ -1,6 +1,5 @@
 package com.example.youwords.addword
 
-import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.os.Bundle
@@ -16,7 +15,6 @@ import androidx.navigation.fragment.findNavController
 import com.example.youwords.R
 import com.example.youwords.activity.MainActivity
 import com.example.youwords.allwords.AllWordsViewModel
-import com.example.youwords.data.WordViewModel
 import com.example.youwords.data.Words
 import com.example.youwords.databinding.FragmentAddwordBinding
 
@@ -51,7 +49,6 @@ class AddWordFragment : Fragment() {
             binding?.rusEditText?.setText(it.ruWord)
 
         }
-
     }
     fun MainActivity.clearFragmentsFromContainer() {
         val fragments = supportFragmentManager.fragments
@@ -69,19 +66,15 @@ class AddWordFragment : Fragment() {
             Toast.makeText(requireContext(), "Заполните все поля!", Toast.LENGTH_LONG).show()
         }
         else {
+            //если редактируем слово
            val k= allwordsviewmodel.clickedWord.value?.let {
                 val w = Words(it.id, en_word, ru_word, it.read, it.remember)
                 allwordsviewmodel.updateRedact(w)
-
-
-
                 findNavController().navigate(R.id.action_addWordFragment_to_allWordsFragment)
-
                hideKeyboardFrom(requireContext(), view)
                allwordsviewmodel.reset()
-
-
             }
+            // если добавляем новое
             if (k==null){
                 val word = Words(id = 0, enWord = en_word, ruWord = ru_word)
                      allwordsviewmodel.addWord(word)
