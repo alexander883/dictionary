@@ -1,6 +1,7 @@
 package com.example.youwords.activity
 
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -19,14 +20,28 @@ import com.example.youwords.search_and_found.SearchFragment
 import com.example.youwords.start.StartFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class MainActivity : AppCompatActivity(R.layout.activity_main) {
+interface ActivityInterractor {
+
+    fun onFragmentClosed(s:String)
+}
+
+
+class MainActivity : AppCompatActivity(R.layout.activity_main), ActivityInterractor {
     private lateinit var navController: NavController
     private lateinit var toolbar: Toolbar
     private lateinit var bottomNavigationView: BottomNavigationView
 
+var k:String?=null
+    override fun onFragmentClosed(s:String) {
+
+       // bottomNavigationView.menu.findItem(  R.id.search).setVisible(false)
+  k=s
+        Log.i("LOG", "$k")
+    }
+
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
-
+        Log.i("LOG", "$k")
         //setContentView(R.layout.activity_main)
         val navHostFragment = supportFragmentManager
                 .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
@@ -44,6 +59,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         bottomNavigationView=findViewById(R.id.bottomNavigationView)
 
         bottomNavigationView.background=null
+
 
 
         //    bottomNavigationView.background=null
@@ -78,6 +94,10 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
                         return@OnNavigationItemSelectedListener true
                  }
                 R.id.search -> {
+
+                      //  bottomNavigationView.menu.findItem(  R.id.search).setVisible(false)
+                        Toast.makeText(this, "перещли", Toast.LENGTH_LONG).show()
+
                     when(currentFragment){
                         R.id.startFragment->{navHostFragment.findNavController().navigate(R.id.action_startFragment_to_searchFragment)}
                         R.id.allWordsFragment-> navHostFragment.findNavController().navigate(R.id.action_allWordsFragment_to_searchFragment)
@@ -104,7 +124,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
             }
             false
         }
-        bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+            bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
 
 }
