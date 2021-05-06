@@ -37,7 +37,7 @@ var k:String?=null
        // bottomNavigationView.menu.findItem(  R.id.list).isVisible=false
       //  bottomNavigationView.menu.findItem(  R.id.search).setVisible(true)
   k=s
-        Log.i("LOG", "$k")
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?){
@@ -54,8 +54,8 @@ var k:String?=null
         setSupportActionBar(toolbar)
       //supportActionBar?.setDisplayShowHomeEnabled(true)
        // toolbar.setNavigationIcon(R.drawable.ic_baseline_24)
-        toolbar.setNavigationOnClickListener{
-            Toast.makeText(this, "Введите значение", Toast.LENGTH_LONG).show() }
+      //  toolbar.setNavigationOnClickListener{
+        //    Toast.makeText(this, "Введите значение", Toast.LENGTH_LONG).show() }
 
 
         bottomNavigationView=findViewById(R.id.bottomNavigationView)
@@ -143,9 +143,9 @@ var k:String?=null
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
        val id=item.itemId
-
-       if(id==R.id.del_all)
-       {     Toast.makeText(this, "MENU! ", Toast.LENGTH_LONG).show()}
+       if(id==R.id.all_not_remember)
+       {      Log.i("LOG", "!!!!!!!!!")
+           Toast.makeText(this, "MENU! ", Toast.LENGTH_LONG).show()}
      return super.onOptionsItemSelected(item)
 
    }
