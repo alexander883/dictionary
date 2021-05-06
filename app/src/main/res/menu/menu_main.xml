@@ -2,14 +2,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 <item
-    android:id="@+id/menu"
-    android:title="menu" />
+    android:id="@+id/del_all"
+    android:title="@string/del_all" />
     <item
-        android:id="@+id/menu1"
-        android:title="menu1" />
-    <item android:id="@+id/action_sort"
-        android:title="Sort"
-        android:icon="@drawable/ic_sort_white"
-        app:showAsAction="always"
-        />
+        android:id="@+id/all_not_remember"
+        android:title="Добавить все слова в карточки" />
 </menu>

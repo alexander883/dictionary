@@ -21,4 +21,5 @@
     <string name="add_word">Добавить слово</string>
     <string name="redact">Редактировать</string>
     <string name="empty_pole">Заполните все поля!</string>
+    <string name="del_all">Удалить все слова из словаря</string>
 </resources>

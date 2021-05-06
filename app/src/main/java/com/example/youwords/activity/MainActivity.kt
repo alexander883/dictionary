@@ -33,25 +33,27 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), ActivityInterrac
 
 var k:String?=null
     override fun onFragmentClosed(s:String) {
-
-       // bottomNavigationView.menu.findItem(  R.id.search).setVisible(false)
+        bottomNavigationView.menu.findItem(  R.id.search).isCheckable= false
+       // bottomNavigationView.menu.findItem(  R.id.list).isVisible=false
+      //  bottomNavigationView.menu.findItem(  R.id.search).setVisible(true)
   k=s
         Log.i("LOG", "$k")
     }
 
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
+
         Log.i("LOG", "$k")
         //setContentView(R.layout.activity_main)
         val navHostFragment = supportFragmentManager
                 .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
-       // setupActionBarWithNavController(navController)
+       //setupActionBarWithNavController(navController)
         toolbar=findViewById(R.id.toolbar)
 
         setSupportActionBar(toolbar)
       //supportActionBar?.setDisplayShowHomeEnabled(true)
-        toolbar.setNavigationIcon(R.drawable.ic_baseline_24)
+       // toolbar.setNavigationIcon(R.drawable.ic_baseline_24)
         toolbar.setNavigationOnClickListener{
             Toast.makeText(this, "Введите значение", Toast.LENGTH_LONG).show() }
 
@@ -94,7 +96,7 @@ var k:String?=null
                         return@OnNavigationItemSelectedListener true
                  }
                 R.id.search -> {
-
+                    bottomNavigationView.menu.findItem(  R.id.search).isCheckable= true
                       //  bottomNavigationView.menu.findItem(  R.id.search).setVisible(false)
                         Toast.makeText(this, "перещли", Toast.LENGTH_LONG).show()
 
@@ -129,10 +131,10 @@ var k:String?=null
 
 }
 
- //   override fun onSupportNavigateUp(): Boolean {
- //       return navController.navigateUp() || super.onSupportNavigateUp()
- //   }
-    /*
+   //override fun onSupportNavigateUp(): Boolean {
+   //     return navController.navigateUp() || super.onSupportNavigateUp()
+//   }
+
      override fun onCreateOptionsMenu(menu: Menu?): Boolean {
 
      menuInflater.inflate(R.menu.menu_main, menu)
@@ -142,11 +144,11 @@ var k:String?=null
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
        val id=item.itemId
 
-       if(id==R.id.menu)
+       if(id==R.id.del_all)
        {     Toast.makeText(this, "MENU! ", Toast.LENGTH_LONG).show()}
      return super.onOptionsItemSelected(item)
 
    }
-*/
+
 
 }
