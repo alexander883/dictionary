@@ -62,6 +62,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
                         R.id.searchFragment->navHostFragment.findNavController().navigate(R.id.action_searchFragment_to_startFragment)
                         R.id.addWordFragment->navHostFragment.findNavController().navigate(R.id.action_addWordFragment_to_startFragment)
                         R.id.wordsReadFragment->navHostFragment.findNavController().navigate(R.id.action_wordsReadFragment_to_startFragment)
+                        R.id.foundFragment->navHostFragment.findNavController().navigate(R.id.action_foundFragment_to_startFragment)
                     }
                     return@OnNavigationItemSelectedListener true
                 }
@@ -72,6 +73,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
                         R.id.searchFragment->navHostFragment.findNavController().navigate(R.id.action_searchFragment_to_addWordFragment)
                         R.id.addWordFragment->{}
                         R.id.wordsReadFragment->navHostFragment.findNavController().navigate(R.id.action_wordsReadFragment_to_addWordFragment)
+                        R.id.foundFragment->navHostFragment.findNavController().navigate(R.id.action_foundFragment_to_addWordFragment)
                     }
                         return@OnNavigationItemSelectedListener true
                  }
@@ -82,6 +84,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
                         R.id.searchFragment->{}
                         R.id.addWordFragment->{navHostFragment.findNavController().navigate(R.id.action_addWordFragment_to_searchFragment)}
                         R.id.wordsReadFragment->navHostFragment.findNavController().navigate(R.id.action_wordsReadFragment_to_searchFragment)
+                        R.id.foundFragment->navHostFragment.findNavController().navigate(R.id.action_foundFragment_to_searchFragment)
                     }
                     return@OnNavigationItemSelectedListener true
                 }
@@ -92,9 +95,11 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
                         R.id.searchFragment->{navHostFragment.findNavController().navigate(R.id.action_searchFragment_to_allWordsFragment)}
                         R.id.addWordFragment->{navHostFragment.findNavController().navigate(R.id.action_addWordFragment_to_allWordsFragment)}
                         R.id.wordsReadFragment->navHostFragment.findNavController().navigate(R.id.action_wordsReadFragment_to_allWordsFragment)
+                        R.id.foundFragment->navHostFragment.findNavController().navigate(R.id.action_foundFragment_to_allWordsFragment)
                     }
                     return@OnNavigationItemSelectedListener true
                 }
+
 
             }
             false

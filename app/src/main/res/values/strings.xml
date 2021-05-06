@@ -19,4 +19,6 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="add_word">Добавить слово</string>
+    <string name="redact">Редактировать</string>
+    <string name="empty_pole">Заполните все поля!</string>
 </resources>

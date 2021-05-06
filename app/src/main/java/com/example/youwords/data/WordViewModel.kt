@@ -12,7 +12,6 @@ import kotlinx.coroutines.launch
 
 open class WordViewModel(application:Application):AndroidViewModel(application) {
     val repository: WordRepository
-
     init {
         val wordDao = WordDatabase.getDatabase(application).wordDao()
         repository = WordRepository(wordDao)
