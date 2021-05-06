@@ -14,6 +14,7 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
 import com.example.youwords.R
 import com.example.youwords.allwords.AllWordsFragment
 import com.example.youwords.search_and_found.SearchFragment
