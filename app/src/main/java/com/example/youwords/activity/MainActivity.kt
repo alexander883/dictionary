@@ -15,6 +15,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
+import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.youwords.R
 import com.example.youwords.allwords.AllWordsFragment
 import com.example.youwords.search_and_found.SearchFragment
@@ -31,6 +32,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), ActivityInterrac
     private lateinit var navController: NavController
     private lateinit var toolbar: Toolbar
     private lateinit var bottomNavigationView: BottomNavigationView
+
 
 var k:String?=null
     override fun onFragmentClosed(s:String) {
@@ -49,14 +51,18 @@ var k:String?=null
         val navHostFragment = supportFragmentManager
                 .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
-       //setupActionBarWithNavController(navController)
-        toolbar=findViewById(R.id.toolbar)
+      //setupActionBarWithNavController(navController)
+       toolbar=findViewById(R.id.toolbar)
 
-        setSupportActionBar(toolbar)
-      //supportActionBar?.setDisplayShowHomeEnabled(true)
+      setSupportActionBar(toolbar)
+      //  toolbar.setOnMenuItemClickListener(this)
+     // supportActionBar?.setDisplayShowHomeEnabled(true)
        // toolbar.setNavigationIcon(R.drawable.ic_baseline_24)
       //  toolbar.setNavigationOnClickListener{
-        //    Toast.makeText(this, "Введите значение", Toast.LENGTH_LONG).show() }
+        //    Toast.makeText(this, "Введите значение", Toast.LENGTH_LONG).show()
+
+
+ //toolbar.inflateMenu(R.menu.menu_main)
 
 
         bottomNavigationView=findViewById(R.id.bottomNavigationView)
@@ -132,24 +138,26 @@ var k:String?=null
 
 }
 
-   //override fun onSupportNavigateUp(): Boolean {
-   //     return navController.navigateUp() || super.onSupportNavigateUp()
-//   }
+  // override fun onSupportNavigateUp(): Boolean {
+  //      return navController.navigateUp() || super.onSupportNavigateUp()
+  // }
 
-     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
 
-     menuInflater.inflate(R.menu.menu_main, menu)
-     return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-       val id=item.itemId
-       if(id==R.id.all_not_remember)
-       {      Log.i("LOG", "!!!!!!!!!")
-           Toast.makeText(this, "MENU! ", Toast.LENGTH_LONG).show()}
-     return super.onOptionsItemSelected(item)
-
+    menuInflater.inflate(R.menu.menu_main, menu)
+    return true
    }
+
+ /*override fun onOptionsItemSelected(item: MenuItem): Boolean {
+      val id=item.itemId
+      if(id==R.id.all_not_remember)
+      {      Log.i("LOG", "!!!!!!!!!")
+          Toast.makeText(this, "MENU! ", Toast.LENGTH_LONG).show()}
+        return super.onOptionsItemSelected(item)
+    }
+*/
 
 
 }
+
+
