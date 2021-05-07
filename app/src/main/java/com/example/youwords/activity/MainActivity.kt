@@ -34,19 +34,17 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), ActivityInterrac
     private lateinit var bottomNavigationView: BottomNavigationView
 
 
-var k:String?=null
+
     override fun onFragmentClosed(s:String) {
         bottomNavigationView.menu.findItem(  R.id.search).isCheckable= false
        // bottomNavigationView.menu.findItem(  R.id.list).isVisible=false
       //  bottomNavigationView.menu.findItem(  R.id.search).setVisible(true)
-  k=s
-
     }
 
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
 
-        Log.i("LOG", "$k")
+
         //setContentView(R.layout.activity_main)
         val navHostFragment = supportFragmentManager
                 .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
@@ -139,24 +137,24 @@ var k:String?=null
 }
 
   // override fun onSupportNavigateUp(): Boolean {
-  //      return navController.navigateUp() || super.onSupportNavigateUp()
-  // }
+     //   return navController.navigateUp() || super.onSupportNavigateUp()
+ //  }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+      override fun onCreateOptionsMenu(menu: Menu): Boolean {
+          menuInflater.inflate(R.menu.menu_main, menu)
+          return true
+      }
 
-    menuInflater.inflate(R.menu.menu_main, menu)
-    return true
-   }
-
- /*override fun onOptionsItemSelected(item: MenuItem): Boolean {
-      val id=item.itemId
-      if(id==R.id.all_not_remember)
-      {      Log.i("LOG", "!!!!!!!!!")
-          Toast.makeText(this, "MENU! ", Toast.LENGTH_LONG).show()}
-        return super.onOptionsItemSelected(item)
-    }
-*/
-
+      override fun onOptionsItemSelected(item: MenuItem): Boolean {
+          val id=item.itemId
+          if(id==R.id.all_not_remember) {
+              Log.i("LOG", "!!!!!!!!!")
+          }
+          if(id==R.id.del_all) {
+              Log.i("LOG", "!!!!!!!!!")
+          }
+          return super.onOptionsItemSelected(item)
+      }
 
 }
 

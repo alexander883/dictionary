@@ -22,4 +22,8 @@
     <string name="redact">Редактировать</string>
     <string name="empty_pole">Заполните все поля!</string>
     <string name="del_all">Удалить все слова из словаря</string>
+    <string name="home">Home</string>
+    <string name="add">Add</string>
+    <string name="search">Search</string>
+    <string name="list">List</string>
 </resources>
