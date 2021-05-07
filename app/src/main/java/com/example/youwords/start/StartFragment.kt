@@ -64,7 +64,7 @@ class StartFragment : Fragment() {
         } )
 
     }
-        fun addWord(){
+        fun addWord(){Toast.makeText(requireContext(), "Словарь пуст!", Toast.LENGTH_LONG).show()
         findNavController().navigate(R.id.action_startFragment_to_addWordFragment)
         }
 

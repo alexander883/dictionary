@@ -1,29 +1,19 @@
 package com.example.youwords.activity
 
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.*
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
-import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.youwords.R
-import com.example.youwords.allwords.AllWordsFragment
 import com.example.youwords.data.WordViewModel
-import com.example.youwords.data.Words
-import com.example.youwords.search_and_found.SearchFragment
-import com.example.youwords.start.StartFragment
 import com.example.youwords.words.WordsReadViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 

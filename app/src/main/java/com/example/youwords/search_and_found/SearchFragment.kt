@@ -71,11 +71,12 @@ catch (e:Exception)
                 findNavController().navigate(R.id.action_searchFragment_to_foundFragment)
 
                 a?.onFragmentClosed("передача!!")
-                Log.i("LOG", "destroi")
+
 
                 hideKeyboardFrom(requireContext(),view)
             } catch (e: Exception) {
                 Toast.makeText(requireContext(), "Не найдено ", Toast.LENGTH_LONG).show()
+                Log.i("LOG", "Не найдено ")
             }
             }        )
         }
