@@ -47,9 +47,7 @@ class WordsReadFragment : Fragment() {
             wordsreadviewmodel.updateAll_Read()
             binding?.next?.setEnabled(true)
         }
-        binding?.buttonSetRemember?.setOnClickListener {
-            wordsreadviewmodel.updateAll_Remember()
-        }
+
 
         wordsreadviewmodel.all_id_read_not_remember.observe(viewLifecycleOwner, Observer{
             // на этот фрагмент не попадаем, если БД пустая

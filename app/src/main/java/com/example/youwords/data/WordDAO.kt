@@ -40,6 +40,9 @@ interface WordDAO {
     @Delete
     suspend fun deleteWord(word: Words)
 
+    @Query("DELETE FROM english")
+    suspend fun deleteAll()
+
     @Update() //Редактируем слово
     suspend fun updateRedact(word: Words)
 }

@@ -5,16 +5,11 @@
     <string name="start_message">Данный словарь позволяет вносить английские слова и их перевод,
     просматривать все внесенные слова (и перевод) списком, поочередно просматривать все слова с переводом для запоминания,
     искать в словаре слово (как на русском, так и английском)</string>
-    <string name="title_activity_main2">MainActivity</string>
+
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_activity_redact">RedactActivity</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
+
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
@@ -26,4 +21,8 @@
     <string name="add">Add</string>
     <string name="search">Search</string>
     <string name="list">List</string>
+    <string name="yes">Да</string>
+    <string name="no">Нет</string>
+    <string name="question_del_all">Вы дейcтвительно хотите удалить все слова из словаря?</string>
+    <string name="question_remember_all">Вы дейcтвительно хотите добавить все слова в карточки?</string>
 </resources>
