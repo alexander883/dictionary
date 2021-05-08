@@ -2,6 +2,7 @@ package com.example.youwords.words
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,7 +16,6 @@ import java.lang.Exception
 
 
 class WordsReadFragment : Fragment() {
-
     private var binding: FragmentWordsreadBinding?=null
     private lateinit var wordsreadviewmodel: WordsReadViewModel
 
@@ -23,7 +23,6 @@ class WordsReadFragment : Fragment() {
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-
         wordsreadviewmodel = ViewModelProvider(this).get( WordsReadViewModel::class.java)
         val fragmentBinding = FragmentWordsreadBinding.inflate(inflater, container, false)
         binding = fragmentBinding
@@ -36,12 +35,13 @@ class WordsReadFragment : Fragment() {
             lifecycleOwner = viewLifecycleOwner
             wordsReadViewModel=wordsreadviewmodel
             wordsreadFragment = this@WordsReadFragment
-
         }
         // для подсчета всех слов в словаре
         wordsreadviewmodel.allWords.observe(viewLifecycleOwner, Observer {
-            wordsreadviewmodel.getSize(it.size)
+            val size=it?.size ?: 0
+            wordsreadviewmodel.getSize(size)
         })
+
 
         binding?.buttonReset?.setOnClickListener {
             wordsreadviewmodel.updateAll_Read()
@@ -49,48 +49,42 @@ class WordsReadFragment : Fragment() {
         }
 
 
-        wordsreadviewmodel.all_id_read_not_remember.observe(viewLifecycleOwner, Observer{
-            // на этот фрагмент не попадаем, если БД пустая
-            // поэтому можем привести к List<Int>
-            try {it[0]
-                val list= it //as List<Int>
-                wordsreadviewmodel.getList_id(list)
+        wordsreadviewmodel.all_id_read_not_remember.observe(viewLifecycleOwner, Observer {
+            Toast.makeText(context, "!!!!!!!!!", Toast.LENGTH_LONG).show()
+it?.let {
+    Log.i("LOG", "$it it")
+    Toast.makeText(context, "$it", Toast.LENGTH_LONG).show()}
+      try{
+
+            wordsreadviewmodel.getList_id(it)
+            changeEnable()
+            changeText()
+            changeCount()
+
+
+            binding?.next?.setOnClickListener {
                 changeEnable()
+                // g()
+                //  binding?.next?.setEnabled(false)
                 changeText()
                 changeCount()
-
-
-                binding?.next?.setOnClickListener {
-                    changeEnable()
-                    // g()
-                    //  binding?.next?.setEnabled(false)
-                    changeText()
-                    changeCount()
-                    update()
-                }
-                binding?.buttonRemember?.setOnClickListener {
-                    Toast.makeText(requireContext(), "Запомнил", Toast.LENGTH_LONG).show()
-                    wordsreadviewmodel.updateRemember(wordsreadviewmodel.random.value!!)
-                }
+                update()
             }
-            catch (e:Exception){
-                Toast.makeText(requireContext(), "Вы запомнили все слова", Toast.LENGTH_LONG).show()
-                binding?.buttonRemember?.setEnabled(false)
+            binding?.buttonRemember?.setOnClickListener {
+                Toast.makeText(requireContext(), "Запомнил", Toast.LENGTH_LONG).show()
+                wordsreadviewmodel.updateRemember(wordsreadviewmodel.random.value!!)
+            }
+
+      }
+          catch (e:Exception){
+               Toast.makeText(requireContext(), "Вы запомнили все слова", Toast.LENGTH_LONG).show()
+               binding?.buttonRemember?.setEnabled(false)
                 binding?.next?.setEnabled(false)
-            }
+           }
 
 
 
         })
-
-
-
-
-
-
-
-
-
     }
 
     private fun changeEnable(){//если кончились слова блокируем кнопку next
@@ -105,11 +99,16 @@ class WordsReadFragment : Fragment() {
 
     }
     private  fun changeText(){
+
+
+
         wordsreadviewmodel.word_by_id(getRandom_id()).observe(viewLifecycleOwner, Observer {
-            binding?.enText?.text=it.enWord
-            binding?.ruText?.text=it.ruWord
+           it?.let {
+               binding?.enText?.text = it.enWord
+               binding?.ruText?.text = it.ruWord }
         })
     }
+    
 
     private fun getRandom_id():Int{
         return wordsreadviewmodel.get_Random_id()

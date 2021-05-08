@@ -18,6 +18,7 @@
 
         <TextView
             android:id="@+id/ru_text"
+            android:text="rus"
             style="@style/Widget.TipTime.TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -31,6 +32,7 @@
 
         <TextView
             android:id="@+id/en_text"
+            android:text="engl"
             style="@style/Widget.TipTime.TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -56,6 +58,7 @@
 
         <TextView
             android:id="@+id/count"
+            android:text="0"
             style="@style/Widget.TipTime.TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

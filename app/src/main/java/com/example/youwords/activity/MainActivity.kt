@@ -110,8 +110,6 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), ActivityInterrac
                     R.id.search -> {
                         bottomNavigationView.menu.findItem(R.id.search).isCheckable = true
                         //  bottomNavigationView.menu.findItem(  R.id.search).setVisible(false)
-                        Toast.makeText(this, "перещли", Toast.LENGTH_LONG).show()
-
                         when (currentFragment) {
                             R.id.startFragment -> {
                                 navHostFragment.findNavController()
