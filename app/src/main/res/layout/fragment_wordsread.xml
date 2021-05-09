@@ -18,7 +18,7 @@
 
         <TextView
             android:id="@+id/ru_text"
-            android:text="rus"
+            android:text="словарь пуст"
             style="@style/Widget.TipTime.TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -32,7 +32,7 @@
 
         <TextView
             android:id="@+id/en_text"
-            android:text="engl"
+            android:text="the dictionary is empty"
             style="@style/Widget.TipTime.TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -45,7 +45,8 @@
 
 
         <Button
-            android:id="@+id/next"
+            android:id="@+id/button_next"
+            android:onClick="@{() ->wordsreadFragment.clickNext()}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
@@ -70,6 +71,7 @@
 
         <Button
             android:id="@+id/button_reset"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="28dp"

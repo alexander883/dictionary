@@ -18,7 +18,7 @@ import java.lang.Exception
 class WordsReadFragment : Fragment() {
     private var binding: FragmentWordsreadBinding?=null
     private lateinit var wordsreadviewmodel: WordsReadViewModel
-
+    private var dictionary_empty=true
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
@@ -30,67 +30,103 @@ class WordsReadFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         binding?.apply {
             lifecycleOwner = viewLifecycleOwner
             wordsReadViewModel=wordsreadviewmodel
             wordsreadFragment = this@WordsReadFragment
         }
-        // для подсчета всех слов в словаре
+        // если словарь пуст. подсчитываем слова в словаре
         wordsreadviewmodel.allWords.observe(viewLifecycleOwner, Observer {
             val size=it?.size ?: 0
-            wordsreadviewmodel.getSize(size)
+            if(it.isEmpty()){
+              //  dictionary_empty=true
+                changeNext_off()
+                changeReset_off()
+                changeRemember_off()
+            }
+            else{
+              //  dictionary_empty=false
+                changeNext_on()
+                changeReset_on()
+                changeRemember_on()
+                obs()
+
+            }
+            wordsreadviewmodel.setSize_All(size)
         })
 
+    }
 
-        binding?.buttonReset?.setOnClickListener {
-            wordsreadviewmodel.updateAll_Read()
-            binding?.next?.setEnabled(true)
-        }
-
-
+    fun obs(){
         wordsreadviewmodel.all_id_read_not_remember.observe(viewLifecycleOwner, Observer {
             Toast.makeText(context, "!!!!!!!!!", Toast.LENGTH_LONG).show()
-it?.let {
-    Log.i("LOG", "$it it")
-    Toast.makeText(context, "$it", Toast.LENGTH_LONG).show()}
-      try{
 
-            wordsreadviewmodel.getList_id(it)
-            changeEnable()
-            changeText()
-            changeCount()
+                if (!it.isEmpty()) {
+
+                    Toast.makeText(context, "$it Вызываю", Toast.LENGTH_LONG).show()
 
 
-            binding?.next?.setOnClickListener {
-                changeEnable()
-                // g()
-                //  binding?.next?.setEnabled(false)
-                changeText()
-                changeCount()
-                update()
-            }
-            binding?.buttonRemember?.setOnClickListener {
-                Toast.makeText(requireContext(), "Запомнил", Toast.LENGTH_LONG).show()
-                wordsreadviewmodel.updateRemember(wordsreadviewmodel.random.value!!)
-            }
+                    wordsreadviewmodel.getList_id(it)
+                    changeNext_on()
+                    //changeText()
+                    changeCount()
+                    changeText()
 
-      }
-          catch (e:Exception){
-               Toast.makeText(requireContext(), "Вы запомнили все слова", Toast.LENGTH_LONG).show()
-               binding?.buttonRemember?.setEnabled(false)
-                binding?.next?.setEnabled(false)
-           }
+                    //  binding?.buttonNext?.setOnClickListener {
+                    // g()
+                    //  binding?.next?.setEnabled(false)
+                    //    changeText()
+                    //     changeCount()
+                    //     update()
+                    //  }
+                    binding?.buttonRemember?.setOnClickListener {
+                        Toast.makeText(requireContext(), "Запомнил", Toast.LENGTH_LONG).show()
+                        wordsreadviewmodel.updateRemember(wordsreadviewmodel.random.value!!)
+                    }
+                } else {
+
+
+                    Toast.makeText(requireContext(),
+                        "Вы запомнили все слова",
+                        Toast.LENGTH_LONG
+                    ).show()
+
+
+                }
 
 
 
         })
     }
+    private fun changeNext_off(){//если кончились слова блокируем кнопку next
+            binding?.buttonNext?.setEnabled(false)
+    }
+    private fun changeNext_on(){
+        binding?.buttonNext?.setEnabled(true)
+    }
+    private fun changeReset_off(){
+        binding?.buttonReset?.setEnabled(false)
+    }
+    private fun changeReset_on(){
+        binding?.buttonReset?.setEnabled(true)
+    }
+    private fun changeRemember_off(){
+        binding?.buttonRemember?.setEnabled(false)
+    }
+    private fun changeRemember_on(){
+        binding?.buttonRemember?.setEnabled(true)
+    }
 
-    private fun changeEnable(){//если кончились слова блокируем кнопку next
-        if (wordsreadviewmodel.getSizeList() == 1) {
-            binding?.next?.setEnabled(false)
-        }
+    fun clickReset(){
+
+    }
+    fun clickRemember(){
+
+    }
+    fun clickNext(){
+        changeText()
+        changeCount()
+        update()
     }
 
 
