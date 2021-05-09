@@ -43,12 +43,12 @@ class AddWordFragment : Fragment() {
             addwordFragment=this@AddWordFragment
         }
                 // если перешли для редактирования
-        allwordsviewmodel.clickedWord.value?.let {
-            binding?.buttonAddWord?.text="Отредактировать"
-            binding?.enEditText?.setText(it.enWord)
-            binding?.rusEditText?.setText(it.ruWord)
-
-        }
+     //   allwordsviewmodel.clickedWord.value?.let {
+     //       binding?.buttonAddWord?.text="Отредактировать"
+     //       binding?.enEditText?.setText(it.enWord)
+     //       binding?.rusEditText?.setText(it.ruWord)
+//
+     //   }
     }
     fun MainActivity.clearFragmentsFromContainer() {
         val fragments = supportFragmentManager.fragments
@@ -67,21 +67,21 @@ class AddWordFragment : Fragment() {
         }
         else {
             //если редактируем слово
-           val k= allwordsviewmodel.clickedWord.value?.let {
-                val w = Words(it.id, en_word, ru_word, it.read, it.remember)
-                allwordsviewmodel.updateRedact(w)
-                findNavController().navigate(R.id.action_addWordFragment_to_allWordsFragment)
-               hideKeyboardFrom(requireContext(), view)
-               allwordsviewmodel.reset()
-            }
+         //  val k= allwordsviewmodel.clickedWord.value?.let {
+          //      val w = Words(it.id, en_word, ru_word, it.read, it.remember)
+          //      allwordsviewmodel.updateRedact(w)
+          //      findNavController().navigate(R.id.action_addWordFragment_to_allWordsFragment)
+          //     hideKeyboardFrom(requireContext(), view)
+          //     allwordsviewmodel.reset()
+         //   }
             // если добавляем новое
-            if (k==null){
+         //   if (k==null){
                 val word = Words(id = 0, enWord = en_word, ruWord = ru_word)
                      allwordsviewmodel.addWord(word)
                      Toast.makeText(requireContext(), "$en_word добавлено", Toast.LENGTH_LONG).show()
                      findNavController().navigate(R.id.action_addWordFragment_to_startFragment)
                     //  allwordsviewmodel.reset()
-            }
+          //  }
          }
         }
     private fun hideKeyboardFrom(context: Context, view: View?) {

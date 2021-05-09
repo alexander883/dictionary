@@ -1,16 +1,16 @@
 package com.example.youwords.start
 
-import android.app.Application
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.example.youwords.databinding.FragmentStartBinding
-import android.widget.Toast
 import com.example.youwords.R
-import com.example.youwords.data.WordViewModel
+import com.example.youwords.databinding.FragmentStartBinding
+
 
 class StartFragment : Fragment() {
     private var binding: FragmentStartBinding? = null
@@ -51,12 +51,13 @@ class StartFragment : Fragment() {
             startFragment=this@StartFragment
 
         }
+        binding?.buttonToAllWords?.setOnClickListener {  findNavController().navigate(R.id.action_startFragment_to_allWordsFragment) }
+        binding?.buttonWords?.setOnClickListener {  findNavController().navigate(R.id.action_startFragment_to_wordsReadFragment) }
 
         startviewmodel.allWords.observe(viewLifecycleOwner, Observer {
             try {it[0]
-               binding?.buttonSearch?.setOnClickListener { findNavController().navigate(R.id.action_startFragment_to_searchFragment) }
-                binding?.buttonToAllWords?.setOnClickListener {  findNavController().navigate(R.id.action_startFragment_to_allWordsFragment) }
-                binding?.buttonWords?.setOnClickListener {  findNavController().navigate(R.id.action_startFragment_to_wordsReadFragment) }
+
+
             }
             catch (e:Exception){
                 Toast.makeText(requireContext(), "Словарь пуст!", Toast.LENGTH_LONG).show()
@@ -64,7 +65,14 @@ class StartFragment : Fragment() {
         } )
 
     }
+
+
         fun addWord(){
+           val toast= Toast.makeText(requireContext(), "cenytr", Toast.LENGTH_LONG)
+               toast.setGravity(Gravity.LEFT,0,0)
+               toast.show()
+
+
         findNavController().navigate(R.id.action_startFragment_to_addWordFragment)
         }
 

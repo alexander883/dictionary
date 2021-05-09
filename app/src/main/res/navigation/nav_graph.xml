@@ -67,6 +67,15 @@
         <action
             android:id="@+id/action_foundFragment_to_startFragment"
             app:destination="@id/startFragment" />
+        <action
+            android:id="@+id/action_foundFragment_to_addWordFragment"
+            app:destination="@id/addWordFragment" />
+        <action
+            android:id="@+id/action_foundFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_foundFragment_to_allWordsFragment"
+            app:destination="@id/allWordsFragment" />
     </fragment>
     <fragment
         android:id="@+id/wordsReadFragment"
@@ -109,26 +118,6 @@
             app:destination="@id/redactActivity" />
 
 
-    </fragment>
-    <fragment
-        android:id="@+id/FirstFragment"
-        android:name="com.example.youwords.activity.FirstFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
-
-        <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.example.youwords.activity.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
-
-        <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
     </fragment>
     <activity
         android:id="@+id/redactActivity"

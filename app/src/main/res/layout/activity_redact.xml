@@ -3,20 +3,64 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".activity.RedactActivity">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.youwords.data.WordViewModel" />
 
+        <variable
+            name="activityRedact"
+            type="com.example.youwords.activity.RedactActivity" />
+    </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <Button
+            android:id="@+id/button_redact_word"
+            android:onClick="@{() ->activityRedact.redactWord()}"
 
-        <fragment
-            android:id="@+id/fragment"
-            android:name="com.example.youwords.addword.AddWordFragment"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/redact"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/rus_editText"
+            app:layout_constraintVertical_bias="0.245" />
+
+        <EditText
+            android:id="@+id/en_editText"
+
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="35dp"
+            android:ems="10"
+
+            android:inputType="text"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+          />
+
+        <EditText
+            android:id="@+id/rus_editText"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+
+
+            android:layout_marginTop="35dp"
+            android:ems="10"
+
+            android:inputType="text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/en_editText" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

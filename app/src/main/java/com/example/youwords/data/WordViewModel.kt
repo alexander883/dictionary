@@ -12,7 +12,6 @@ import kotlinx.coroutines.launch
 
 open class WordViewModel(application:Application):AndroidViewModel(application) {
     val repository: WordRepository
-
     init {
         val wordDao = WordDatabase.getDatabase(application).wordDao()
         repository = WordRepository(wordDao)
@@ -62,6 +61,11 @@ open class WordViewModel(application:Application):AndroidViewModel(application) 
     fun deleteWord(word: Words){
         viewModelScope.launch(Dispatchers.IO) {
             repository.deleteWord(word)
+        }
+    }
+    fun deleteAll(){
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.deleteAll()
         }
     }
     fun updateRedact(w:Words) {

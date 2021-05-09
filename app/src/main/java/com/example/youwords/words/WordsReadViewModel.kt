@@ -9,7 +9,7 @@ class WordsReadViewModel(application: Application) : WordViewModel(application) 
 
    // private val _list_id= MutableLiveData<List<Int>>()// список id получаемый из БД и неизменяемый
 
-//cписок id который изменяем при нахождении во фрагменте, чтобы не обращаться к БД
+//cписок id
     private var _mutablelist_id = MutableLiveData<List<Int>>()
     val mutablelist_list_id: LiveData<List<Int>> =_mutablelist_id
 
@@ -23,22 +23,22 @@ class WordsReadViewModel(application: Application) : WordViewModel(application) 
 
 
 
-    fun getList_id(list:List<Int>){ //получаем список id при создании фрагмента, который храним во viewmodel  фрагмента
+    fun getList_id(list:List<Int>){ //
       //  _list_id.value=list
         _mutablelist_id.value=list.toMutableList()
     }
     fun get_Random_id():Int{
-        val range:IntRange=mutablelist_list_id.value?.indices ?: 0..0// диапазон индексов списка
+        val range:IntRange=mutablelist_list_id.value?.indices!!// диапазон индексов списка
         val rand=range.random()//cлучайный индекс списка
         _random.value= mutablelist_list_id.value?.get(rand)//случайный id Words
         (_mutablelist_id.value as MutableList<Int>).removeAt(rand)// удаляем из списка позицию с случайн id
-        return random.value ?: 1
+        return random.value!!
     }
     fun getSizeList():Int?{
         return  mutablelist_list_id.value?.size
     }
 
-    fun getSize(size:Int){
+    fun setSize_All(size:Int){
         _size.value=size
     }
 

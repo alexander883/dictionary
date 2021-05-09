@@ -13,9 +13,7 @@
             android:name=".activity.RedactActivity"
             android:label="@string/title_activity_redact"
             android:theme="@style/Theme.Youwords.NoActionBar"></activity>
-        <activity
-            android:name=".activity.MainActivity2"
-            android:label="@string/title_activity_main2" />
+
         <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -18,6 +18,7 @@
 
         <TextView
             android:id="@+id/ru_text"
+            android:text="словарь пуст"
             style="@style/Widget.TipTime.TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -31,6 +32,7 @@
 
         <TextView
             android:id="@+id/en_text"
+            android:text="the dictionary is empty"
             style="@style/Widget.TipTime.TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -43,28 +45,33 @@
 
 
         <Button
-            android:id="@+id/next"
+            android:id="@+id/button_next"
+            android:onClick="@{() ->wordsreadFragment.clickNext()}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="340dp"
-            android:text="Следующее"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
+
+
+            android:layout_marginEnd="0dp"
+
+            android:text="@string/next"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/count"
+            android:text="0"
             style="@style/Widget.TipTime.TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="124dp"
-            tools:text="345"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="72dp"
             app:layout_constraintStart_toEndOf="@+id/textView"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="345" />
 
         <Button
             android:id="@+id/button_reset"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="28dp"
@@ -79,7 +86,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
-            android:layout_marginTop="124dp"
+            android:layout_marginTop="72dp"
             android:text="Осталось слов"
             app:layout_constraintStart_toEndOf="@+id/button_reset"
             app:layout_constraintTop_toTopOf="parent" />
@@ -118,15 +125,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/count" />
 
-        <Button
-            android:id="@+id/button_set_remember"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="252dp"
-            android:layout_marginTop="16dp"
-            android:text="все забыл"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView_w1" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

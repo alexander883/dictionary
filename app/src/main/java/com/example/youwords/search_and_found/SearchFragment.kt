@@ -3,6 +3,7 @@ package com.example.youwords.search_and_found
 import android.app.Activity
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,8 +14,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.youwords.R
-import com.example.youwords.adapter_all_words.AllWordsAdapter
-import com.example.youwords.adapter_found_word.FoundAdapter
+import com.example.youwords.activity.ActivityInterractor
+
 import com.example.youwords.data.Words
 import com.example.youwords.databinding.FragmentSearchBinding
 
@@ -24,6 +25,21 @@ import com.example.youwords.databinding.FragmentSearchBinding
 class SearchFragment : Fragment() {
     private var binding: FragmentSearchBinding? = null
     private lateinit var searchviewmodel:SearchViewModel
+    var a:ActivityInterractor?=null
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+try {
+  //  Toast.makeText(requireContext(), "СССССсрбаоало", Toast.LENGTH_SHORT).show()
+     context as ActivityInterractor
+    a=context
+    Log.i("LOG", "try")
+}
+catch (e:Exception)
+{ Log.i("LOG", "catch")
+    Toast.makeText(requireContext(), "Не србаоало", Toast.LENGTH_SHORT).show()}
+       }
+
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -53,9 +69,14 @@ class SearchFragment : Fragment() {
                 searchviewmodel.getSearchWords(it)
 
                 findNavController().navigate(R.id.action_searchFragment_to_foundFragment)
+
+                a?.onFragmentClosed("передача!!")
+
+
                 hideKeyboardFrom(requireContext(),view)
             } catch (e: Exception) {
                 Toast.makeText(requireContext(), "Не найдено ", Toast.LENGTH_LONG).show()
+                Log.i("LOG", "Не найдено ")
             }
             }        )
         }
