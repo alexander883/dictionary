@@ -71,7 +71,7 @@
 
         <Button
             android:id="@+id/button_reset"
-
+            android:onClick="@{() ->wordsreadFragment.clickReset()}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="28dp"
@@ -109,14 +109,14 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:text="@{WordsReadViewModel.size.toString()}"
+            android:text="@{WordsReadViewModel.size_all.toString()}"
             app:layout_constraintStart_toEndOf="@+id/textView_w1"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="44" />
 
         <Button
             android:id="@+id/button_remember"
-
+            android:onClick="@{() ->wordsreadFragment.clickRemember()}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"

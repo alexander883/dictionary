@@ -18,7 +18,7 @@ import java.lang.Exception
 class WordsReadFragment : Fragment() {
     private var binding: FragmentWordsreadBinding?=null
     private lateinit var wordsreadviewmodel: WordsReadViewModel
-    private var dictionary_empty=true
+    private var init=true
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
@@ -43,34 +43,36 @@ class WordsReadFragment : Fragment() {
                 changeNext_off()
                 changeReset_off()
                 changeRemember_off()
+                wordsreadviewmodel.setSize_Rem(0)
             }
             else{
               //  dictionary_empty=false
                 changeNext_on()
                 changeReset_on()
                 changeRemember_on()
-                obs()
-
+                switching()// основна функция обработки изменений
             }
             wordsreadviewmodel.setSize_All(size)
         })
 
     }
 
-    fun obs(){
+    private fun switching() {
         wordsreadviewmodel.all_id_read_not_remember.observe(viewLifecycleOwner, Observer {
-            Toast.makeText(context, "!!!!!!!!!", Toast.LENGTH_LONG).show()
-
-                if (!it.isEmpty()) {
-
-                    Toast.makeText(context, "$it Вызываю", Toast.LENGTH_LONG).show()
-
-
-                    wordsreadviewmodel.getList_id(it)
+             if (!it.isEmpty()) {
+                Toast.makeText(context, "IIIss", Toast.LENGTH_SHORT).show()
                     changeNext_on()
+                    changeRemember_on()
+                    wordsreadviewmodel.get_Random_id(it)//получаем id слова которое показываем
+                    wordsreadviewmodel.setSize_Rem(it.size)
+                    if (init){
+                      clickNext()
+                      init=false
+                   }
+                 //   changeNext_on()
                     //changeText()
-                    changeCount()
-                    changeText()
+                //    changeCount()
+
 
                     //  binding?.buttonNext?.setOnClickListener {
                     // g()
@@ -79,17 +81,13 @@ class WordsReadFragment : Fragment() {
                     //     changeCount()
                     //     update()
                     //  }
-                    binding?.buttonRemember?.setOnClickListener {
-                        Toast.makeText(requireContext(), "Запомнил", Toast.LENGTH_LONG).show()
-                        wordsreadviewmodel.updateRemember(wordsreadviewmodel.random.value!!)
-                    }
+
                 } else {
-
-
+                    changeNext_off()
+                  //  changeRemember_off()
                     Toast.makeText(requireContext(),
                         "Вы запомнили все слова",
-                        Toast.LENGTH_LONG
-                    ).show()
+                        Toast.LENGTH_LONG).show()
 
 
                 }
@@ -118,27 +116,29 @@ class WordsReadFragment : Fragment() {
     }
 
     fun clickReset(){
-
+        wordsreadviewmodel.updateAll_Read()
+        changeNext_on()
+        changeRemember_on()
+        init=true
     }
     fun clickRemember(){
-
+        Toast.makeText(requireContext(), "Запомнил", Toast.LENGTH_LONG).show()
+        wordsreadviewmodel.updateRemember(wordsreadviewmodel.random_id.value!!)
+        changeRemember_off()
     }
     fun clickNext(){
         changeText()
         changeCount()
         update()
+        changeRemember_on()
     }
 
 
     private fun  update(){
-        wordsreadviewmodel.updateRead(wordsreadviewmodel.random.value!!)
-
+        wordsreadviewmodel.updateRead(wordsreadviewmodel.random_id.value!!)
     }
     private  fun changeText(){
-
-
-
-        wordsreadviewmodel.word_by_id(getRandom_id()).observe(viewLifecycleOwner, Observer {
+        wordsreadviewmodel.word_by_id(wordsreadviewmodel.random_id.value!!).observe(viewLifecycleOwner, Observer {
            it?.let {
                binding?.enText?.text = it.enWord
                binding?.ruText?.text = it.ruWord }
@@ -146,13 +146,11 @@ class WordsReadFragment : Fragment() {
     }
     
 
-    private fun getRandom_id():Int{
-        return wordsreadviewmodel.get_Random_id()
-    }
+  //  private fun getRandom_id():Int{
+      //  return wordsreadviewmodel.get_Random_id()
+  //  }
     private fun changeCount(){
-        binding?.count?.text=wordsreadviewmodel.getSizeList().toString()
-        //if (wordviewmodel.getSizeList()){
-
+        binding?.count?.text=(wordsreadviewmodel.size_rem.value!!-1).toString()
     }
 
 
