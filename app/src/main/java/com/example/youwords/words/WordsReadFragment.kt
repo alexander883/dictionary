@@ -19,6 +19,9 @@ class WordsReadFragment : Fragment() {
     private var binding: FragmentWordsreadBinding?=null
     private lateinit var wordsreadviewmodel: WordsReadViewModel
     private var init=true
+    private var change=true
+    private var change2=true
+    private var flag_next=true
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
@@ -38,6 +41,7 @@ class WordsReadFragment : Fragment() {
         // если словарь пуст. подсчитываем слова в словаре
         wordsreadviewmodel.allWords.observe(viewLifecycleOwner, Observer {
             val size=it?.size ?: 0
+            wordsreadviewmodel.setSize_All(size)
             if(it.isEmpty()){
               //  dictionary_empty=true
                 changeNext_off()
@@ -46,56 +50,74 @@ class WordsReadFragment : Fragment() {
                 wordsreadviewmodel.setSize_Rem(0)
             }
             else{
-              //  dictionary_empty=false
                 changeNext_on()
                 changeReset_on()
                 changeRemember_on()
-                switching()// основна функция обработки изменений
+
+                wordsreadviewmodel.all_id_read_not_remember.observe(viewLifecycleOwner, Observer {
+                  //  Log.i("LOG","шлавный observe")
+                    if (!it.isEmpty() and change) {
+                        Log.i("LOG","IFF")
+
+                        changeNext_on()
+                        changeRemember_on()
+                        wordsreadviewmodel.get_Random_id(it)//получаем id слова которое показываем
+                        wordsreadviewmodel.setSize_Rem(it.size)//
+
+
+ wordsreadviewmodel.random_id.value?.let {
+    wordsreadviewmodel.word_by_id(it).observe(viewLifecycleOwner, Observer {
+        it?.let {
+            if (flag_next) {
+                binding?.enText?.text = it.enWord
+                binding?.ruText?.text = it.ruWord
+                flag_next=false
+                Log.i("LOG", "изменили текст")
             }
-            wordsreadviewmodel.setSize_All(size)
+
+        }
+    })
+}
+
+
+
+
+                        binding?.buttonRemember?.setOnClickListener {
+                            change=false
+                            wordsreadviewmodel.updateRemember(wordsreadviewmodel.random_id.value!!)
+                        }
+                        binding?.buttonNext?.setOnClickListener {
+                            wordsreadviewmodel.updateRead(wordsreadviewmodel.random_id.value!!)
+                            Log.i("LOG","нажали next")
+                            flag_next=true
+
+                        }
+
+                    }
+                    if (it.isEmpty())  {
+                        changeNext_off()
+                        //  changeRemember_off()
+                        Toast.makeText(requireContext(),
+                            "Вы запомнили все слова",
+                            Toast.LENGTH_LONG).show()
+
+
+                    }
+
+
+
+                })
+
+
+
+
+
+            }
+
         })
 
     }
 
-    private fun switching() {
-        wordsreadviewmodel.all_id_read_not_remember.observe(viewLifecycleOwner, Observer {
-             if (!it.isEmpty()) {
-                Toast.makeText(context, "IIIss", Toast.LENGTH_SHORT).show()
-                    changeNext_on()
-                    changeRemember_on()
-                    wordsreadviewmodel.get_Random_id(it)//получаем id слова которое показываем
-                    wordsreadviewmodel.setSize_Rem(it.size)
-                    if (init){
-                      clickNext()
-                      init=false
-                   }
-                 //   changeNext_on()
-                    //changeText()
-                //    changeCount()
-
-
-                    //  binding?.buttonNext?.setOnClickListener {
-                    // g()
-                    //  binding?.next?.setEnabled(false)
-                    //    changeText()
-                    //     changeCount()
-                    //     update()
-                    //  }
-
-                } else {
-                    changeNext_off()
-                  //  changeRemember_off()
-                    Toast.makeText(requireContext(),
-                        "Вы запомнили все слова",
-                        Toast.LENGTH_LONG).show()
-
-
-                }
-
-
-
-        })
-    }
     private fun changeNext_off(){//если кончились слова блокируем кнопку next
             binding?.buttonNext?.setEnabled(false)
     }
@@ -126,24 +148,13 @@ class WordsReadFragment : Fragment() {
         wordsreadviewmodel.updateRemember(wordsreadviewmodel.random_id.value!!)
         changeRemember_off()
     }
-    fun clickNext(){
-        changeText()
-        changeCount()
-        update()
-        changeRemember_on()
-    }
 
 
-    private fun  update(){
+
+    private fun  updateRead(){
         wordsreadviewmodel.updateRead(wordsreadviewmodel.random_id.value!!)
     }
-    private  fun changeText(){
-        wordsreadviewmodel.word_by_id(wordsreadviewmodel.random_id.value!!).observe(viewLifecycleOwner, Observer {
-           it?.let {
-               binding?.enText?.text = it.enWord
-               binding?.ruText?.text = it.ruWord }
-        })
-    }
+
     
 
   //  private fun getRandom_id():Int{

@@ -46,7 +46,7 @@
 
         <Button
             android:id="@+id/button_next"
-            android:onClick="@{() ->wordsreadFragment.clickNext()}"
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
@@ -71,7 +71,7 @@
 
         <Button
             android:id="@+id/button_reset"
-            android:onClick="@{() ->wordsreadFragment.clickReset()}"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="28dp"
@@ -116,7 +116,7 @@
 
         <Button
             android:id="@+id/button_remember"
-            android:onClick="@{() ->wordsreadFragment.clickRemember()}"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
