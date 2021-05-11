@@ -16,7 +16,8 @@ class WordsReadViewModel(application: Application) : WordViewModel(application) 
 
     private val _random_id=MutableLiveData<Int>()//случайный id
     val random_id: LiveData<Int> =_random_id
-
+    private val _prev=MutableLiveData<Int>()//случайный id
+    var prev: LiveData<Int> =_prev
             // количество всех слов в словаре
     private var _size_all = MutableLiveData<Int>()
     val size_all : LiveData<Int> = _size_all
@@ -32,6 +33,7 @@ class WordsReadViewModel(application: Application) : WordViewModel(application) 
     fun get_Random_id(list:List<Int>){
         val range:IntRange=list.indices// диапазон индексов списка
         val rand=range.random()//cлучайный индекс списка
+
         _random_id.value=list.get(rand)//случайный id Words
        // (_mutablelist_id.value as MutableList<Int>).removeAt(rand)// удаляем из списка позицию с случайн id
        // return random.value!!

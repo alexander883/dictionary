@@ -13,15 +13,18 @@ import androidx.lifecycle.ViewModelProvider
 
 import com.example.youwords.databinding.FragmentWordsreadBinding
 import java.lang.Exception
+import kotlin.properties.Delegates
 
 ///!!!!!!!!!!
 class WordsReadFragment : Fragment() {
     private var binding: FragmentWordsreadBinding?=null
     private lateinit var wordsreadviewmodel: WordsReadViewModel
-    private var init=true
+    private var dictionary_empty=true
     private var change=true
     private var change2=true
     private var flag_next=true
+    private var  random_id:Int?=null
+    private var flag_r=false
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
@@ -47,96 +50,87 @@ class WordsReadFragment : Fragment() {
                 changeReset_off()
                 changeRemember_off()
             //    wordsreadviewmodel.setSize_Rem(0)
-
+                //binding?.count?.text=(0).toString()
             }
             else{
                 //changeNext_on()
                 changeReset_on()
                 changeRemember_on()
+                dictionary_empty=false
+            }
+        })
+/////////
+        wordsreadviewmodel.all_id_read_not_remember.observe(viewLifecycleOwner, Observer {
+            if (!dictionary_empty) {//если в словаре есть слова
+                Log.i("LOG", "в словаре есть слова")
+                //  val list_id=it
+                binding?.count?.text = (it.size).toString()
 
-                wordsreadviewmodel.all_id_read_not_remember.observe(viewLifecycleOwner, Observer {
-                    Log.i("LOG","шлавный observe")
-                    val list_id=it
-
-
-                    if (!list_id.isEmpty()) {
-                        Log.i("LOG","IFF")
-
-                        changeNext_on()
-                        changeRemember_on()
-                        wordsreadviewmodel.get_Random_id(list_id)//получаем случайный id слова из диапазона которое показываем
-                       // wordsreadviewmodel.setSize_Rem(it.size)//
-                        binding?.count?.text=(list_id.size-1).toString()
-
-                     //   if (flag_next) {
-                            Log.i("LOG", "IF")
-
-                        if (init) { Log.i("LOG", "If $init")
-                            wordsreadviewmodel.word_by_id(wordsreadviewmodel.random_id.value)
-                                .observe(viewLifecycleOwner, Observer {
-                                    //   if (flag_next) {
+                if (!it.isEmpty()) {//если не все слова показаны
+                    Log.i("LOG", "не все слова показаны")
+                    changeNext_on()
+                    changeRemember_on()
+                    wordsreadviewmodel.get_Random_id(it)//получаем случайный id слова из диапазона которое показываем
+                    flag_r=true
+                    // wordsreadviewmodel.setSize_Rem(it.size)//
+                    //изменяем показывыемые слова
+                     random_id=wordsreadviewmodel.random_id.value
+                    Log.i("LOG", "получили рандом  id=$random_id")
+                        ///работает толье внутри
+                    wordsreadviewmodel.word_by_id(random_id).observe(viewLifecycleOwner, Observer {
+                            // val r=wordsreadviewmodel.random_id.value
+                            Log.i("LOG", "внутри word_by_id $random_id")
+                            it?.let {
+                                if (flag_next and flag_r  ) {
                                     binding?.enText?.text = it.enWord
                                     binding?.ruText?.text = it.ruWord
                                     flag_next = false
+                                    flag_r=false
                                     Log.i("LOG", "изменили текст")
-                                    //   }
-                                    init=false
-                                })
+                                    val j=it.ruWord
+                                    Log.i("LOG", "$j")
+                                } }
 
-                        }
-//}
-
+                        })
 
 
+                } else {
+                  //  binding?.count?.text = "0"
+                    changeNext_off()
+                      changeRemember_off()
+                    Toast.makeText(requireContext(), "Вы запомнили все слова", Toast.LENGTH_LONG)
+                        .show()
+                    binding?.enText?.text = ""
+                    binding?.ruText?.text ="заново"
 
-
-
-                        binding?.buttonRemember?.setOnClickListener {
-                            wordsreadviewmodel.updateRemember(wordsreadviewmodel.random_id.value!!)
-                            wordsreadviewmodel.updateRead(wordsreadviewmodel.random_id.value!!)
-                            flag_next=true
-                            Log.i("LOG", "нажли запомнил")
-
-                        }
-
-
-                        binding?.buttonNext?.setOnClickListener {
-                            Log.i("LOG","нажали next1")
-                            wordsreadviewmodel.updateRead(wordsreadviewmodel.random_id.value!!)
-                            Log.i("LOG","нажали next2")
-                            flag_next=true
-
-                        }
-
-                    }
-                    else   {binding?.count?.text="0"
-                        changeNext_off()
-                        //  changeRemember_off()
-                        Toast.makeText(requireContext(), "Вы запомнили все слова", Toast.LENGTH_LONG).show()
-
-
-                    }
-
-                    binding?.buttonReset?.setOnClickListener {
-                        wordsreadviewmodel.updateAll_Read()
-                        Log.i("LOG", "нажали reset")
-                    }
-
-                })
-
-
-
-
-
-
-
+                }
             }
 
 
-
-
-
         })
+
+
+
+
+
+        binding?.buttonReset?.setOnClickListener {
+            wordsreadviewmodel.updateAll_Read()
+            Log.i("LOG", "нажали reset")
+            flag_next=true
+        }
+        binding?.buttonNext?.setOnClickListener {
+            Log.i("LOG","нажали next")
+            wordsreadviewmodel.updateRead(wordsreadviewmodel.random_id.value!!)
+            flag_next=true
+
+        }
+        binding?.buttonRemember?.setOnClickListener {
+            wordsreadviewmodel.updateRemember(wordsreadviewmodel.random_id.value!!)
+            wordsreadviewmodel.updateRead(wordsreadviewmodel.random_id.value!!)
+            flag_next=true
+            Log.i("LOG", "нажли запомнил")
+
+        }
 
     }
 
@@ -163,7 +157,7 @@ class WordsReadFragment : Fragment() {
         wordsreadviewmodel.updateAll_Read()
         changeNext_on()
         changeRemember_on()
-        init=true
+
     }
     fun clickRemember(){
         Toast.makeText(requireContext(), "Запомнил", Toast.LENGTH_LONG).show()
