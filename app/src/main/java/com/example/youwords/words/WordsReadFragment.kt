@@ -43,68 +43,84 @@ class WordsReadFragment : Fragment() {
             val size=it?.size ?: 0
             wordsreadviewmodel.setSize_All(size)
             if(it.isEmpty()){
-              //  dictionary_empty=true
                 changeNext_off()
                 changeReset_off()
                 changeRemember_off()
-                wordsreadviewmodel.setSize_Rem(0)
+            //    wordsreadviewmodel.setSize_Rem(0)
+
             }
             else{
-                changeNext_on()
+                //changeNext_on()
                 changeReset_on()
                 changeRemember_on()
 
                 wordsreadviewmodel.all_id_read_not_remember.observe(viewLifecycleOwner, Observer {
-                  //  Log.i("LOG","шлавный observe")
-                    if (!it.isEmpty() and change) {
+                    Log.i("LOG","шлавный observe")
+                    val list_id=it
+
+
+                    if (!list_id.isEmpty()) {
                         Log.i("LOG","IFF")
 
                         changeNext_on()
                         changeRemember_on()
-                        wordsreadviewmodel.get_Random_id(it)//получаем id слова которое показываем
-                        wordsreadviewmodel.setSize_Rem(it.size)//
+                        wordsreadviewmodel.get_Random_id(list_id)//получаем случайный id слова из диапазона которое показываем
+                       // wordsreadviewmodel.setSize_Rem(it.size)//
+                        binding?.count?.text=(list_id.size-1).toString()
+
+                     //   if (flag_next) {
+                            Log.i("LOG", "IF")
+
+                        if (init) { Log.i("LOG", "If $init")
+                            wordsreadviewmodel.word_by_id(wordsreadviewmodel.random_id.value)
+                                .observe(viewLifecycleOwner, Observer {
+                                    //   if (flag_next) {
+                                    binding?.enText?.text = it.enWord
+                                    binding?.ruText?.text = it.ruWord
+                                    flag_next = false
+                                    Log.i("LOG", "изменили текст")
+                                    //   }
+                                    init=false
+                                })
+
+                        }
+//}
 
 
- wordsreadviewmodel.random_id.value?.let {
-    wordsreadviewmodel.word_by_id(it).observe(viewLifecycleOwner, Observer {
-        it?.let {
-            if (flag_next) {
-                binding?.enText?.text = it.enWord
-                binding?.ruText?.text = it.ruWord
-                flag_next=false
-                Log.i("LOG", "изменили текст")
-            }
-
-        }
-    })
-}
 
 
 
 
                         binding?.buttonRemember?.setOnClickListener {
-                            change=false
                             wordsreadviewmodel.updateRemember(wordsreadviewmodel.random_id.value!!)
-                        }
-                        binding?.buttonNext?.setOnClickListener {
                             wordsreadviewmodel.updateRead(wordsreadviewmodel.random_id.value!!)
-                            Log.i("LOG","нажали next")
+                            flag_next=true
+                            Log.i("LOG", "нажли запомнил")
+
+                        }
+
+
+                        binding?.buttonNext?.setOnClickListener {
+                            Log.i("LOG","нажали next1")
+                            wordsreadviewmodel.updateRead(wordsreadviewmodel.random_id.value!!)
+                            Log.i("LOG","нажали next2")
                             flag_next=true
 
                         }
 
                     }
-                    if (it.isEmpty())  {
+                    else   {binding?.count?.text="0"
                         changeNext_off()
                         //  changeRemember_off()
-                        Toast.makeText(requireContext(),
-                            "Вы запомнили все слова",
-                            Toast.LENGTH_LONG).show()
+                        Toast.makeText(requireContext(), "Вы запомнили все слова", Toast.LENGTH_LONG).show()
 
 
                     }
 
-
+                    binding?.buttonReset?.setOnClickListener {
+                        wordsreadviewmodel.updateAll_Read()
+                        Log.i("LOG", "нажали reset")
+                    }
 
                 })
 
@@ -112,7 +128,13 @@ class WordsReadFragment : Fragment() {
 
 
 
+
+
             }
+
+
+
+
 
         })
 
@@ -161,7 +183,11 @@ class WordsReadFragment : Fragment() {
       //  return wordsreadviewmodel.get_Random_id()
   //  }
     private fun changeCount(){
-        binding?.count?.text=(wordsreadviewmodel.size_rem.value!!-1).toString()
+      var count=wordsreadviewmodel.size_rem.value ?: 0
+      if (count>0){
+          count=count-1
+      }
+        binding?.count?.text=count.toString()
     }
 
 
