@@ -14,7 +14,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.youwords.databinding.FragmentWordsreadBinding
 import java.lang.Exception
 
-///// измененияЁЁЁЁЁЁЁ
+///
 class WordsReadFragment : Fragment() {
     private var binding: FragmentWordsreadBinding?=null
     private lateinit var wordsreadviewmodel: WordsReadViewModel
