@@ -67,6 +67,11 @@ class AllWordsAdapter( private  val listener: OnItemClickListener
             if (item.remember==false) {
                 en_word.setTextColor(Color.RED)
             }
+            /////////////////////
+            if (item.remember==true) {
+                en_word.setTextColor(Color.BLACK)
+                ///////////////////////
+            }
             ru_word.text = item.ruWord
             posit.text=(position+1).toString()
         }

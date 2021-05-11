@@ -16,8 +16,8 @@ class WordsReadViewModel(application: Application) : WordViewModel(application) 
 
     private val _random_id=MutableLiveData<Int>()//случайный id
     val random_id: LiveData<Int> =_random_id
-    private val _prev=MutableLiveData<Int>()//случайный id
-    var prev: LiveData<Int> =_prev
+
+
             // количество всех слов в словаре
     private var _size_all = MutableLiveData<Int>()
     val size_all : LiveData<Int> = _size_all
@@ -25,6 +25,12 @@ class WordsReadViewModel(application: Application) : WordViewModel(application) 
     private var _size_rem = MutableLiveData<Int>()
     val size_rem : LiveData<Int> = _size_rem
 
+    private val _ruText=MutableLiveData<String>()
+    var ruText: LiveData<String> =_ruText
+    private val _enText=MutableLiveData<String>()
+    var enText: LiveData<String> =_enText
+    private val _countCard=MutableLiveData<Int>()
+    var countCard: LiveData<Int> =_countCard
 
  /*   fun getList_id(list:List<Int>){ //
       //  _list_id.value=list
@@ -45,8 +51,14 @@ class WordsReadViewModel(application: Application) : WordViewModel(application) 
     fun setSize_All(size:Int){
         _size_all.value=size
     }
-    fun setSize_Rem(size:Int){
-        _size_rem.value=size
+    fun set_ruText(text:String){
+        _ruText.value=text
+    }
+    fun set_enText(text:String){
+        _enText.value=text
+    }
+    fun set_countCard(count:Int){
+        _countCard.value=count
     }
 
 }

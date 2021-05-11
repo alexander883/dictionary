@@ -45,4 +45,7 @@ interface WordDAO {
 
     @Update() //Редактируем слово
     suspend fun updateRedact(word: Words)
+
+    @Query("SELECT * FROM english WHERE remember=0") // card
+    fun getWord_notremember(): Flow<List<Words>>
 }

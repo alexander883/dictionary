@@ -20,8 +20,6 @@ class WordsReadFragment : Fragment() {
     private var binding: FragmentWordsreadBinding?=null
     private lateinit var wordsreadviewmodel: WordsReadViewModel
     private var dictionary_empty=true
-    private var change=true
-    private var change2=true
     private var flag_next=true
     private var  random_id:Int?=null
     private var flag_r=false
@@ -41,6 +39,7 @@ class WordsReadFragment : Fragment() {
             wordsReadViewModel=wordsreadviewmodel
             wordsreadFragment = this@WordsReadFragment
         }
+       // binding?.ruText?.text=wordsreadviewmodel.ruText.value
         // если словарь пуст. подсчитываем слова в словаре
         wordsreadviewmodel.allWords.observe(viewLifecycleOwner, Observer {
             val size=it?.size ?: 0
@@ -55,13 +54,14 @@ class WordsReadFragment : Fragment() {
             else{
                 //changeNext_on()
                 changeReset_on()
-                changeRemember_on()
+             //   changeRemember_on()
                 dictionary_empty=false
+
             }
         })
 /////////
         wordsreadviewmodel.all_id_read_not_remember.observe(viewLifecycleOwner, Observer {
-            if (!dictionary_empty) {//если в словаре есть слова
+           // if (!dictionary_empty) {//если в словаре есть слова
                 Log.i("LOG", "в словаре есть слова")
                 //  val list_id=it
                 binding?.count?.text = (it.size).toString()
@@ -69,7 +69,7 @@ class WordsReadFragment : Fragment() {
                 if (!it.isEmpty()) {//если не все слова показаны
                     Log.i("LOG", "не все слова показаны")
                     changeNext_on()
-                    changeRemember_on()
+                         changeRemember_on()
                     wordsreadviewmodel.get_Random_id(it)//получаем случайный id слова из диапазона которое показываем
                     flag_r=true
                     // wordsreadviewmodel.setSize_Rem(it.size)//
@@ -81,9 +81,12 @@ class WordsReadFragment : Fragment() {
                             // val r=wordsreadviewmodel.random_id.value
                             Log.i("LOG", "внутри word_by_id $random_id")
                             it?.let {
-                                if (flag_next and flag_r  ) {
-                                    binding?.enText?.text = it.enWord
-                                    binding?.ruText?.text = it.ruWord
+                                if (flag_next and flag_r) {
+                                    wordsreadviewmodel.set_enText(it.enWord)
+                                    //binding?.ruText?.text = it.ruWord
+                                    wordsreadviewmodel.set_ruText(it.ruWord)
+                                    val o=wordsreadviewmodel.ruText.value
+                                    Log.i("LOG", " ru $o")
                                     flag_next = false
                                     flag_r=false
                                     Log.i("LOG", "изменили текст")
@@ -94,20 +97,26 @@ class WordsReadFragment : Fragment() {
                         })
 
 
-                } else {
+                }
+            if(it.isEmpty() and !dictionary_empty) {
                   //  binding?.count?.text = "0"
+
                     changeNext_off()
                       changeRemember_off()
                     Toast.makeText(requireContext(), "Вы запомнили все слова", Toast.LENGTH_LONG)
                         .show()
-                    binding?.enText?.text = ""
-                    binding?.ruText?.text ="заново"
+                wordsreadviewmodel.set_enText("заново")
+                wordsreadviewmodel.set_ruText("заново")
 
                 }
-            }
+          //  }
 
 
         })
+     //   wordsreadviewmodel.word_notremember.observe(viewLifecycleOwner, Observer {
+     //       it?.let { wordsreadviewmodel.set_countCard(it.size) }
+    //    })
+
 
 
 
@@ -167,22 +176,9 @@ class WordsReadFragment : Fragment() {
 
 
 
-    private fun  updateRead(){
-        wordsreadviewmodel.updateRead(wordsreadviewmodel.random_id.value!!)
-    }
-
-    
-
   //  private fun getRandom_id():Int{
       //  return wordsreadviewmodel.get_Random_id()
   //  }
-    private fun changeCount(){
-      var count=wordsreadviewmodel.size_rem.value ?: 0
-      if (count>0){
-          count=count-1
-      }
-        binding?.count?.text=count.toString()
-    }
 
 
 }

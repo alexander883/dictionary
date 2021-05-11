@@ -18,7 +18,7 @@
 
         <TextView
             android:id="@+id/ru_text"
-            android:text="словарь пуст"
+            android:text="@{WordsReadViewModel.ruText.toString()}"
             style="@style/Widget.TipTime.TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -32,7 +32,7 @@
 
         <TextView
             android:id="@+id/en_text"
-            android:text="the dictionary is empty"
+            android:text="@{WordsReadViewModel.enText.toString()}"
             style="@style/Widget.TipTime.TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -59,12 +59,12 @@
 
         <TextView
             android:id="@+id/count"
-            android:text="0"
             style="@style/Widget.TipTime.TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="72dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="96dp"
+            android:text="0"
             app:layout_constraintStart_toEndOf="@+id/textView"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="345" />
@@ -86,7 +86,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
-            android:layout_marginTop="72dp"
+            android:layout_marginTop="96dp"
             android:text="Осталось слов"
             app:layout_constraintStart_toEndOf="@+id/button_reset"
             app:layout_constraintTop_toTopOf="parent" />
@@ -103,6 +103,17 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:id="@+id/textView_w2"
+            style="@style/Widget.TipTime.TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="16dp"
+            android:text="Карточек:"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_w1" />
+
+        <TextView
             android:id="@+id/textView_total"
             style="@style/Widget.TipTime.TextView"
             android:layout_width="wrap_content"
@@ -114,12 +125,24 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="44" />
 
+        <TextView
+            android:id="@+id/text_count_card"
+            style="@style/Widget.TipTime.TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="ljjjj"
+            app:layout_constraintStart_toEndOf="@+id/textView_w1"
+            app:layout_constraintTop_toBottomOf="@+id/textView_total"
+            tools:text="23" />
+
         <Button
             android:id="@+id/button_remember"
 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="40dp"
             android:layout_marginEnd="16dp"
             android:text="Запомнил"
             app:layout_constraintEnd_toEndOf="parent"
