@@ -31,12 +31,6 @@ class AllWordsAdapter( private  val listener: OnItemClickListener
         holder.bind(item, position)
     }
 
-
-
-   // override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-
-   //     return ViewHolder.from(parent)
- //   }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R. layout.all_words_item, parent, false)
         return ViewHolder(itemView)
@@ -77,6 +71,6 @@ class AllWordsAdapter( private  val listener: OnItemClickListener
 }
     interface OnItemClickListener {
         fun onItemClick(position: Int)
-
-    }}
+    }
+}
 

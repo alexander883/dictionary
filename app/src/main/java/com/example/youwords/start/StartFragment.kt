@@ -55,7 +55,7 @@ class StartFragment : Fragment() {
             else{
 
                 //   changeReset_on()
-                startviewmodel.setEnableReset(true)
+               // startviewmodel.setEnableReset(true)
                 dictionary_empty=false
 
             }
@@ -67,7 +67,7 @@ class StartFragment : Fragment() {
             //  val list_id=it
             startviewmodel.setSize_Read(it.size)
             // binding?.count?.text = (it.size).toString()
-
+            startviewmodel.setEnableReset(true)
             if (!it.isEmpty()) {//если не все слова показаны
                 Log.i("LOG", "не все слова показаны")
 
@@ -75,7 +75,7 @@ class StartFragment : Fragment() {
                 //changeNext_on()
                 startviewmodel.setEnableNext(true)
                 startviewmodel.setEnableRemember(true)
-                startviewmodel.setEnableReset(true)
+
                 //изменяем показывыемые слова
                 random_id=startviewmodel.random_id.value
                 Log.i("LOG", "получили рандом  id=$random_id")
