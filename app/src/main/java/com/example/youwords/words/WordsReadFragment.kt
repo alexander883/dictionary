@@ -50,8 +50,6 @@ class WordsReadFragment : Fragment() {
                 changeReset_off()
                     // wordsreadviewmodel.setEnableReset(false)
                 changeRemember_off()
-            //    wordsreadviewmodel.setSize_Rem(0)
-                //binding?.count?.text=(0).toString()
             }
             else{
 
@@ -83,9 +81,6 @@ class WordsReadFragment : Fragment() {
 
 
                     wordsreadviewmodel.word_by_id(wordsreadviewmodel.random_id.value).observe(viewLifecycleOwner, Observer {
-                            // val r=wordsreadviewmodel.random_id.value
-                          //  Log.i("LOG", "внутри word_by_id $random_id")
-
                             it?.let {
                                 if (flag_next  and flag_end and (it.id==random_id )) {
                                     Log.i("LOG", " устанавливаемый id=${it.id}")
