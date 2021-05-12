@@ -6,36 +6,23 @@ import androidx.lifecycle.MutableLiveData
 import com.example.youwords.data.WordViewModel
 
 class WordsReadViewModel(application: Application) : WordViewModel(application)  {
-
-   // private val _list_id= MutableLiveData<List<Int>>()// список id получаемый из БД и неизменяемый
-
-//cписок id
-  //  private var _mutablelist_id = MutableLiveData<List<Int>>()
-   // val mutablelist_list_id: LiveData<List<Int>> =_mutablelist_id
-
-
     private val _random_id=MutableLiveData<Int>()//случайный id
     val random_id: LiveData<Int> =_random_id
-
-
             // количество всех слов в словаре
     private var _size_all = MutableLiveData<Int>()
     val size_all : LiveData<Int> = _size_all
-    ///
-    private var _size_rem = MutableLiveData<Int>()
-    val size_rem : LiveData<Int> = _size_rem
+
+    private var _size_read = MutableLiveData<Int>()
+    val size_read : LiveData<Int> = _size_read
 
     private val _ruText=MutableLiveData<String>()
     var ruText: LiveData<String> =_ruText
     private val _enText=MutableLiveData<String>()
     var enText: LiveData<String> =_enText
+    //
     private val _countCard=MutableLiveData<Int>()
     var countCard: LiveData<Int> =_countCard
 
- /*   fun getList_id(list:List<Int>){ //
-      //  _list_id.value=list
-        _mutablelist_id.value=list.toMutableList()
-    }*/
     fun get_Random_id(list:List<Int>){
         val range:IntRange=list.indices// диапазон индексов списка
         val rand=range.random()//cлучайный индекс списка
@@ -44,10 +31,6 @@ class WordsReadViewModel(application: Application) : WordViewModel(application) 
        // (_mutablelist_id.value as MutableList<Int>).removeAt(rand)// удаляем из списка позицию с случайн id
        // return random.value!!
     }
-  //  fun getSizeList():Int?{
-  //      return  mutablelist_list_id.value?.size
-  //  }
-
     fun setSize_All(size:Int){
         _size_all.value=size
     }
@@ -59,6 +42,14 @@ class WordsReadViewModel(application: Application) : WordViewModel(application) 
     }
     fun set_countCard(count:Int){
         _countCard.value=count
+    }
+    fun setSize_Read(size:Int){
+        _size_read.value=size
+    }
+    init {
+        _ruText.value="пустой"
+        _enText.value="empty"
+        _size_read.value=0
     }
 
 }

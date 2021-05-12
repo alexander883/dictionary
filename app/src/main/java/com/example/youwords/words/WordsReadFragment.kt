@@ -22,7 +22,8 @@ class WordsReadFragment : Fragment() {
     private var dictionary_empty=true
     private var flag_next=true
     private var  random_id:Int?=null
-    private var flag_r=false
+    private var flag_end=false// флаг окончания показа карточек(чтобы не показывать последнюю)
+    var init=true
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
@@ -64,34 +65,38 @@ class WordsReadFragment : Fragment() {
            // if (!dictionary_empty) {//если в словаре есть слова
                 Log.i("LOG", "в словаре есть слова")
                 //  val list_id=it
-                binding?.count?.text = (it.size).toString()
+            wordsreadviewmodel.setSize_Read(it.size)
+               // binding?.count?.text = (it.size).toString()
 
                 if (!it.isEmpty()) {//если не все слова показаны
                     Log.i("LOG", "не все слова показаны")
-                    changeNext_on()
-                         changeRemember_on()
+
                     wordsreadviewmodel.get_Random_id(it)//получаем случайный id слова из диапазона которое показываем
-                    flag_r=true
+                    changeNext_on()
+                    changeRemember_on()
                     // wordsreadviewmodel.setSize_Rem(it.size)//
                     //изменяем показывыемые слова
                      random_id=wordsreadviewmodel.random_id.value
                     Log.i("LOG", "получили рандом  id=$random_id")
-                        ///работает толье внутри
-                    wordsreadviewmodel.word_by_id(random_id).observe(viewLifecycleOwner, Observer {
+                    flag_end=true
+
+
+                    wordsreadviewmodel.word_by_id(wordsreadviewmodel.random_id.value).observe(viewLifecycleOwner, Observer {
                             // val r=wordsreadviewmodel.random_id.value
-                            Log.i("LOG", "внутри word_by_id $random_id")
+                          //  Log.i("LOG", "внутри word_by_id $random_id")
+
                             it?.let {
-                                if (flag_next and flag_r) {
+                                if (flag_next  and flag_end and (it.id==random_id )) {
+                                    Log.i("LOG", " устанавливаемый id=${it.id}")
                                     wordsreadviewmodel.set_enText(it.enWord)
-                                    //binding?.ruText?.text = it.ruWord
                                     wordsreadviewmodel.set_ruText(it.ruWord)
+                                    //binding?.ruText?.text=it.ruWord
+                                    var r=wordsreadviewmodel.random_id.value
+                                    Log.i("LOG", "изменили текст id=$r")
                                     val o=wordsreadviewmodel.ruText.value
-                                    Log.i("LOG", " ru $o")
+                                    Log.i("LOG", " rutext $o")
                                     flag_next = false
-                                    flag_r=false
-                                    Log.i("LOG", "изменили текст")
-                                    val j=it.ruWord
-                                    Log.i("LOG", "$j")
+                                    flag_end=false
                                 } }
 
                         })
@@ -105,42 +110,18 @@ class WordsReadFragment : Fragment() {
                       changeRemember_off()
                     Toast.makeText(requireContext(), "Вы запомнили все слова", Toast.LENGTH_LONG)
                         .show()
-                wordsreadviewmodel.set_enText("заново")
-                wordsreadviewmodel.set_ruText("заново")
+                wordsreadviewmodel.set_enText("empty")
+                wordsreadviewmodel.set_ruText("пустой")
 
                 }
           //  }
 
 
         })
-     //   wordsreadviewmodel.word_notremember.observe(viewLifecycleOwner, Observer {
-     //       it?.let { wordsreadviewmodel.set_countCard(it.size) }
-    //    })
-
-
-
-
-
-
-        binding?.buttonReset?.setOnClickListener {
-            wordsreadviewmodel.updateAll_Read()
-            Log.i("LOG", "нажали reset")
-            flag_next=true
-        }
-        binding?.buttonNext?.setOnClickListener {
-            Log.i("LOG","нажали next")
-            wordsreadviewmodel.updateRead(wordsreadviewmodel.random_id.value!!)
-            flag_next=true
-
-        }
-        binding?.buttonRemember?.setOnClickListener {
-            wordsreadviewmodel.updateRemember(wordsreadviewmodel.random_id.value!!)
-            wordsreadviewmodel.updateRead(wordsreadviewmodel.random_id.value!!)
-            flag_next=true
-            Log.i("LOG", "нажли запомнил")
-
-        }
-
+        //получаем количество карточек
+        wordsreadviewmodel.word_notremember.observe(viewLifecycleOwner, Observer {
+           it?.let { wordsreadviewmodel.set_countCard(it.size) }
+        })
     }
 
     private fun changeNext_off(){//если кончились слова блокируем кнопку next
@@ -164,14 +145,19 @@ class WordsReadFragment : Fragment() {
 
     fun clickReset(){
         wordsreadviewmodel.updateAll_Read()
-        changeNext_on()
-        changeRemember_on()
-
+        Log.i("LOG", "нажали reset")
+        flag_next=true
     }
     fun clickRemember(){
-        Toast.makeText(requireContext(), "Запомнил", Toast.LENGTH_LONG).show()
         wordsreadviewmodel.updateRemember(wordsreadviewmodel.random_id.value!!)
-        changeRemember_off()
+        wordsreadviewmodel.updateRead(wordsreadviewmodel.random_id.value!!)
+        flag_next=true
+        Log.i("LOG", "нажли запомнил")
+    }
+    fun clickNext(){
+        Log.i("LOG","нажали next")
+        wordsreadviewmodel.updateRead(wordsreadviewmodel.random_id.value!!)
+        flag_next=true
     }
 
 

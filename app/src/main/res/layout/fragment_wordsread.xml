@@ -15,81 +15,80 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
         <TextView
             android:id="@+id/ru_text"
-            android:text="@{WordsReadViewModel.ruText.toString()}"
             style="@style/Widget.TipTime.TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
-            android:layout_marginStart="120dp"
-            android:layout_marginTop="64dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="60dp"
+            android:text="@{WordsReadViewModel.ruText.toString()}"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-
             app:layout_constraintTop_toBottomOf="@+id/en_text"
             tools:text="Русское слово" />
 
         <TextView
             android:id="@+id/en_text"
-            android:text="@{WordsReadViewModel.enText.toString()}"
             style="@style/Widget.TipTime.TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="120dp"
-            android:layout_marginTop="212dp"
-            tools:text="english"
 
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="300dp"
+            android:text="@{WordsReadViewModel.enText.toString()}"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="english" />
 
 
         <Button
             android:id="@+id/button_next"
-
+            android:onClick="@{() ->wordsreadFragment.clickNext()}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
-
-            android:layout_marginEnd="0dp"
-
+            android:layout_marginBottom="16dp"
             android:text="@string/next"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
-            android:id="@+id/count"
+            android:id="@+id/count_read"
             style="@style/Widget.TipTime.TextView"
+            android:textColor="@color/green"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="96dp"
-            android:text="0"
-            app:layout_constraintStart_toEndOf="@+id/textView"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="345" />
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@{WordsReadViewModel.size_read.toString()}"
+            app:layout_constraintStart_toEndOf="@+id/textView_w1"
+            app:layout_constraintTop_toBottomOf="@+id/text_count_card"
+            tools:text="100" />
 
         <Button
             android:id="@+id/button_reset"
-
-            android:layout_width="wrap_content"
+            android:onClick="@{() ->wordsreadFragment.clickReset()}"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="28dp"
-            android:layout_marginTop="156dp"
+            android:layout_marginTop="40dp"
             android:text="Заново"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/textRemain" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/textRemain"
             style="@style/Widget.TipTime.TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="96dp"
+
+            android:layout_marginStart="60dp"
+
+            android:layout_marginTop="16dp"
             android:text="Осталось слов"
-            app:layout_constraintStart_toEndOf="@+id/button_reset"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_w2" />
 
         <TextView
             android:id="@+id/textView_w1"
@@ -114,7 +113,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView_w1" />
 
         <TextView
-            android:id="@+id/textView_total"
+            android:id="@+id/text_total"
             style="@style/Widget.TipTime.TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -123,7 +122,7 @@
             android:text="@{WordsReadViewModel.size_all.toString()}"
             app:layout_constraintStart_toEndOf="@+id/textView_w1"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="44" />
+            tools:text="446" />
 
         <TextView
             android:id="@+id/text_count_card"
@@ -132,21 +131,21 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:text="ljjjj"
+            android:text="@{WordsReadViewModel.countCard.toString()}"
+            android:textColor="@color/red"
             app:layout_constraintStart_toEndOf="@+id/textView_w1"
-            app:layout_constraintTop_toBottomOf="@+id/textView_total"
-            tools:text="23" />
+            app:layout_constraintTop_toBottomOf="@+id/text_total"
+            tools:text="123" />
 
         <Button
             android:id="@+id/button_remember"
-
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
-            android:layout_marginEnd="16dp"
-            android:text="Запомнил"
+            android:onClick="@{() ->wordsreadFragment.clickRemember()}"
+            android:text="Запомнено"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/count" />
+            app:layout_constraintTop_toBottomOf="@+id/count_read" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
