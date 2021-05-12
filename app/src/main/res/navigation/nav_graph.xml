@@ -35,9 +35,6 @@
             android:id="@+id/action_startFragment_to_searchFragment"
             app:destination="@id/searchFragment" />
         <action
-            android:id="@+id/action_startFragment_to_wordsReadFragment"
-            app:destination="@id/wordsReadFragment" />
-        <action
             android:id="@+id/action_startFragment_to_allWordsFragment"
             app:destination="@id/allWordsFragment" />
     </fragment>
@@ -78,23 +75,6 @@
             app:destination="@id/allWordsFragment" />
     </fragment>
     <fragment
-        android:id="@+id/wordsReadFragment"
-        android:name="com.example.youwords.words.WordsReadFragment"
-        android:label="WordsReadFragment">
-        <action
-            android:id="@+id/action_wordsReadFragment_to_startFragment"
-            app:destination="@id/startFragment" />
-        <action
-            android:id="@+id/action_wordsReadFragment_to_searchFragment"
-            app:destination="@id/searchFragment" />
-        <action
-            android:id="@+id/action_wordsReadFragment_to_allWordsFragment"
-            app:destination="@id/allWordsFragment" />
-        <action
-            android:id="@+id/action_wordsReadFragment_to_addWordFragment"
-            app:destination="@id/addWordFragment" />
-    </fragment>
-    <fragment
         android:id="@+id/allWordsFragment"
         android:name="com.example.youwords.allwords.AllWordsFragment"
         android:label="fragment_all_words"
@@ -110,9 +90,6 @@
         <action
             android:id="@+id/action_allWordsFragment_to_searchFragment"
             app:destination="@id/searchFragment" />
-        <action
-            android:id="@+id/action_allWordsFragment_to_wordsReadFragment"
-            app:destination="@id/wordsReadFragment" />
         <action
             android:id="@+id/action_allWordsFragment_to_redactActivity"
             app:destination="@id/redactActivity" />

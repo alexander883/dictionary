@@ -17,6 +17,8 @@ import java.lang.Exception
 import kotlin.properties.Delegates
 
 ///!!!!!!!!!!
+
+
 class WordsReadFragment : Fragment() {
     private var binding: FragmentWordsreadBinding?=null
     private lateinit var wordsreadviewmodel: WordsReadViewModel

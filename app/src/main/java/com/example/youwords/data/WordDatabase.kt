@@ -21,7 +21,6 @@ abstract  fun wordDao():WordDAO
             synchronized(this){
                 val  instance=Room.databaseBuilder(
                     context.applicationContext,
-
                     WordDatabase::class.java,
                     "english"
                 ).build()

@@ -5,89 +5,151 @@
     tools:context=".start.StartFragment">
     <data>
         <variable
-            name="viewModel"
+            name="StartViewModel"
             type="com.example.youwords.start.StartViewModel" />
+
         <variable
             name="startFragment"
             type="com.example.youwords.start.StartFragment" />
     </data>
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/ru_text"
             style="@style/Widget.TipTime.TextView"
-            android:layout_width="362dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="11dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginEnd="11dp"
-
-
-            android:text="@string/start_message"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.389"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/button_words"
-
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="340dp"
-            android:text="Слова для запоминания"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/add_g"
-            android:layout_width="413dp"
-            android:layout_height="44dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="396dp"
-
-            android:text="Добавить слово"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/button_search"
-
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="16dp"
-            android:text="Поиск слова"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/add_g" />
-
-        <Button
-            android:id="@+id/button_to_all_words"
-
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="292dp"
-            android:text="Все слова"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/add_word"
-            android:onClick="@{() ->startFragment.addWord()}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
-            android:contentDescription=""
-            android:src="@drawable/ic_plus"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="60dp"
+            android:text="@{StartViewModel.ruText.toString()}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/en_text"
+            tools:text="Русское слово" />
 
+        <TextView
+            android:id="@+id/en_text"
+            style="@style/Widget.TipTime.TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="300dp"
+            android:text="@{StartViewModel.enText.toString()}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="english" />
+
+
+        <Button
+            android:id="@+id/button_next"
+            android:onClick="@{() ->startFragment.clickNext()}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="@{StartViewModel.enabledNext}"
+            android:layout_marginBottom="16dp"
+            android:text="@string/next"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/count_read"
+            style="@style/Widget.TipTime.TextView"
+            android:textColor="@color/green"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@{StartViewModel.size_read.toString()}"
+            app:layout_constraintStart_toEndOf="@+id/textView_w1"
+            app:layout_constraintTop_toBottomOf="@+id/text_count_card"
+            tools:text="100" />
+
+        <Button
+            android:id="@+id/button_reset"
+            android:enabled="@{StartViewModel.enabledReset}"
+
+
+            android:onClick="@{() ->startFragment.clickReset()}"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="Заново"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textRemain" />
+
+        <TextView
+            android:id="@+id/textRemain"
+            style="@style/Widget.TipTime.TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginStart="60dp"
+
+            android:layout_marginTop="16dp"
+            android:text="@string/remain_words"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_w2" />
+
+        <TextView
+            android:id="@+id/textView_w1"
+            style="@style/Widget.TipTime.TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/all_words"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView_w2"
+            style="@style/Widget.TipTime.TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="16dp"
+            android:text="Карточек:"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_w1" />
+
+        <TextView
+            android:id="@+id/text_total"
+            style="@style/Widget.TipTime.TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@{StartViewModel.size_all.toString()}"
+            app:layout_constraintStart_toEndOf="@+id/textView_w1"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="446" />
+
+        <TextView
+            android:id="@+id/text_count_card"
+            style="@style/Widget.TipTime.TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@{StartViewModel.countCard.toString()}"
+            android:textColor="@color/red"
+            app:layout_constraintStart_toEndOf="@+id/textView_w1"
+            app:layout_constraintTop_toBottomOf="@+id/text_total"
+            tools:text="123" />
+
+        <Button
+            android:id="@+id/button_remember"
+            android:enabled="@{StartViewModel.enabledRemember}"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:onClick="@{() ->startFragment.clickRemember()}"
+            android:text="@string/remember"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/count_read" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>

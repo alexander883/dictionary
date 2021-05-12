@@ -17,11 +17,11 @@ import com.example.youwords.data.WordViewModel
 import com.example.youwords.words.WordsReadViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
+//интерфейс для связи с событиями(кликами) во фрагментах
 interface ActivityInterractor {
-
-    fun onFragmentClosed(s:String)
+    fun transferOnSearchFragment()
+    fun transferOnAddWordFragment()
 }
-
 
 class MainActivity : AppCompatActivity(R.layout.activity_main), ActivityInterractor {
     private lateinit var navController: NavController
@@ -29,10 +29,12 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), ActivityInterrac
     private lateinit var bottomNavigationView: BottomNavigationView
     private lateinit  var wordviewmodel: WordViewModel
 
-    override fun onFragmentClosed(s: String) {
+    override fun transferOnSearchFragment() {
         bottomNavigationView.menu.findItem(R.id.search).isCheckable = false
-        // bottomNavigationView.menu.findItem(  R.id.list).isVisible=false
-        //  bottomNavigationView.menu.findItem(  R.id.search).setVisible(true)
+    }
+
+    override fun transferOnAddWordFragment() {
+        bottomNavigationView.menu.findItem(R.id.home).isChecked = true
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,13 +61,6 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), ActivityInterrac
 
         bottomNavigationView.background = null
 
-
-        //    bottomNavigationView.background=null
-        //  val g:AllWordsFragment
-
-        // val currentFragment = supportFragmentManager.primaryNavigationFragment
-
-
         val mOnNavigationItemSelectedListener =
             BottomNavigationView.OnNavigationItemSelectedListener { menuItem ->
                 val currentFragment =
@@ -81,8 +76,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), ActivityInterrac
                                 .navigate(R.id.action_searchFragment_to_startFragment)
                             R.id.addWordFragment -> navHostFragment.findNavController()
                                 .navigate(R.id.action_addWordFragment_to_startFragment)
-                            R.id.wordsReadFragment -> navHostFragment.findNavController()
-                                .navigate(R.id.action_wordsReadFragment_to_startFragment)
+
                             R.id.foundFragment -> navHostFragment.findNavController()
                                 .navigate(R.id.action_foundFragment_to_startFragment)
                         }
@@ -100,8 +94,6 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), ActivityInterrac
                                 .navigate(R.id.action_searchFragment_to_addWordFragment)
                             R.id.addWordFragment -> {
                             }
-                            R.id.wordsReadFragment -> navHostFragment.findNavController()
-                                .navigate(R.id.action_wordsReadFragment_to_addWordFragment)
                             R.id.foundFragment -> navHostFragment.findNavController()
                                 .navigate(R.id.action_foundFragment_to_addWordFragment)
                         }
@@ -123,8 +115,6 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), ActivityInterrac
                                 navHostFragment.findNavController()
                                     .navigate(R.id.action_addWordFragment_to_searchFragment)
                             }
-                            R.id.wordsReadFragment -> navHostFragment.findNavController()
-                                .navigate(R.id.action_wordsReadFragment_to_searchFragment)
                             R.id.foundFragment -> navHostFragment.findNavController()
                                 .navigate(R.id.action_foundFragment_to_searchFragment)
                         }
@@ -146,8 +136,6 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), ActivityInterrac
                                 navHostFragment.findNavController()
                                     .navigate(R.id.action_addWordFragment_to_allWordsFragment)
                             }
-                            R.id.wordsReadFragment -> navHostFragment.findNavController()
-                                .navigate(R.id.action_wordsReadFragment_to_allWordsFragment)
                             R.id.foundFragment -> navHostFragment.findNavController()
                                 .navigate(R.id.action_foundFragment_to_allWordsFragment)
                         }
@@ -159,7 +147,6 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), ActivityInterrac
                 false
             }
         bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
-
 
     }
 

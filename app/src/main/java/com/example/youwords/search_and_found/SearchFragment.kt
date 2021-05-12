@@ -25,16 +25,15 @@ import com.example.youwords.databinding.FragmentSearchBinding
 class SearchFragment : Fragment() {
     private var binding: FragmentSearchBinding? = null
     private lateinit var searchviewmodel:SearchViewModel
-    var a:ActivityInterractor?=null
+    var transfer:ActivityInterractor?=null
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-try {
-  //  Toast.makeText(requireContext(), "СССССсрбаоало", Toast.LENGTH_SHORT).show()
-     context as ActivityInterractor
-    a=context
+        try {
+           context as ActivityInterractor
+            transfer=context
     Log.i("LOG", "try")
-}
+         }
 catch (e:Exception)
 { Log.i("LOG", "catch")
     Toast.makeText(requireContext(), "Не србаоало", Toast.LENGTH_SHORT).show()}
@@ -67,12 +66,8 @@ catch (e:Exception)
         searchviewmodel.searchWord(search).observe(viewLifecycleOwner, Observer {
             try { it[0]/// если it[0] не существует=> catch
                 searchviewmodel.getSearchWords(it)
-
                 findNavController().navigate(R.id.action_searchFragment_to_foundFragment)
-
-                a?.onFragmentClosed("передача!!")
-
-
+                transfer?.transferOnSearchFragment()
                 hideKeyboardFrom(requireContext(),view)
             } catch (e: Exception) {
                 Toast.makeText(requireContext(), "Не найдено ", Toast.LENGTH_LONG).show()

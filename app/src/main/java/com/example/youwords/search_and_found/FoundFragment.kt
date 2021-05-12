@@ -18,7 +18,7 @@ class FoundFragment : Fragment() {
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
-    ): View? {///////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!requireActivity()
+    ): View? {
         searchviewmodel = ViewModelProvider(requireActivity()).get(SearchViewModel::class.java)
         val fragmentBinding = FragmentFoundBinding.inflate(inflater, container, false)
         binding = fragmentBinding

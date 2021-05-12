@@ -27,23 +27,10 @@ import com.example.youwords.data.Words
 import com.example.youwords.databinding.FragmentAllWordsBinding
 
 
-interface OnFragmentInteractionListener {
-    fun onFragmentInteraction(id: Int)
-}
-
-interface OnDataPass {
-    fun onDataPass(data: String)
-}
-
 class AllWordsFragment : Fragment(), AllWordsAdapter.OnItemClickListener {
     private var binding: FragmentAllWordsBinding? = null
     private lateinit var allwordsviewmodel: AllWordsViewModel
-    private var mListener: OnFragmentInteractionListener? = null
-    lateinit var dataPasser: OnDataPass
-
     val adapter = AllWordsAdapter(this)
-
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -52,10 +39,6 @@ class AllWordsFragment : Fragment(), AllWordsAdapter.OnItemClickListener {
         allwordsviewmodel = ViewModelProvider(requireActivity()).get(AllWordsViewModel::class.java)
         val fragmentBinding = FragmentAllWordsBinding.inflate(inflater, container, false)
         binding = fragmentBinding
-
-
-
-
         return fragmentBinding.root
     }
 
@@ -77,11 +60,6 @@ class AllWordsFragment : Fragment(), AllWordsAdapter.OnItemClickListener {
         allwordsviewmodel.word_notremember.observe(viewLifecycleOwner, Observer {
             it?.let { allwordsviewmodel.set_countCard(it.size) }
         })
-
-//findNavController().popBackStack(R.id.allWordsFragment, false)
-   //     findNavController().navigate(R.id.startFragment)
-
-
           }
 
     override fun onItemClick(position: Int) {
@@ -90,8 +68,6 @@ class AllWordsFragment : Fragment(), AllWordsAdapter.OnItemClickListener {
         allwordsviewmodel.getClickedWord(clickedItem)
         alertDialog(clickedItem)
     }
-
-
 
     ///alert dialog
    fun alertDialog(word:Words){
@@ -112,53 +88,30 @@ class AllWordsFragment : Fragment(), AllWordsAdapter.OnItemClickListener {
                      0-> deletWord(word)
                      1->{if (word.remember==true)
                      {  setNotRemember(word)
-
-                      //   findNavController().navigate(R.id.action_allWordsFragment_self)
                            }
                      else{
                         setRemember(word)
-                       //  findNavController().navigate(R.id.action_allWordsFragment_self)
                      }}
-                     2->{// context as OnDataPass
-                       //  onAttach(context)
-                      //   passData("777777")
-
+                     2->{
                          val bundle = Bundle()
                          bundle.putInt("id", word.id)
                          findNavController().navigate(R.id.action_allWordsFragment_to_redactActivity, bundle)
                      }
                  }
-
-
-              //   Toast.makeText(requireContext(), items[which] + " is clicked", Toast.LENGTH_SHORT).show()
              }
-
-           // setPositiveButton("OK",alertDialog(list))
              show()
          }
      }
-    private fun deletWord(word:Words){
+      private fun deletWord(word:Words){
                  allwordsviewmodel.deleteWord(word)
                  val en=word.enWord
                  Toast.makeText(requireContext(), "$en удален", Toast.LENGTH_SHORT).show()
-         }
+      }
     private fun setRemember(word: Words){
         allwordsviewmodel.updateRemember(word.id)
     }
     private fun setNotRemember(word: Words){
         allwordsviewmodel.updateNotRemember(word.id)
     }
-
-
-
-    /**
-     * Here we define the methods that we can fire off
-     * in our parent Activity once something has changed
-     * within the fragment.
-     */
-
-
-
-
 }
 
