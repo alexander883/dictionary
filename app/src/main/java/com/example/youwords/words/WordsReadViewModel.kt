@@ -65,9 +65,9 @@ class WordsReadViewModel(application: Application) : WordViewModel(application) 
     init { setEmpty_text()
         setEmpty_text()
         _size_read.value=0
-        _enabledNext.value=true
-        _enabledRemember.value=true
-        _enabledReset.value=true
+        _enabledNext.value=false
+        _enabledRemember.value=false
+        _enabledReset.value=false
     }
 
     fun setEnableRemember(enable:Boolean){

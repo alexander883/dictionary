@@ -48,7 +48,7 @@
             android:onClick="@{() ->wordsreadFragment.clickNext()}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
+            android:enabled="@{WordsReadViewModel.enabledNext}"
             android:layout_marginBottom="16dp"
             android:text="@string/next"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -69,7 +69,7 @@
 
         <Button
             android:id="@+id/button_reset"
-
+            android:enabled="@{WordsReadViewModel.enabledReset}"
 
 
             android:onClick="@{() ->wordsreadFragment.clickReset()}"
@@ -89,7 +89,7 @@
             android:layout_marginStart="60dp"
 
             android:layout_marginTop="16dp"
-            android:text="Осталось слов"
+            android:text="@string/remain_words"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView_w2" />
 
@@ -100,7 +100,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="60dp"
             android:layout_marginTop="16dp"
-            android:text="Всего слов в словаре:"
+            android:text="@string/all_words"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -142,11 +142,12 @@
 
         <Button
             android:id="@+id/button_remember"
+            android:enabled="@{WordsReadViewModel.enabledRemember}"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
             android:onClick="@{() ->wordsreadFragment.clickRemember()}"
-            android:text="Запомнено"
+            android:text="@string/remember"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/count_read" />
 

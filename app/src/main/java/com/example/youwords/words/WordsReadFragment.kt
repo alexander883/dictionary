@@ -46,15 +46,17 @@ class WordsReadFragment : Fragment() {
             val size=it?.size ?: 0
             wordsreadviewmodel.setSize_All(size)
             if(it.isEmpty()){
-                changeNext_off()
-                changeReset_off()
+               // changeNext_off()
+              ////////  changeReset_off()
                     // wordsreadviewmodel.setEnableReset(false)
-                changeRemember_off()
+                wordsreadviewmodel.setEnableRemember(false)
+                wordsreadviewmodel.setEnableReset(false)
+                //changeRemember_off()
             }
             else{
 
-                changeReset_on()
-             wordsreadviewmodel.setEnableReset(true)
+             //   changeReset_on()
+                wordsreadviewmodel.setEnableReset(true)
                 dictionary_empty=false
 
             }
@@ -71,8 +73,11 @@ class WordsReadFragment : Fragment() {
                     Log.i("LOG", "не все слова показаны")
 
                     wordsreadviewmodel.get_Random_id(it)//получаем случайный id слова из диапазона которое показываем
-                    changeNext_on()
-                    changeRemember_on()
+                    //changeNext_on()
+                    wordsreadviewmodel.setEnableNext(true)
+                    wordsreadviewmodel.setEnableRemember(true)
+                    wordsreadviewmodel.setEnableReset(true)
+                   // changeRemember_on()
                     // wordsreadviewmodel.setSize_Rem(it.size)//
                     //изменяем показывыемые слова
                      random_id=wordsreadviewmodel.random_id.value
@@ -86,7 +91,6 @@ class WordsReadFragment : Fragment() {
                                     Log.i("LOG", " устанавливаемый id=${it.id}")
                                     wordsreadviewmodel.set_enText(it.enWord)
                                     wordsreadviewmodel.set_ruText(it.ruWord)
-                                    //binding?.ruText?.text=it.ruWord
                                     val r=wordsreadviewmodel.random_id.value
                                     Log.i("LOG", "изменили текст id=$r")
                                     val o=wordsreadviewmodel.ruText.value
@@ -100,34 +104,21 @@ class WordsReadFragment : Fragment() {
 
                 }
                 if(it.isEmpty() and !dictionary_empty) {
-                    changeNext_off()
-                      changeRemember_off()
-                wordsreadviewmodel.setEmpty_text()
+                  //  changeNext_off()
+
+                      wordsreadviewmodel.setEnableNext(false)
+                      wordsreadviewmodel.setEnableRemember(false)
+                     // changeRemember_off()
+                      wordsreadviewmodel.setEmpty_text()
                 }
         })
         //получаем количество карточек
         wordsreadviewmodel.word_notremember.observe(viewLifecycleOwner, Observer {
-           it?.let { wordsreadviewmodel.set_countCard(it.size) }
+           it?.let { wordsreadviewmodel.set_countCard(it.size)
+           if (it.isEmpty()){
+               wordsreadviewmodel.setEnableReset(false)
+           }}
         })
-    }
-
-    private fun changeNext_off(){//если кончились слова блокируем кнопку next
-            binding?.buttonNext?.setEnabled(false)
-    }
-    private fun changeNext_on(){
-        binding?.buttonNext?.setEnabled(true)
-    }
-    private fun changeReset_off(){
-        binding?.buttonReset?.setEnabled(false)
-    }
-    private fun changeReset_on(){
-        binding?.buttonReset?.setEnabled(true)
-    }
-    private fun changeRemember_off(){
-        binding?.buttonRemember?.setEnabled(false)
-    }
-    private fun changeRemember_on(){
-        binding?.buttonRemember?.setEnabled(true)
     }
 
     fun clickReset(){

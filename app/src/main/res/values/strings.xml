@@ -30,4 +30,7 @@
     <string name="total_card">Карточек: %s</string>
     <string name="empty_ru">пустой</string>
     <string name="empty_en">empty</string>
+    <string name="remain_words">Осталось слов</string>
+    <string name="all_words">Всего слов в словаре:</string>
+    <string name="remember">Запомнено</string>
 </resources>
