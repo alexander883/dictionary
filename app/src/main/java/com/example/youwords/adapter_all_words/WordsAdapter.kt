@@ -58,24 +58,21 @@ class AllWordsAdapter( private  val listener: OnItemClickListener
                 listener.onItemClick(position)
             }
         }
-
-
-
-
         fun bind(item: Words, position: Int) {
             en_word.text = item.enWord
             if (item.remember==false) {
                 en_word.setTextColor(Color.RED)
+                ru_word.setTextColor(Color.RED)
             }
             /////////////////////
             if (item.remember==true) {
                 en_word.setTextColor(Color.BLACK)
+                ru_word.setTextColor(Color.BLACK)
                 ///////////////////////
             }
             ru_word.text = item.ruWord
             posit.text=(position+1).toString()
         }
-
 
 }
     interface OnItemClickListener {

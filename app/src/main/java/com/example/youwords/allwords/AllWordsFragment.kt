@@ -73,6 +73,10 @@ class AllWordsFragment : Fragment(), AllWordsAdapter.OnItemClickListener {
               allwordsviewmodel.getSize(it.size)
               adapter.data=it
         })
+        //получаем количество карточек
+        allwordsviewmodel.word_notremember.observe(viewLifecycleOwner, Observer {
+            it?.let { allwordsviewmodel.set_countCard(it.size) }
+        })
 
 //findNavController().popBackStack(R.id.allWordsFragment, false)
    //     findNavController().navigate(R.id.startFragment)
@@ -120,13 +124,8 @@ class AllWordsFragment : Fragment(), AllWordsAdapter.OnItemClickListener {
                       //   passData("777777")
 
                          val bundle = Bundle()
-
                          bundle.putInt("id", word.id)
-
                          findNavController().navigate(R.id.action_allWordsFragment_to_redactActivity, bundle)
-                       //  findNavController().navigate(R.id.action_allWordsFragment_to_addWordFragment)
-
-
                      }
                  }
 

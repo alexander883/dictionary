@@ -7,28 +7,41 @@
         <variable
             name="AllWordsViewModel"
             type="com.example.youwords.allwords.AllWordsViewModel" />
-
         <variable
             name="allwordsFragment"
             type="com.example.youwords.allwords.AllWordsFragment" />
     </data>
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <!-- -->
 
         <TextView
-            android:id="@+id/textView_w"
+            android:id="@+id/text_total"
             style="@style/Widget.TipTime.TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="80dp"
-            android:layout_marginTop="16dp"
-            android:text="Слов в словаре:"
+            android:layout_gravity="center_vertical"
+            android:text="@{@string/total_words(AllWordsViewModel.size.toString())}"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/total_words" />
 
-        <!-- -->
+        <TextView
+            android:id="@+id/text_card"
+            style="@style/Widget.TipTime.TextView"
+            android:textColor="@color/red"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="5dp"
+            android:text="@{@string/total_card(AllWordsViewModel.countCard.toString())}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_total"
+            tools:text="@string/total_card" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/all_words_list"
             android:layout_width="0dp"
@@ -44,20 +57,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView_w"
+            app:layout_constraintTop_toBottomOf="@+id/text_card"
             app:layout_constraintVertical_bias="0.0" />
-
-        <TextView
-            android:id="@+id/textView_total_words"
-            style="@style/Widget.TipTime.TextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="2dp"
-            android:layout_marginTop="16dp"
-            android:text="@{AllWordsViewModel.size.toString()}"
-            app:layout_constraintStart_toEndOf="@+id/textView_w"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="435" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

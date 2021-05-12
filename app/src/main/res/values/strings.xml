@@ -26,4 +26,8 @@
     <string name="question_del_all">Вы дейcтвительно хотите удалить все слова из словаря?</string>
     <string name="question_remember_all">Вы дейcтвительно хотите добавить все слова в карточки?</string>
     <string name="next">Следующее</string>
+    <string name="total_words">Слов в словаре: %s</string>
+    <string name="total_card">Карточек: %s</string>
+    <string name="empty_ru">пустой</string>
+    <string name="empty_en">empty</string>
 </resources>

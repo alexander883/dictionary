@@ -1,8 +1,12 @@
 package com.example.youwords.words
 
 import android.app.Application
+import android.content.res.loader.ResourcesProvider
+import androidx.databinding.ObservableInt
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.youwords.R
+
 import com.example.youwords.data.WordViewModel
 
 class WordsReadViewModel(application: Application) : WordViewModel(application)  {
@@ -22,11 +26,19 @@ class WordsReadViewModel(application: Application) : WordViewModel(application) 
     //
     private val _countCard=MutableLiveData<Int>()
     var countCard: LiveData<Int> =_countCard
+     ///кнопки
+    private val _enabledNext=MutableLiveData<Boolean>()
+    var enabledNext: LiveData<Boolean> =_enabledNext
+    private val _enabledReset=MutableLiveData<Boolean>()
+    var enabledReset: LiveData<Boolean> =_enabledReset
+    private val _enabledRemember=MutableLiveData<Boolean>()
+    var enabledRemember: LiveData<Boolean> =_enabledRemember
+
+    val contentString = ObservableInt()
 
     fun get_Random_id(list:List<Int>){
         val range:IntRange=list.indices// диапазон индексов списка
         val rand=range.random()//cлучайный индекс списка
-
         _random_id.value=list.get(rand)//случайный id Words
        // (_mutablelist_id.value as MutableList<Int>).removeAt(rand)// удаляем из списка позицию с случайн id
        // return random.value!!
@@ -46,10 +58,25 @@ class WordsReadViewModel(application: Application) : WordViewModel(application) 
     fun setSize_Read(size:Int){
         _size_read.value=size
     }
-    init {
+    fun setEmpty_text(){
         _ruText.value="пустой"
         _enText.value="empty"
+    }
+    init { setEmpty_text()
+        setEmpty_text()
         _size_read.value=0
+        _enabledNext.value=true
+        _enabledRemember.value=true
+        _enabledReset.value=true
     }
 
+    fun setEnableRemember(enable:Boolean){
+        _enabledRemember.value=enable
+    }
+    fun setEnableNext(enable:Boolean){
+        _enabledNext.value=enable
+    }
+    fun setEnableReset(enable:Boolean){
+        _enabledReset.value=enable
+    }
 }
