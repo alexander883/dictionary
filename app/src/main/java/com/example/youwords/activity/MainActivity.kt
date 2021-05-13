@@ -3,6 +3,7 @@ package com.example.youwords.activity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -27,7 +28,10 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), ActivityInterrac
     private lateinit var toolbar: Toolbar
     private lateinit var bottomNavigationView: BottomNavigationView
     private lateinit var wordviewmodel: WordViewModel
-
+    override fun onBackPressed() {
+        super.onBackPressed()
+        Toast.makeText(this, "Нажат назад", Toast.LENGTH_SHORT).show()
+    }
     override fun transferOnSearchFragment() {
         bottomNavigationView.menu.findItem(R.id.search).isCheckable = false
     }
