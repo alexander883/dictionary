@@ -1,11 +1,8 @@
 package com.example.youwords.activity
 
-import android.content.Context
 import android.os.Bundle
-import android.os.CountDownTimer
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -18,7 +15,6 @@ import com.example.youwords.R
 import com.example.youwords.data.WordViewModel
 import com.example.youwords.start.StartViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import kotlin.concurrent.timer
 
 //интерфейс для связи с событиями(кликами) во фрагментах
 interface ActivityInterractor {
@@ -31,23 +27,34 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), ActivityInterrac
     private lateinit var toolbar: Toolbar
     private lateinit var bottomNavigationView: BottomNavigationView
     private lateinit var wordviewmodel: WordViewModel
+    private  var currentFragment:Int?=null
+    private lateinit var navHostFragment:NavHostFragment
 
+    //при нажатии кнопки назад подсвечиваем нужную иконку
     override fun onBackPressed() {
-       super.onBackPressed()
-     //   Toast.makeText(this, "Нажат назад", Toast.LENGTH_SHORT).show()
-    }
-    override fun transferOnSearchFragment() {
-        bottomNavigationView.menu.findItem(R.id.search).isCheckable = false
-    }
-
-    override fun transferOnAddWordFragment() {
-        bottomNavigationView.menu.findItem(R.id.home).isChecked = true
+        super.onBackPressed()
+        currentFragment =
+            NavHostFragment.findNavController(navHostFragment).currentDestination?.id
+        when (currentFragment) {
+            R.id.startFragment -> {
+                bottomNavigationView.menu.findItem(R.id.home).isChecked = true
+            }
+            R.id.addWordFragment -> {
+                bottomNavigationView.menu.findItem(R.id.add).isChecked = true
+            }
+            R.id.searchFragment -> {
+                bottomNavigationView.menu.findItem(R.id.search).isCheckable = true
+            }
+            R.id.allWordsFragment -> {
+                bottomNavigationView.menu.findItem(R.id.list).isChecked = true
+            }
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         wordviewmodel = ViewModelProvider(this).get( StartViewModel::class.java)
-        val navHostFragment = supportFragmentManager
+         navHostFragment = supportFragmentManager
             .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
         //setupActionBarWithNavController(navController)
@@ -63,8 +70,8 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), ActivityInterrac
 
         //toolbar.inflateMenu(R.menu.menu_main)
 
-        val currentFragme =
-            NavHostFragment.findNavController(navHostFragment).currentDestination?.id
+        // currentFragment =
+             //NavHostFragment.findNavController(navHostFragment).currentDestination?.id
 
 
 
@@ -73,7 +80,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), ActivityInterrac
 
         val mOnNavigationItemSelectedListener =
             BottomNavigationView.OnNavigationItemSelectedListener { menuItem ->
-                val currentFragment =
+                 currentFragment =
                     NavHostFragment.findNavController(navHostFragment).currentDestination?.id
                 when (menuItem.itemId) {
                     R.id.home -> {
@@ -155,12 +162,15 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), ActivityInterrac
                 false
             }
         bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
-
     }
 
-    // override fun onSupportNavigateUp(): Boolean {
-    //   return navController.navigateUp() || super.onSupportNavigateUp()
-    //  }
+    //прослушивание нажатий в фрагментах для изменения
+    override fun transferOnSearchFragment() {
+        bottomNavigationView.menu.findItem(R.id.search).isCheckable = false
+    }
+    override fun transferOnAddWordFragment() {
+        bottomNavigationView.menu.findItem(R.id.home).isChecked = true
+    }
 
 ////////всплывающее меню, диалоги
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

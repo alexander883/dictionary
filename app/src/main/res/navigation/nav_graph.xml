@@ -48,7 +48,9 @@
             app:destination="@id/foundFragment" />
         <action
             android:id="@+id/action_searchFragment_to_startFragment"
-            app:destination="@id/startFragment" />
+            app:destination="@id/startFragment"
+            app:popUpTo="@id/startFragment"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_searchFragment_to_addWordFragment"
             app:destination="@id/addWordFragment" />
@@ -63,7 +65,9 @@
         tools:layout="@layout/fragment_found">
         <action
             android:id="@+id/action_foundFragment_to_startFragment"
-            app:destination="@id/startFragment" />
+            app:destination="@id/startFragment"
+            app:popUpTo="@id/startFragment"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_foundFragment_to_addWordFragment"
             app:destination="@id/addWordFragment" />
@@ -86,7 +90,8 @@
             android:id="@+id/action_allWordsFragment_to_StartFragment"
             app:destination="@id/startFragment"
 
-            />
+            app:popUpTo="@id/startFragment"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_allWordsFragment_to_searchFragment"
             app:destination="@id/searchFragment" />
