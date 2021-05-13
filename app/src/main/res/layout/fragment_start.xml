@@ -26,7 +26,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/button_reset"
-            app:layout_constraintVertical_bias="0.631"
+            app:layout_constraintVertical_bias="0.600"
             tools:text="Русское слово" />
 
         <TextView
@@ -40,7 +40,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/button_reset"
-            app:layout_constraintVertical_bias="0.292"
+            app:layout_constraintVertical_bias="0.300"
+
             tools:text="english" />
 
         <Button
@@ -55,12 +56,13 @@
         <TextView
             android:id="@+id/count_read"
             style="@style/Widget.TipTime.TextView"
-            android:textColor="@color/green"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="15dp"
             android:text="@{StartViewModel.size_read.toString()}"
+            android:textColor="@color/green"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.303"
             app:layout_constraintStart_toEndOf="@+id/textView_w1"
             app:layout_constraintTop_toBottomOf="@+id/text_count_card"
             tools:text="100" />
@@ -69,12 +71,13 @@
             android:id="@+id/button_reset"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
             android:enabled="@{StartViewModel.enabledReset}"
             android:onClick="@{() ->startFragment.clickReset()}"
             android:text="@string/again"
+            app:layout_constraintBottom_toTopOf="@+id/button_next"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textRemain" />
+            app:layout_constraintTop_toBottomOf="@+id/textRemain"
+            app:layout_constraintVertical_bias="0.089" />
 
         <TextView
             android:id="@+id/textRemain"
@@ -82,20 +85,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:layout_marginStart="60dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="15dp"
             android:text="@string/remain_words"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.361"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView_w2" />
 
         <TextView
             android:id="@+id/textView_w1"
+            android:layout_gravity="center_vertical"
             style="@style/Widget.TipTime.TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="60dp"
-            android:layout_marginTop="10dp"
             android:text="@string/all_words"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -104,9 +108,10 @@
             style="@style/Widget.TipTime.TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="60dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="15dp"
             android:text="@string/card"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.318"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView_w1" />
 
@@ -115,9 +120,9 @@
             style="@style/Widget.TipTime.TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
             android:text="@{StartViewModel.size_all.toString()}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.303"
             app:layout_constraintStart_toEndOf="@+id/textView_w1"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="446" />
@@ -127,23 +132,26 @@
             style="@style/Widget.TipTime.TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="15dp"
             android:text="@{StartViewModel.countCard.toString()}"
             android:textColor="@color/red"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.303"
             app:layout_constraintStart_toEndOf="@+id/textView_w1"
             app:layout_constraintTop_toBottomOf="@+id/text_total"
             tools:text="123" />
 
         <Button
             android:id="@+id/button_remember"
-            android:enabled="@{StartViewModel.enabledRemember}"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:enabled="@{StartViewModel.enabledRemember}"
             android:onClick="@{() ->startFragment.clickRemember()}"
             android:text="@string/remember"
+
+            app:layout_constraintBottom_toTopOf="@+id/button_next"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/count_read" />
+            app:layout_constraintTop_toBottomOf="@+id/textRemain"
+            app:layout_constraintVertical_bias="0.089" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

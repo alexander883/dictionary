@@ -37,16 +37,17 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), ActivityInterrac
             NavHostFragment.findNavController(navHostFragment).currentDestination?.id
         when (currentFragment) {
             R.id.startFragment -> {
-                bottomNavigationView.menu.findItem(R.id.home).isChecked = true
+                bottomNavigationView.menu.findItem(R.id.home).isChecked= true
             }
             R.id.addWordFragment -> {
-                bottomNavigationView.menu.findItem(R.id.add).isChecked = true
+                bottomNavigationView.menu.findItem(R.id.add).isChecked= true
             }
             R.id.searchFragment -> {
-                bottomNavigationView.menu.findItem(R.id.search).isCheckable = true
+                bottomNavigationView.menu.findItem(R.id.search).isChecked= true
+                bottomNavigationView.menu.findItem(R.id.search).isCheckable= true
             }
             R.id.allWordsFragment -> {
-                bottomNavigationView.menu.findItem(R.id.list).isChecked = true
+                bottomNavigationView.menu.findItem(R.id.list).isChecked= true
             }
         }
     }
