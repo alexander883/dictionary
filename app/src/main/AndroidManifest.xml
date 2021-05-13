@@ -9,18 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Youwords">
-        <activity
-            android:name=".activity.RedactActivity"
-            android:label="@string/title_activity_redact"
-            android:theme="@style/Theme.Youwords.NoActionBar"></activity>
+
 
         <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
     </application>
-
 </manifest>

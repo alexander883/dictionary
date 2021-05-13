@@ -3,13 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".search_and_found.SearchFragment">
-
     <data>
-
         <variable
             name="SearchViewModel"
             type="com.example.youwords.search_and_found.SearchViewModel" />
-
         <variable
             name="searchFragment"
             type="com.example.youwords.search_and_found.SearchFragment" />
@@ -22,10 +19,9 @@
             android:id="@+id/button_search_word"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:layout_marginTop="160dp"
             android:onClick="@{() ->searchFragment.searhWord()}"
-            android:text="Искать"
+            android:text="@string/search_rus"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.5" />
@@ -43,6 +39,5 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

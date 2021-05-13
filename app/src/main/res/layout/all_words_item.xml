@@ -5,10 +5,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_margin="4dp">
 
-    <!-- Wrapping the layout into /layout to make it available with data binding.
-
-     -->
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -18,34 +14,26 @@
         <TextView
             android:id="@+id/posit"
             style="@style/Widget.TipTime.TextView"
-
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-
             tools:text="123"/>
 
         <TextView
             android:id="@+id/en_word"
             style="@style/Widget.TipTime.TextView"
-
             android:layout_width="324dp"
             android:layout_height="wrap_content"
-
             android:layout_marginStart="50dp"
             android:layout_marginEnd="15dp" />
 
         <TextView
-
             android:id="@+id/rus_word"
             style="@style/Widget.TipTime.TextView"
-
             android:layout_width="325dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="50dp"
             android:layout_marginTop="40dp" />
-
-
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

@@ -146,5 +146,4 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/count_read" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </layout>

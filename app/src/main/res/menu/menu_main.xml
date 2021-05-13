@@ -6,5 +6,5 @@
     android:title="@string/del_all" />
     <item
         android:id="@+id/all_not_remember"
-        android:title="Добавить все слова в карточки" />
+        android:title="@string/add_all_words" />
 </menu>

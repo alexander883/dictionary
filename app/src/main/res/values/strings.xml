@@ -8,8 +8,6 @@
     <string name="title_activity_redact">RedactActivity</string>
 
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="add_word">Добавить слово</string>
     <string name="redact">Редактировать</string>
     <string name="empty_pole">Заполните все поля!</string>
@@ -30,11 +28,15 @@
     <string name="remain_words">Осталось слов</string>
     <string name="all_words">Всего слов в словаре:</string>
     <string name="remember">Запомнено</string>
-    <string name="empty_field">  Заполните все поля!</string>
+    <string name="empty_field">Заполните все поля!</string>
     <string name="card">Карточек:</string>
     <string name="add_card">Добавить в карточки</string>
     <string name="del_card">Удалить из карточек</string>
     <string name="del_from_dictionary">Удалить из словаря</string>
     <string name="found_words">Найдено слов: %s</string>
     <string name="again">Заново</string>
+    <string name="english_word">english word</string>
+    <string name="russian_word">русское слово</string>
+    <string name="search_rus">Искать</string>
+    <string name="add_all_words">Добавить все слова в карточки</string>
 </resources>

@@ -1,13 +1,11 @@
 package com.example.youwords.data
 
 import android.app.Application
-import android.content.Context
-import android.widget.Toast
-import androidx.lifecycle.*
-import androidx.navigation.fragment.findNavController
-import com.example.youwords.R
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.asLiveData
+import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
 open class WordViewModel(application:Application):AndroidViewModel(application) {
