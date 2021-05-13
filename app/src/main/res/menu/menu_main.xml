@@ -7,4 +7,7 @@
     <item
         android:id="@+id/all_not_remember"
         android:title="@string/add_all_words" />
+    <item
+        android:id="@+id/del_remember"
+        android:title="@string/del_remember" />
 </menu>

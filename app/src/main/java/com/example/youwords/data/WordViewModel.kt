@@ -56,6 +56,11 @@ open class WordViewModel(application:Application):AndroidViewModel(application) 
             repository.updateAll_Remember()
         }
     }
+    fun updateAll_Not_Remember() {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.updateAll_Not_Remember()
+        }
+    }
     fun deleteWord(word: Words){
         viewModelScope.launch(Dispatchers.IO) {
             repository.deleteWord(word)

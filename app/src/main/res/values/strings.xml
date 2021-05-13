@@ -1,8 +1,5 @@
 <resources>
     <string name="app_name">Simple dictionary</string>
-    <string name="start_message">Данный словарь позволяет вносить английские слова и их перевод,
-    просматривать все внесенные слова (и перевод) списком, поочередно просматривать все слова с переводом для запоминания,
-    искать в словаре слово (как на русском, так и английском)</string>
 
     <string name="title_home">Home</string>
     <string name="title_activity_redact">RedactActivity</string>
@@ -39,4 +36,6 @@
     <string name="russian_word">русское слово</string>
     <string name="search_rus">Искать</string>
     <string name="add_all_words">Добавить все слова в карточки</string>
+    <string name="del_remember">Удалить все слова из карточек</string>
+    <string name="question_remember_not_all">Вы дейcтвительно хотите удалить все слова из карточек?</string>
 </resources>

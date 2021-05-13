@@ -1,6 +1,8 @@
 package com.example.youwords.activity
 
+import android.content.Context
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
@@ -16,6 +18,7 @@ import com.example.youwords.R
 import com.example.youwords.data.WordViewModel
 import com.example.youwords.start.StartViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlin.concurrent.timer
 
 //интерфейс для связи с событиями(кликами) во фрагментах
 interface ActivityInterractor {
@@ -28,9 +31,10 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), ActivityInterrac
     private lateinit var toolbar: Toolbar
     private lateinit var bottomNavigationView: BottomNavigationView
     private lateinit var wordviewmodel: WordViewModel
+
     override fun onBackPressed() {
-        super.onBackPressed()
-        Toast.makeText(this, "Нажат назад", Toast.LENGTH_SHORT).show()
+       super.onBackPressed()
+     //   Toast.makeText(this, "Нажат назад", Toast.LENGTH_SHORT).show()
     }
     override fun transferOnSearchFragment() {
         bottomNavigationView.menu.findItem(R.id.search).isCheckable = false
@@ -58,6 +62,10 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), ActivityInterrac
 
 
         //toolbar.inflateMenu(R.menu.menu_main)
+
+        val currentFragme =
+            NavHostFragment.findNavController(navHostFragment).currentDestination?.id
+
 
 
         bottomNavigationView = findViewById(R.id.bottomNavigationView)
@@ -164,6 +172,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), ActivityInterrac
         when(id){
             R.id.all_not_remember->alertDialogRemember()
             R.id.del_all->alertDialogDel()
+            R.id.del_remember->alertDialogDelRemember()
         }
         return super.onOptionsItemSelected(item)
     }
@@ -182,6 +191,16 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), ActivityInterrac
         builder.setTitle(R.string.question_remember_all)
         builder.setPositiveButton(R.string.yes){ _, _ ->
             wordviewmodel.updateAll_Remember()
+        }
+        builder.setNegativeButton(R.string.no){ _, _ ->
+        }
+        builder.create().show()
+    }
+    private fun alertDialogDelRemember(){
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle(R.string.question_remember_not_all)
+        builder.setPositiveButton(R.string.yes){ _, _ ->
+            wordviewmodel.updateAll_Not_Remember()
         }
         builder.setNegativeButton(R.string.no){ _, _ ->
         }

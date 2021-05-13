@@ -37,6 +37,9 @@ interface WordDAO {
     @Query("UPDATE english SET remember=0") //Устанавливаем ВСе Слово не запомнено
     suspend fun updateAll_Remember()
 
+    @Query("UPDATE english SET remember=1")
+    suspend fun updateAll_Not_Remember()
+
     @Delete
     suspend fun deleteWord(word: Words)
 

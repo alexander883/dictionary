@@ -1,6 +1,8 @@
 package com.example.youwords.start
 
+import android.content.Context
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
@@ -8,6 +10,22 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.youwords.databinding.FragmentStartBinding
 
+
+class timer(val context: Context) : CountDownTimer(20000, 1000){
+    // val c=context
+    var count=0
+    override fun onTick(millisUntilFinished: Long) {
+        count = (millisUntilFinished / 1000).toInt()
+        //// Toast.makeText(context, "EEEE $count", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onFinish() {
+        // super.cancel()
+    }
+}
+//   val t=timer(this)
+//  t.start()
+// t.onFinish()
 
 class StartFragment : Fragment() {
     private var binding: FragmentStartBinding?=null
@@ -33,21 +51,16 @@ class StartFragment : Fragment() {
             startViewModel=startviewmodel
             startFragment = this@StartFragment
         }
+
+
         // если словарь пуст. подсчитываем слова в словаре
         startviewmodel.allWords.observe(viewLifecycleOwner, Observer {
             val size=it?.size ?: 0
             startviewmodel.setSize_All(size)
             if(it.isEmpty()){
-                // changeNext_off()
-                ////////  changeReset_off()
-                    //startviewmodel .setEnableReset(false)
                 startviewmodel.setEnableRemember(false)
-                //changeRemember_off()
             }
             else{
-
-                //   changeReset_on()
-               // startviewmodel.setEnableReset(true)
                 dictionary_empty=false
             }
         })
