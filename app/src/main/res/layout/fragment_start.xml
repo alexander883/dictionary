@@ -7,19 +7,16 @@
         <variable
             name="StartViewModel"
             type="com.example.youwords.start.StartViewModel" />
-
         <variable
             name="startFragment"
             type="com.example.youwords.start.StartFragment" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
-
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/ru_text"
-
             style="@style/Widget.TipTime.TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -27,10 +24,9 @@
             android:text="@{StartViewModel.ruText.toString()}"
             app:layout_constraintBottom_toTopOf="@+id/button_next"
             app:layout_constraintEnd_toEndOf="parent"
-
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/button_reset"
-            app:layout_constraintVertical_bias="0.507"
+            app:layout_constraintVertical_bias="0.631"
             tools:text="Русское слово" />
 
         <TextView
@@ -44,7 +40,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/button_reset"
-            app:layout_constraintVertical_bias="0.357"
+            app:layout_constraintVertical_bias="0.292"
             tools:text="english" />
 
         <Button
@@ -72,13 +68,11 @@
         <Button
             android:id="@+id/button_reset"
             android:layout_width="150dp"
-
-
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
             android:enabled="@{StartViewModel.enabledReset}"
             android:onClick="@{() ->startFragment.clickReset()}"
-            android:text="Заново"
+            android:text="@string/again"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textRemain" />
 
@@ -89,7 +83,6 @@
             android:layout_height="wrap_content"
 
             android:layout_marginStart="60dp"
-
             android:layout_marginTop="16dp"
             android:text="@string/remain_words"
             app:layout_constraintStart_toStartOf="parent"
