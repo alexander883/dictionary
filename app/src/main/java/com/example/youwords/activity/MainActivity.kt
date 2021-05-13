@@ -3,7 +3,6 @@ package com.example.youwords.activity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -14,7 +13,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.example.youwords.R
 import com.example.youwords.data.WordViewModel
-import com.example.youwords.words.WordsReadViewModel
+import com.example.youwords.start.StartViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 //интерфейс для связи с событиями(кликами) во фрагментах
@@ -27,7 +26,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), ActivityInterrac
     private lateinit var navController: NavController
     private lateinit var toolbar: Toolbar
     private lateinit var bottomNavigationView: BottomNavigationView
-    private lateinit  var wordviewmodel: WordViewModel
+    private lateinit var wordviewmodel: WordViewModel
 
     override fun transferOnSearchFragment() {
         bottomNavigationView.menu.findItem(R.id.search).isCheckable = false
@@ -39,7 +38,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), ActivityInterrac
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        wordviewmodel = ViewModelProvider(this).get( WordsReadViewModel::class.java)
+        wordviewmodel = ViewModelProvider(this).get( StartViewModel::class.java)
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
@@ -58,7 +57,6 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), ActivityInterrac
 
 
         bottomNavigationView = findViewById(R.id.bottomNavigationView)
-
         bottomNavigationView.background = null
 
         val mOnNavigationItemSelectedListener =
@@ -141,8 +139,6 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), ActivityInterrac
                         }
                         return@OnNavigationItemSelectedListener true
                     }
-
-
                 }
                 false
             }
@@ -154,7 +150,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), ActivityInterrac
     //   return navController.navigateUp() || super.onSupportNavigateUp()
     //  }
 
-////////
+////////всплывающее меню, диалоги
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
         return true

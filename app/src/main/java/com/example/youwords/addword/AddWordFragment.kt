@@ -24,7 +24,7 @@ import com.example.youwords.databinding.FragmentAddwordBinding
 class AddWordFragment : Fragment() {
     private var binding: FragmentAddwordBinding? = null
     private lateinit var allwordsviewmodel: AllWordsViewModel
-    var transfer:ActivityInterractor?=null
+    private var transfer:ActivityInterractor?=null
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -52,10 +52,10 @@ class AddWordFragment : Fragment() {
     }
 
     fun insertWord() {// проверяем заполненность
-        val en_word = binding?.enEditText?.text.toString()
-        val ru_word = binding?.rusEditText?.text.toString()
+        val en_word = binding?.enEditText?.text.toString().trim()
+        val ru_word = binding?.rusEditText?.text.toString().trim()
         if (en_word.isEmpty() or ru_word.isEmpty()) {
-            Toast.makeText(requireContext(), "Заполните все поля!", Toast.LENGTH_LONG).show()
+            Toast.makeText(requireContext(), R.string.empty_field, Toast.LENGTH_LONG).show()
         }
         else {
             val word = Words(id = 0, enWord = en_word, ruWord = ru_word)
