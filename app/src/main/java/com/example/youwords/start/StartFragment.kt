@@ -1,19 +1,12 @@
 package com.example.youwords.start
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.*
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
-import com.example.youwords.R
 import com.example.youwords.databinding.FragmentStartBinding
-
-
-
 
 
 class StartFragment : Fragment() {
@@ -47,9 +40,8 @@ class StartFragment : Fragment() {
             if(it.isEmpty()){
                 // changeNext_off()
                 ////////  changeReset_off()
-                    startviewmodel .setEnableReset(false)
+                    //startviewmodel .setEnableReset(false)
                 startviewmodel.setEnableRemember(false)
-                startviewmodel.setEnableReset(false)
                 //changeRemember_off()
             }
             else{
@@ -57,7 +49,6 @@ class StartFragment : Fragment() {
                 //   changeReset_on()
                // startviewmodel.setEnableReset(true)
                 dictionary_empty=false
-
             }
         })
 /////////
@@ -67,7 +58,7 @@ class StartFragment : Fragment() {
             //  val list_id=it
             startviewmodel.setSize_Read(it.size)
             // binding?.count?.text = (it.size).toString()
-            startviewmodel.setEnableReset(true)
+           // startviewmodel.setEnableReset(true)
             if (!it.isEmpty()) {//если не все слова показаны
                 Log.i("LOG", "не все слова показаны")
 
@@ -93,26 +84,21 @@ class StartFragment : Fragment() {
                             flag_next = false
                             flag_end=false
                         } }
-
                 })
-
-
             }
             if(it.isEmpty() and !dictionary_empty) {
-                //  changeNext_off()
-
                 startviewmodel.setEnableNext(false)
                 startviewmodel.setEnableRemember(false)
-                // changeRemember_off()
                 startviewmodel.setEmpty_text()
             }
         })
         //получаем количество карточек
         startviewmodel.word_notremember.observe(viewLifecycleOwner, Observer {
-            it?.let { startviewmodel.set_countCard(it.size)
-                if (it.isEmpty()){
-                    startviewmodel.setEnableReset(false)
-                }}
+            it?.let {
+                startviewmodel.set_countCard(it.size)
+                if (it.isEmpty()){startviewmodel.setEnableReset(false)}
+                else {startviewmodel.setEnableReset(true)}
+               }
         })
     }
 

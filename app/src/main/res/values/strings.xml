@@ -32,5 +32,7 @@
     <string name="remember">Запомнено</string>
     <string name="empty_field">  Заполните все поля!</string>
     <string name="card">Карточек:</string>
-
+    <string name="add_card">Добавить в карточки</string>
+    <string name="del_card">Удалить из карточек</string>
+    <string name="del_from_dictionary">Удалить из словаря</string>
 </resources>

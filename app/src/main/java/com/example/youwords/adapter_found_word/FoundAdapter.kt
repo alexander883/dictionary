@@ -35,12 +35,8 @@ class FoundAdapter: RecyclerView.Adapter<FoundAdapter.ViewHolder>() {
         val ru_word: TextView = itemView.findViewById(R.id.rus_word)
         val posit: TextView =itemView.findViewById(R.id.posit)
 
-
-
         fun bind(item: Words, position: Int) {
             en_word.text =item.enWord
-
-            //en_word.setTextColor(Color.RED)
             ru_word.text = item.ruWord
             posit.text=(position+1).toString()
         }

@@ -11,12 +11,9 @@ class SearchViewModel(application: Application) : WordViewModel(application)  {
     private val _search_words=MutableLiveData<List<Words>>()
     val search_words: LiveData<List<Words>> =_search_words
 
-
     fun getSearchWords(list:List<Words>){
         _search_words.value=list
     }
 
-
-fun getSize()=search_words.value?.size.toString()
-
+    fun getSize()=search_words.value?.size.toString()
 }

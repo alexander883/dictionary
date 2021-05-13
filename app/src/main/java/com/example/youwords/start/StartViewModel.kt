@@ -33,8 +33,6 @@ class StartViewModel(application:Application) : WordViewModel(application)  {
     private val _enabledRemember= MutableLiveData<Boolean>()
     var enabledRemember: LiveData<Boolean> =_enabledRemember
 
-    val contentString = ObservableInt()
-
     fun get_Random_id(list:List<Int>){
         val range:IntRange=list.indices// диапазон индексов списка
         val rand=range.random()//cлучайный индекс списка
@@ -67,6 +65,7 @@ class StartViewModel(application:Application) : WordViewModel(application)  {
         _enabledNext.value=false
         _enabledRemember.value=false
         _enabledReset.value=false
+        _countCard.value=0
     }
 
     fun setEnableRemember(enable:Boolean){

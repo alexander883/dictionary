@@ -51,7 +51,6 @@ class AllWordsFragment : Fragment(), AllWordsAdapter.OnItemClickListener {
             allWordsList.adapter=adapter
         }
 
-
          allwordsviewmodel.allWords.observe(viewLifecycleOwner, Observer {
               allwordsviewmodel.getSize(it.size)
               adapter.data=it
@@ -63,7 +62,6 @@ class AllWordsFragment : Fragment(), AllWordsAdapter.OnItemClickListener {
           }
 
     override fun onItemClick(position: Int) {
-        Toast.makeText(requireContext(), "Item $position clicked", Toast.LENGTH_SHORT).show()
         val clickedItem =adapter.data[position]
         allwordsviewmodel.getClickedWord(clickedItem)
         alertDialog(clickedItem)
@@ -73,11 +71,11 @@ class AllWordsFragment : Fragment(), AllWordsAdapter.OnItemClickListener {
    fun alertDialog(word:Words){
         lateinit var str_items_1: String
         if (word.remember==true)
-        {  str_items_1="Добавить в карточки"}
+        {  str_items_1=getString(R.string.add_card)}
         else{
-             str_items_1="Удалить из карточек"
+             str_items_1=getString(R.string.del_card)
         }
-         val items = arrayOf("Удалить из словаря",str_items_1 , "Редактировать")
+         val items = arrayOf(getString(R.string.del_from_dictionary),str_items_1 , getString(R.string.redact))
 
          val builder = AlertDialog.Builder(requireContext())
          with(builder)

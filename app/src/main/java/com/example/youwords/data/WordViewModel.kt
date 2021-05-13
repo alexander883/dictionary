@@ -74,8 +74,6 @@ open class WordViewModel(application:Application):AndroidViewModel(application) 
         }
     }
     val word_notremember: LiveData<List<Words>> = repository.word_notremember.asLiveData()
-
-
 }
 
 
