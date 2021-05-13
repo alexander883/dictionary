@@ -48,10 +48,10 @@ class SearchFragment : Fragment() {
         }
     }
     fun searhWord(){
-       val search=binding?.searchText?.text.toString()
+       val search=binding?.searchText?.text?.trim().toString()
         searchviewmodel.searchWord(search).observe(viewLifecycleOwner, Observer {
             if (!it.isEmpty()){
-                searchviewmodel.getSearchWords(it)
+                searchviewmodel.getSize(it)
                 findNavController().navigate(R.id.action_searchFragment_to_foundFragment)
                 transfer?.transferOnSearchFragment()
                 hideKeyboardFrom(requireContext(),view)

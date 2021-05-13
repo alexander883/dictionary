@@ -16,7 +16,6 @@
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-
         app:title="Simple dictionary"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteY="0dp" />
@@ -25,18 +24,15 @@
         android:id="@+id/nav_host_fragment"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
-        android:layout_height="619dp"
+        android:layout_height="match_parent"
         android:layout_marginTop="55dp"
+        android:layout_marginBottom="55dp"
         app:defaultNavHost="true"
         app:layout_constraintBottom_toTopOf="@+id/bottom_app_bar"
         app:layout_constraintEnd_toStartOf="@+id/bottom_app_bar"
 
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-
-        app:layout_constraintStart_toEndOf="@+id/toolbar"
-        app:layout_constraintTop_toBottomOf="@+id/bottom_app_bar"
-
         app:navGraph="@navigation/nav_graph">
 
 
@@ -51,13 +47,13 @@
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottomNavigationView"
-            android:theme="@style/BottomAppBarOverlay"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginEnd="16dp"
             android:background="@android:color/transparent"
-             app:menu="@menu/menu_bottom"/>
+            android:theme="@style/BottomAppBarOverlay"
+            app:menu="@menu/menu_bottom" />
         <!-- android:background="@android:color/transparent"-->
- </com.google.android.material.bottomappbar.BottomAppBar>
+    </com.google.android.material.bottomappbar.BottomAppBar>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

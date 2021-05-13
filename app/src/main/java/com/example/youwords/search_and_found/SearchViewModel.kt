@@ -10,10 +10,12 @@ import com.example.youwords.data.Words
 class SearchViewModel(application: Application) : WordViewModel(application)  {
     private val _search_words=MutableLiveData<List<Words>>()
     val search_words: LiveData<List<Words>> =_search_words
+    //кол-во найденных позиций
+    private var _found_size = MutableLiveData<Int>()
+    val found_size : LiveData<Int> = _found_size
 
-    fun getSearchWords(list:List<Words>){
+    fun getSize(list:List<Words>){
         _search_words.value=list
+        _found_size.value=list.size
     }
-
-    fun getSize()=search_words.value?.size.toString()
 }

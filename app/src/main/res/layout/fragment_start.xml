@@ -13,19 +13,24 @@
             type="com.example.youwords.start.StartFragment" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
+
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <TextView
             android:id="@+id/ru_text"
+
             style="@style/Widget.TipTime.TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginTop="60dp"
             android:text="@{StartViewModel.ruText.toString()}"
+            app:layout_constraintBottom_toTopOf="@+id/button_next"
             app:layout_constraintEnd_toEndOf="parent"
+
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/en_text"
+            app:layout_constraintTop_toBottomOf="@+id/button_reset"
+            app:layout_constraintVertical_bias="0.507"
             tools:text="Русское слово" />
 
         <TextView
@@ -33,29 +38,23 @@
             style="@style/Widget.TipTime.TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             android:layout_gravity="center_vertical"
-            android:layout_marginTop="300dp"
             android:text="@{StartViewModel.enText.toString()}"
+            app:layout_constraintBottom_toTopOf="@+id/button_next"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button_reset"
+            app:layout_constraintVertical_bias="0.357"
             tools:text="english" />
-
 
         <Button
             android:id="@+id/button_next"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
-
-            android:layout_marginTop="44dp"
+            android:layout_height="wrap_content"
             android:enabled="@{StartViewModel.enabledNext}"
             android:onClick="@{() ->startFragment.clickNext()}"
             android:text="@string/next"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ru_text" />
+            app:layout_constraintBottom_toBottomOf="parent" />
 
         <TextView
             android:id="@+id/count_read"
@@ -72,13 +71,13 @@
 
         <Button
             android:id="@+id/button_reset"
-            android:enabled="@{StartViewModel.enabledReset}"
-
-
-            android:onClick="@{() ->startFragment.clickReset()}"
             android:layout_width="150dp"
+
+
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
+            android:enabled="@{StartViewModel.enabledReset}"
+            android:onClick="@{() ->startFragment.clickReset()}"
             android:text="Заново"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textRemain" />
@@ -102,7 +101,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="60dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="10dp"
             android:text="@string/all_words"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
