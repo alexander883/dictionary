@@ -1,6 +1,9 @@
 package com.example.youwords.start
 
 import android.app.Application
+import android.os.CountDownTimer
+import android.util.Log
+import android.widget.Toast
 import androidx.databinding.ObservableInt
 import androidx.lifecycle.*
 import com.example.youwords.data.WordDatabase
@@ -32,23 +35,35 @@ class StartViewModel(application:Application) : WordViewModel(application)  {
     var enabledReset: LiveData<Boolean> =_enabledReset
     private val _enabledRemember= MutableLiveData<Boolean>()
     var enabledRemember: LiveData<Boolean> =_enabledRemember
-    /////////////
+    /////////////флаги
     private val _dictionary_empty= MutableLiveData<Boolean>()
     var dictionary_empty: LiveData<Boolean> =_dictionary_empty
 
     private val _flag_next= MutableLiveData<Boolean>()
     var flag_next: LiveData<Boolean> =_flag_next
-
     // флаг окончания показа карточек(чтобы не показывать последнюю)
     private val _flag_end= MutableLiveData<Boolean>()
     var flag_end: LiveData<Boolean> =_flag_end
+
+    /////время выбираемое в spinner
+    private var _time = MutableLiveData<Long>()
+    val time : LiveData<Long> = _time
+
+    init { setEmpty_text()
+        _size_read.value=0
+        _enabledNext.value=false
+        _enabledRemember.value=false
+        _enabledReset.value=false
+        _countCard.value=0
+        _dictionary_empty.value=true
+        _flag_next.value=true
+        _flag_end.value=false
+    }
 
     fun get_Random_id(list:List<Int>){
         val range:IntRange=list.indices// диапазон индексов списка
         val rand=range.random()//cлучайный индекс списка
         _random_id.value=list.get(rand)//случайный id Words
-        // (_mutablelist_id.value as MutableList<Int>).removeAt(rand)// удаляем из списка позицию с случайн id
-        // return random.value!!
     }
     fun setSize_All(size:Int){
         _size_all.value=size
@@ -69,17 +84,7 @@ class StartViewModel(application:Application) : WordViewModel(application)  {
         _ruText.value="пустой"
         _enText.value="empty"
     }
-    init { setEmpty_text()
-        setEmpty_text()
-        _size_read.value=0
-        _enabledNext.value=false
-        _enabledRemember.value=false
-        _enabledReset.value=false
-        _countCard.value=0
-        _dictionary_empty.value=true
-        _flag_next.value=true
-        _flag_end.value=false
-    }
+
 
     fun setEnableRemember(enable:Boolean){
         _enabledRemember.value=enable
@@ -100,5 +105,33 @@ class StartViewModel(application:Application) : WordViewModel(application)  {
     fun setFlagEnd(flag:Boolean){
         _flag_end.value=flag
     }
+    fun setTime(time:Long){
+        _time.value=time
+    }
+    fun reset(){
+        super.updateAll_Read()
+        Log.i("LOG", "нажали reset")
+        setFlagNext(true)
+    }
+    fun remember(){
+        super.updateRemember(random_id.value!!)
+        super.updateRead(random_id.value!!)
+        setFlagNext(true)
+        Log.i("LOG", "нажли запомнил")
+    }
 
+    class MyTimer(millisInFuture: Long, countDownInterval: Long
+    ) : CountDownTimer(millisInFuture, countDownInterval){
+        var count=0
+        var init=0
+        override fun onTick(millisUntilFinished: Long) {
+            count = (millisUntilFinished / 10000).toInt()
+            Log.i("LOG", "TIMer")
+        }
+
+        override fun onFinish() {
+            super.cancel()
+        }
+    }
+    val myTimer=MyTimer(100000, 3000)
 }
