@@ -2,15 +2,15 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".activity.RedactActivity">
+    tools:context=".redact_activity.RedactActivity">
     <data>
         <variable
-            name="viewModel"
-            type="com.example.youwords.data.WordViewModel" />
+            name="redactViewModel"
+            type="com.example.youwords.redact_activity.RedactActivityViewModel" />
 
         <variable
             name="activityRedact"
-            type="com.example.youwords.activity.RedactActivity" />
+            type="com.example.youwords.redact_activity.RedactActivity" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -30,6 +30,7 @@
 
         <EditText
             android:id="@+id/en_editText"
+            android:text="@{redactViewModel.en_text.toString()}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -43,6 +44,7 @@
 
         <EditText
             android:id="@+id/rus_editText"
+            android:text="@{redactViewModel.ru_text.toString()}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"

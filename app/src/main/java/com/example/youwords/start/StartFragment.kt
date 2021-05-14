@@ -30,10 +30,10 @@ class timer(val context: Context) : CountDownTimer(20000, 1000){
 class StartFragment : Fragment() {
     private var binding: FragmentStartBinding?=null
     private lateinit var startviewmodel: StartViewModel
-    private var dictionary_empty=true
-    private var flag_next=true
+  //  private var dictionary_empty=true
+ //   private var flag_next=true
     private var  random_id:Int?=null
-    private var flag_end=false// флаг окончания показа карточек(чтобы не показывать последнюю)
+   // private var flag_end=false// флаг окончания показа карточек(чтобы не показывать последнюю)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -61,7 +61,8 @@ class StartFragment : Fragment() {
                 startviewmodel.setEnableRemember(false)
             }
             else{
-                dictionary_empty=false
+                startviewmodel.setDictionaryEmpty(false)
+              //  dictionary_empty=false
             }
         })
 /////////
@@ -83,23 +84,27 @@ class StartFragment : Fragment() {
                 //изменяем показывыемые слова
                 random_id=startviewmodel.random_id.value
                 Log.i("LOG", "получили рандом  id=$random_id")
-                flag_end=true
+                //flag_end=true
+                startviewmodel.setFlagEnd(true)
 
 
                 startviewmodel.word_by_id(startviewmodel.random_id.value).observe(viewLifecycleOwner, Observer {
                     it?.let {
-                        if (flag_next  and flag_end and (it.id==random_id )) {
+                    //    if (flag_next  and flag_end and (it.id==random_id )) {
+                        if (startviewmodel.flag_next.value!!  and startviewmodel.flag_end.value!! and (it.id==random_id )) {
                             Log.i("LOG", " устанавливаемый id=${it.id}")
                             startviewmodel.set_enText(it.enWord)
                             startviewmodel.set_ruText(it.ruWord)
                             val r=startviewmodel.random_id.value
                             Log.i("LOG", "изменили текст id=$r")
-                            flag_next = false
-                            flag_end=false
+                            startviewmodel.setFlagNext(false)
+                            startviewmodel.setFlagEnd(false)
+                          //  flag_next = false
+                           // flag_end=false
                         } }
                 })
             }
-            if(it.isEmpty() and !dictionary_empty) {
+            if(it.isEmpty() and !startviewmodel.dictionary_empty.value!!) {
                 startviewmodel.setEnableNext(false)
                 startviewmodel.setEnableRemember(false)
                 startviewmodel.setEmpty_text()
@@ -118,17 +123,20 @@ class StartFragment : Fragment() {
     fun clickReset(){
         startviewmodel.updateAll_Read()
         Log.i("LOG", "нажали reset")
-        flag_next=true
+        startviewmodel.setFlagNext(true)
+       // flag_next=true
     }
     fun clickRemember(){
         startviewmodel.updateRemember(startviewmodel.random_id.value!!)
         startviewmodel.updateRead(startviewmodel.random_id.value!!)
-        flag_next=true
+        startviewmodel.setFlagNext(true)
+      //  flag_next=true
         Log.i("LOG", "нажли запомнил")
     }
     fun clickNext(){
         Log.i("LOG","нажали next")
         startviewmodel.updateRead(startviewmodel.random_id.value!!)
-        flag_next=true
+        startviewmodel.setFlagNext(true)
+       // flag_next=true
     }
 }

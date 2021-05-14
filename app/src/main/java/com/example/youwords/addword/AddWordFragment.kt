@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.youwords.R
-import com.example.youwords.activity.ActivityInterractor
+import com.example.youwords.redact_activity.ActivityInterractor
 import com.example.youwords.allwords.AllWordsViewModel
 import com.example.youwords.data.Words
 import com.example.youwords.databinding.FragmentAddwordBinding

@@ -15,8 +15,8 @@
     <string name="list">List</string>
     <string name="yes">Да</string>
     <string name="no">Нет</string>
-    <string name="question_del_all">Вы дейcтвительно хотите удалить все слова из словаря?</string>
-    <string name="question_remember_all">Вы дейcтвительно хотите добавить все слова в карточки?</string>
+    <string name="question_del_all">Вы хотите удалить все слова из словаря?</string>
+    <string name="question_remember_all">Вы хотите добавить все слова в карточки?</string>
     <string name="next">Следующее</string>
     <string name="total_words">Слов в словаре: %s</string>
     <string name="total_card">Карточек: %s</string>
@@ -37,5 +37,5 @@
     <string name="search_rus">Искать</string>
     <string name="add_all_words">Добавить все слова в карточки</string>
     <string name="del_remember">Удалить все слова из карточек</string>
-    <string name="question_remember_not_all">Вы дейcтвительно хотите удалить все слова из карточек?</string>
+    <string name="question_remember_not_all">Вы хотите удалить все слова из карточек?</string>
 </resources>

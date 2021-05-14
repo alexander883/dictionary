@@ -3,7 +3,6 @@ package com.example.youwords.search_and_found
 import android.app.Activity
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +13,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.youwords.R
-import com.example.youwords.activity.ActivityInterractor
+import com.example.youwords.redact_activity.ActivityInterractor
 import com.example.youwords.databinding.FragmentSearchBinding
 
 

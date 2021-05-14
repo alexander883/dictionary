@@ -34,6 +34,5 @@ class FoundFragment : Fragment() {
             foundWordsList.adapter=adapter
         }
         adapter.data=searchviewmodel.search_words.value!!
-       // binding?.textViewTotalWords?.text=searchviewmodel.getSize()
     }
 }

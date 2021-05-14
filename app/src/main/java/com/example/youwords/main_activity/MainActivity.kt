@@ -1,4 +1,4 @@
-package com.example.youwords.activity
+package com.example.youwords.redact_activity
 
 import android.os.Bundle
 import android.view.Menu
@@ -13,7 +13,6 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.example.youwords.R
 import com.example.youwords.data.WordViewModel
-import com.example.youwords.start.StartViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 //интерфейс для связи с событиями(кликами) во фрагментах
@@ -54,8 +53,8 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), ActivityInterrac
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        wordviewmodel = ViewModelProvider(this).get( StartViewModel::class.java)
-         navHostFragment = supportFragmentManager
+        wordviewmodel = ViewModelProvider(this).get( WordViewModel::class.java)
+        navHostFragment = supportFragmentManager
             .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
         //setupActionBarWithNavController(navController)
@@ -165,7 +164,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), ActivityInterrac
         bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
     }
 
-    //прослушивание нажатий в фрагментах для изменения
+    //прослушивание нажатий в фрагментах для изменения подсветки иконок
     override fun transferOnSearchFragment() {
         bottomNavigationView.menu.findItem(R.id.search).isCheckable = false
     }
