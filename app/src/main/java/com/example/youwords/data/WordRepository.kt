@@ -38,8 +38,8 @@ class WordRepository(private  val wordDao:WordDAO) {
     suspend fun deleteAll() {
         wordDao.deleteAll()
     }
-    suspend fun updateRedact(w:Words){
-        wordDao.updateRedact(w)
+    suspend fun updateRedact(word:Words){
+        wordDao.updateRedact(word)
     }
     val word_notremember: Flow<List<Words>> =wordDao.getWord_notremember()
    }

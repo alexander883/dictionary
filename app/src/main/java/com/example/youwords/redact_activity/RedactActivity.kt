@@ -30,8 +30,9 @@ class RedactActivity : AppCompatActivity() {
     }
 
     fun redactWord() {
-        val en_word = binding?.enEditText?.text.toString().trim()
-        val ru_word = binding?.rusEditText?.text.toString().trim()
+        val en_word =binding?.enEditText?.text.toString().trim()
+        val ru_word =binding?.rusEditText?.text.toString().trim()
+
         if (en_word.isEmpty() or ru_word.isEmpty()) {     // проверяем заполненность
             Toast.makeText(this, R.string.empty_pole, Toast.LENGTH_LONG).show()
         }

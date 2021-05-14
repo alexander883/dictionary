@@ -57,7 +57,6 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), ActivityInterrac
         navHostFragment = supportFragmentManager
             .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
-        //setupActionBarWithNavController(navController)
         toolbar = findViewById(R.id.toolbar)
 
         setSupportActionBar(toolbar)
