@@ -5,52 +5,124 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Log
 import android.view.*
+import android.widget.Adapter
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.example.youwords.adapter_found_word.FoundAdapter
 import com.example.youwords.databinding.FragmentStartBinding
+import com.example.youwords.R
 
-
-class timer(val context: Context) : CountDownTimer(20000, 1000){
-    // val c=context
-    var count=0
-    override fun onTick(millisUntilFinished: Long) {
-        count = (millisUntilFinished / 1000).toInt()
-        //// Toast.makeText(context, "EEEE $count", Toast.LENGTH_SHORT).show()
-    }
-
-    override fun onFinish() {
-        // super.cancel()
-    }
-}
-//   val t=timer(this)
-//  t.start()
-// t.onFinish()
 
 class StartFragment : Fragment() {
     private var binding: FragmentStartBinding?=null
     private lateinit var startviewmodel: StartViewModel
-  //  private var dictionary_empty=true
- //   private var flag_next=true
     private var  random_id:Int?=null
-   // private var flag_end=false// флаг окончания показа карточек(чтобы не показывать последнюю)
+
+
+
+
+
+
+    inner class Timer(val context: Context) : CountDownTimer(20000, 1000){
+        var count=0
+        var init=0
+        override fun onTick(millisUntilFinished: Long) {
+            count = (millisUntilFinished / 1000).toInt()
+
+            if (init>1) {
+                clickNext()
+            }
+            init += 1
+
+            //// Toast.makeText(context, "EEEE $count", Toast.LENGTH_SHORT).show()
+        }
+
+        override fun onFinish() {
+            // super.cancel()
+        }
+    }
+
+
+
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         startviewmodel = ViewModelProvider(this).get(StartViewModel::class.java)
+
         val fragmentBinding = FragmentStartBinding.inflate(inflater, container, false)
         binding = fragmentBinding
         return fragmentBinding.root
     }
+
+
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val timeList= arrayOf("1", "3", "5", "8")
+        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, timeList)
+
         binding?.apply {
             lifecycleOwner = viewLifecycleOwner
             startViewModel=startviewmodel
             startFragment = this@StartFragment
+            spinner.adapter = adapter
         }
+        ///////////выпадающий список, задающий время
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+
+        //////обработка выбора позиции spinner (список секунд)
+        binding?.spinner?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+                val selectedItem = parent.getItemAtPosition(position).toString()
+                if (selectedItem == "1") {
+                    Toast.makeText(requireContext(), "!!", Toast.LENGTH_SHORT).show()
+                }
+            } // to close the onItemSelected
+
+            override fun onNothingSelected(parent: AdapterView<*>) {
+            }
+        }
+
+        //  binding?. spinner?.adapter = adapter
+        binding?.switch1?.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked==true)
+            {binding?.spinner?.isVisible=true
+                Toast.makeText(requireContext(), "checl", Toast.LENGTH_SHORT).show()
+        }
+            else{binding?.spinner?.isVisible=false
+                Toast.makeText(requireContext(), "NOOO", Toast.LENGTH_SHORT).show()
+
+            }            }
+
+
+
+
+
+
+
+
+
+
+
+        val timer=Timer(requireContext())
+            //   timer.start()
+
+
+
+
+
+
+
+
 
 
         // если словарь пуст. подсчитываем слова в словаре
@@ -118,6 +190,9 @@ class StartFragment : Fragment() {
                 else {startviewmodel.setEnableReset(true)}
                }
         })
+
+
+
     }
 
     fun clickReset(){
@@ -138,5 +213,8 @@ class StartFragment : Fragment() {
         startviewmodel.updateRead(startviewmodel.random_id.value!!)
         startviewmodel.setFlagNext(true)
        // flag_next=true
+    }
+    fun checkSwitch(){
+
     }
 }

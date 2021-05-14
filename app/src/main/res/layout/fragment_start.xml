@@ -68,6 +68,7 @@
             app:layout_constraintStart_toEndOf="@+id/textView_w1"
             app:layout_constraintTop_toBottomOf="@+id/text_count_card"
             tools:text="100" />
+
         <Button
             android:id="@+id/button_reset"
             android:layout_width="150dp"
@@ -151,5 +152,26 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textRemain"
             app:layout_constraintVertical_bias="0.089" />
+
+        <Switch
+            android:id="@+id/switch1"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="39dp"
+            android:text="по времени"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button_reset"
+            tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+        <Spinner
+            android:id="@+id/spinner"
+
+            android:layout_width="0dp"
+            android:layout_height="22dp"
+            android:layout_marginTop="32dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button_remember" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
