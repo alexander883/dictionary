@@ -3,6 +3,7 @@ package com.example.youwords.start
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
+import android.opengl.Visibility
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Log
@@ -101,10 +102,12 @@ class StartFragment : Fragment() {
                     mytimer=startviewmodel.createTimer()
                     binding?.spinner?.isVisible=true
                     mytimer?.start()
+                   // startviewmodel.setEnableNext(false)
                 }
                 else{
                     mytimer?.onFinish()
                     binding?.spinner?.isVisible=false
+                   // startviewmodel.setEnableNext(true)
                 }
         }
 
@@ -114,6 +117,9 @@ class StartFragment : Fragment() {
             startviewmodel.setSize_All(size)
             if(it.isEmpty()){
                 startviewmodel.setEnableRemember(false)
+                binding?.checkBox?.isVisible=false
+                binding?.checkBox?.isChecked=false
+                binding?.spinner?.isVisible=false
             }
             else{
                 startviewmodel.setDictionaryEmpty(false)
@@ -132,6 +138,9 @@ class StartFragment : Fragment() {
                 //changeNext_on()
                 startviewmodel.setEnableNext(true)
                 startviewmodel.setEnableRemember(true)
+                binding?.checkBox?.isVisible=true
+                //
+
 
                 //изменяем показывыемые слова
                 random_id=startviewmodel.random_id.value
@@ -156,13 +165,18 @@ class StartFragment : Fragment() {
                 startviewmodel.setEnableNext(false)
                 startviewmodel.setEnableRemember(false)
                 startviewmodel.setEmpty_text()
+                binding?.checkBox?.isVisible=false
+                binding?.checkBox?.isChecked=false
+                binding?.spinner?.isVisible=false
+
             }
         })
         //получаем количество карточек
         startviewmodel.word_notremember.observe(viewLifecycleOwner, Observer {
             it?.let {
                 startviewmodel.set_countCard(it.size)
-                if (it.isEmpty()){startviewmodel.setEnableReset(false)}
+                if (it.isEmpty()){startviewmodel.setEnableReset(false)
+                    }
                 else {startviewmodel.setEnableReset(true)}
                }
         })
@@ -186,13 +200,12 @@ class StartFragment : Fragment() {
         Log.i("LOG","нажали next")
         startviewmodel.next()
     }
-/////соханяем текущий выбор позиции spinner при уничтожении фрагмента
+/////соханяем текущий выбор позиции spinner при остановки фрагмента
     @SuppressLint("CommitPrefEdits")
-    override fun onDestroy() {
-        super.onDestroy()
-        Toast.makeText(requireContext(), "destroi", Toast.LENGTH_SHORT).show()
+    override fun onStop() {
+        super.onStop()
         val editor=prefs?.edit()
         editor?.putInt("saveItemSpinner", startviewmodel.itemSpinner.value!!)?.apply()
     }
-
 }
+

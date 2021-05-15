@@ -56,7 +56,7 @@ class SearchFragment : Fragment() {
                 hideKeyboardFrom(requireContext(),view)
             }
            else {
-                Toast.makeText(requireContext(), "Не найдено ", Toast.LENGTH_LONG).show()
+                Toast.makeText(requireContext(), R.string.not_found, Toast.LENGTH_LONG).show()
             }
         })
     }
