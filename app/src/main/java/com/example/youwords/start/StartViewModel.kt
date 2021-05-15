@@ -3,13 +3,12 @@ package com.example.youwords.start
 import android.app.Application
 import android.os.CountDownTimer
 import android.util.Log
-import android.widget.Toast
-import androidx.databinding.ObservableInt
-import androidx.lifecycle.*
-import com.example.youwords.data.WordDatabase
-import com.example.youwords.data.WordRepository
+import android.view.View
+import androidx.databinding.BindingAdapter
+import androidx.databinding.ObservableField
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.example.youwords.data.WordViewModel
-
 
 class StartViewModel(application:Application) : WordViewModel(application)  {
     private val _random_id= MutableLiveData<Int>()//случайный id
@@ -48,6 +47,22 @@ class StartViewModel(application:Application) : WordViewModel(application)  {
     /////время выбираемое в spinner
     private var _time = MutableLiveData<Long>()
     val time : LiveData<Long> = _time
+    /////время таймера
+    private val _millisInFuture= MutableLiveData<Long>()
+    var millisInFuture: LiveData<Long> =_millisInFuture
+    private val _countDownInterval= MutableLiveData<Long>()
+    var countDownInterval: LiveData<Long> =_countDownInterval
+
+    /////////////////выпадающий список, задающий время
+    private val _timeList= MutableLiveData<Array<String>>()
+    val timeList: LiveData<Array<String>> =_timeList
+    /////начальная позиция списка spinner
+    private val _itemSpinner= MutableLiveData<Int>()
+    val itemSpinner: LiveData<Int> =_itemSpinner
+
+
+    private val _visible= MutableLiveData<Boolean>()
+    val visible: LiveData<Boolean> =_visible
 
     init { setEmpty_text()
         _size_read.value=0
@@ -58,6 +73,16 @@ class StartViewModel(application:Application) : WordViewModel(application)  {
         _dictionary_empty.value=true
         _flag_next.value=true
         _flag_end.value=false
+        /////таймер
+        _millisInFuture.value=90_0000
+        _countDownInterval.value=1_000
+        ////
+        _timeList.value = arrayOf("1 c", "3 c", "5 c", "10 c")
+        _itemSpinner.value=0
+
+
+        _visible.value=true
+
     }
 
     fun get_Random_id(list:List<Int>){
@@ -105,27 +130,38 @@ class StartViewModel(application:Application) : WordViewModel(application)  {
     fun setFlagEnd(flag:Boolean){
         _flag_end.value=flag
     }
-    fun setTime(time:Long){
-        _time.value=time
-    }
     fun reset(){
         super.updateAll_Read()
-        Log.i("LOG", "нажали reset")
         setFlagNext(true)
     }
     fun remember(){
         super.updateRemember(random_id.value!!)
         super.updateRead(random_id.value!!)
         setFlagNext(true)
-        Log.i("LOG", "нажли запомнил")
+    }
+    fun next(){
+        super.updateRead(random_id.value!!)
+        setFlagNext(true)
     }
 
-    class MyTimer(millisInFuture: Long, countDownInterval: Long
+    fun setMillisInFuture(time:Long){
+        _millisInFuture.value=time
+    }
+    fun setCountDownInterval(time:Long){
+        _countDownInterval.value=time
+    }
+    fun setItemSpinner(item:Int){
+        _itemSpinner.value=item
+    }
+
+    inner class MyTimer(millisInFuture: Long, countDownInterval: Long
     ) : CountDownTimer(millisInFuture, countDownInterval){
         var count=0
         var init=0
+
         override fun onTick(millisUntilFinished: Long) {
             count = (millisUntilFinished / 10000).toInt()
+            next()
             Log.i("LOG", "TIMer")
         }
 
@@ -133,5 +169,18 @@ class StartViewModel(application:Application) : WordViewModel(application)  {
             super.cancel()
         }
     }
-    val myTimer=MyTimer(100000, 3000)
+    fun createTimer():MyTimer{
+        return MyTimer(millisInFuture.value!!, countDownInterval.value!!)
+    }
+
+    /*@BindingAdapter("android:visibility")
+    fun visibility (view : View, visible : Boolean) {
+        view.visibility = if (visible) View.VISIBLE else View.INVISIBLE
+    }
+    */
+
+
+
+
 }
+

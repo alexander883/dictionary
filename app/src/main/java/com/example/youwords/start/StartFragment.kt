@@ -1,6 +1,8 @@
 package com.example.youwords.start
 
+import android.annotation.SuppressLint
 import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Log
@@ -16,18 +18,18 @@ import com.example.youwords.databinding.FragmentStartBinding
 import java.util.*
 import kotlin.concurrent.timer
 
-const val MY_CONST = "something"
 class StartFragment : Fragment() {
     private var binding: FragmentStartBinding?=null
     private lateinit var startviewmodel: StartViewModel
     private var  random_id:Int?=null
+    private var mytimer: CountDownTimer?= null
+    private var prefs: SharedPreferences?=null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         startviewmodel = ViewModelProvider(this).get(StartViewModel::class.java)
-
         val fragmentBinding = FragmentStartBinding.inflate(inflater, container, false)
         binding = fragmentBinding
         return fragmentBinding.root
@@ -37,25 +39,28 @@ class StartFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        ///////////выпадающий список, задающий время
-        val timeList= arrayOf("1 c", "3 c", "5 c", "10 c")
-        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, timeList)
+        ///файл с хранимыми настройками
+        prefs=activity?.getSharedPreferences("settings", Context.MODE_PRIVATE)
+
+        prefs?.let{if(it.contains("saveItemSpinner")){
+            // Получаем item spinner из настроек
+           val item = it.getInt("saveItemSpinner", 0)
+           startviewmodel.setItemSpinner(item)
+        }}
+        val adapter = ArrayAdapter(
+            requireContext(), android.R.layout.simple_spinner_item, startviewmodel.timeList.value!!)
 
         binding?.apply {
             lifecycleOwner = viewLifecycleOwner
             startViewModel=startviewmodel
             startFragment = this@StartFragment
             spinner.adapter = adapter
+            spinner.setSelection(startviewmodel.itemSpinner.value!!)
         }
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
 
-
 //////////////////////////////////////////////////////////////////
-
-
-
-
 
 
 //////////////////обработка выбора позиции spinner (список секунд)
@@ -63,36 +68,44 @@ class StartFragment : Fragment() {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 val selectedItem = parent?.getItemAtPosition(position).toString()
                 when (selectedItem) {
-                    "1 c" -> {startviewmodel.setTime(1000)
+                    "1 c" -> {startviewmodel.setCountDownInterval(1_000)
+                        Toast.makeText(requireContext(), "1c", Toast.LENGTH_SHORT).show()
+                        startviewmodel.setItemSpinner(0)
                     }
-                    "3 c" -> {startviewmodel.setTime(3000)
+                    "3 c" -> {startviewmodel.setCountDownInterval(3_000)
+                        startviewmodel.setItemSpinner(1)
+                        Toast.makeText(requireContext(), "3c", Toast.LENGTH_SHORT).show()
                     }
-                    "5 c" -> {startviewmodel.setTime(5000)
+                    "5 c" -> {startviewmodel.setCountDownInterval(5_000)
+                        startviewmodel.setItemSpinner(2)
+                        Toast.makeText(requireContext(), "5c", Toast.LENGTH_SHORT).show()
                     }
-                    "10 c" -> {startviewmodel.setTime(10000)
+                    "10 c" -> {startviewmodel.setCountDownInterval(10_000)
+                        startviewmodel.setItemSpinner(3)
+                        Toast.makeText(requireContext(), "10c", Toast.LENGTH_SHORT).show()
 
                     }
                 }
-
+                resetTimer()
             }
             override fun onNothingSelected(parent: AdapterView<*>) {
+
             }
         }
 
 
-
 ///////////////////показываем спинер при включении checkBox
-
+               //////включаем/выключаем таймер
         binding?.checkBox?.setOnCheckedChangeListener { buttonView, isChecked ->
-            if (isChecked==true) {
-                binding?.spinner?.isVisible=true
-                startviewmodel.myTimer.start()
-                Toast.makeText(requireContext(), "checl", Toast.LENGTH_SHORT).show()
-            }
-            else{
-
-                binding?.spinner?.isVisible=false
-            }
+                if (isChecked==true ) {
+                    mytimer=startviewmodel.createTimer()
+                    binding?.spinner?.isVisible=true
+                    mytimer?.start()
+                }
+                else{
+                    mytimer?.onFinish()
+                    binding?.spinner?.isVisible=false
+                }
         }
 
         // если словарь пуст. подсчитываем слова в словаре
@@ -128,7 +141,6 @@ class StartFragment : Fragment() {
 
                 startviewmodel.word_by_id(startviewmodel.random_id.value).observe(viewLifecycleOwner, Observer {
                     it?.let {
-                    //    if (flag_next  and flag_end and (it.id==random_id )) {
                         if (startviewmodel.flag_next.value!!  and startviewmodel.flag_end.value!! and (it.id==random_id )) {
                             Log.i("LOG", " устанавливаемый id=${it.id}")
                             startviewmodel.set_enText(it.enWord)
@@ -157,6 +169,12 @@ class StartFragment : Fragment() {
 
 
     }
+    private fun resetTimer(){
+        mytimer?.let {
+            it.onFinish()
+            mytimer=startviewmodel.createTimer()
+            mytimer?.start() }
+    }
 ////////////////////////////////нажатия кнопок//////////////////////
     fun clickReset(){
         startviewmodel.reset()
@@ -166,10 +184,15 @@ class StartFragment : Fragment() {
     }
     fun clickNext(){
         Log.i("LOG","нажали next")
-        startviewmodel.updateRead(startviewmodel.random_id.value!!)
-        startviewmodel.setFlagNext(true)
+        startviewmodel.next()
     }
-
-
+/////соханяем текущий выбор позиции spinner при уничтожении фрагмента
+    @SuppressLint("CommitPrefEdits")
+    override fun onDestroy() {
+        super.onDestroy()
+        Toast.makeText(requireContext(), "destroi", Toast.LENGTH_SHORT).show()
+        val editor=prefs?.edit()
+        editor?.putInt("saveItemSpinner", startviewmodel.itemSpinner.value!!)?.apply()
+    }
 
 }
