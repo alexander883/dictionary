@@ -168,6 +168,7 @@ class StartViewModel(application:Application) : WordViewModel(application)  {
 
         override fun onFinish() {
             super.cancel()
+         //   setEnableNext(false)
         }
     }
     fun createTimer():MyTimer{

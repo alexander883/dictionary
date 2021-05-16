@@ -13,14 +13,14 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.youwords.R
-import com.example.youwords.redact_activity.ActivityInterractor
+import com.example.youwords.main_activity.ActivityInterractor
 import com.example.youwords.databinding.FragmentSearchBinding
 
 
 class SearchFragment : Fragment() {
     private var binding: FragmentSearchBinding? = null
     private lateinit var searchviewmodel:SearchViewModel
-    var transfer:ActivityInterractor?=null
+    var transfer: ActivityInterractor?=null
 
     override fun onAttach(context: Context) {
         super.onAttach(context)

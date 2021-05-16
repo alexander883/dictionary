@@ -4,16 +4,16 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/my"
+        android:icon="@mipmap/myicon"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/my_round"
+        android:roundIcon="@mipmap/myicon_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Youwords">
         <activity
             android:name=".redact_activity.RedactActivity"
             android:label="@string/title_activity_redact"
             android:theme="@style/Theme.Youwords.NoActionBar" />
-        <activity android:name=".redact_activity.MainActivity">
+        <activity android:name=".main_activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

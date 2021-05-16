@@ -1,4 +1,4 @@
-package com.example.youwords.redact_activity
+package com.example.youwords.main_activity
 
 import android.os.Bundle
 import android.view.Menu

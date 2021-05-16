@@ -1,18 +1,16 @@
 package com.example.youwords.addword
 
-import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.youwords.R
-import com.example.youwords.redact_activity.ActivityInterractor
+import com.example.youwords.main_activity.ActivityInterractor
 import com.example.youwords.allwords.AllWordsViewModel
 import com.example.youwords.data.Words
 import com.example.youwords.databinding.FragmentAddwordBinding
@@ -21,7 +19,7 @@ import com.example.youwords.databinding.FragmentAddwordBinding
 class AddWordFragment : Fragment() {
     private var binding: FragmentAddwordBinding? = null
     private lateinit var allwordsviewmodel: AllWordsViewModel
-    private var transfer:ActivityInterractor?=null
+    private var transfer: ActivityInterractor?=null
 
     override fun onAttach(context: Context) {
         super.onAttach(context)

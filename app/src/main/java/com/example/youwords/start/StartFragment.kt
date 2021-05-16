@@ -105,11 +105,12 @@ class StartFragment : Fragment() {
                 }
                 else{
                     mytimer?.onFinish()
+                    startviewmodel.setEnableNext(true)
                     binding?.spinner?.isVisible=false
                     startviewmodel.setFlagTimer(false)
-                    if (startviewmodel.flag_end.value==false) {
-                        startviewmodel.setEnableNext(true)
-                    }
+
+                    Toast.makeText(requireContext(), "TRUE 1", Toast.LENGTH_SHORT).show()
+
                 }
         }
 
@@ -137,7 +138,8 @@ class StartFragment : Fragment() {
 
                 startviewmodel.get_Random_id(it)//получаем случайный id слова из диапазона которое показываем
                 if (startviewmodel.flag_timer.value==false)//если переключаем слова по таймеру
-                { startviewmodel.setEnableNext(true) }    /// кнопку next блокируем
+                { startviewmodel.setEnableNext(true)
+                    Toast.makeText(requireContext(), "TRUE2", Toast.LENGTH_SHORT).show()}    /// кнопку next блокируем
                 startviewmodel.setEnableRemember(true)
                 binding?.checkBox?.isVisible=true
                 //
@@ -163,13 +165,14 @@ class StartFragment : Fragment() {
                 })
             }
             if(it.isEmpty() and !startviewmodel.dictionary_empty.value!!) {
-                startviewmodel.setEnableNext(false)
+
+                Toast.makeText(requireContext(), "END", Toast.LENGTH_SHORT).show()
                 startviewmodel.setEnableRemember(false)
                 startviewmodel.setEmpty_text()
                 binding?.checkBox?.isVisible=false
                 binding?.checkBox?.isChecked=false
                 binding?.spinner?.isVisible=false
-
+                startviewmodel.setEnableNext(false)
             }
         })
         //получаем количество карточек

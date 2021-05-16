@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Simple dictionary</string>
+    <string name="app_name">Simple Dictionary</string>
 
     <string name="title_home">Home</string>
     <string name="title_activity_redact">RedactActivity</string>

@@ -2,17 +2,12 @@ package com.example.youwords.adapter_all_words
 
 
 import android.graphics.Color
-import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.annotation.RequiresApi
-import androidx.core.graphics.red
-import androidx.core.graphics.toColor
 import androidx.recyclerview.widget.RecyclerView
 import com.example.youwords.R
-import com.example.youwords.adapter_found_word.FoundAdapter
 import com.example.youwords.data.Words
 
 class AllWordsAdapter( private  val listener: OnItemClickListener
@@ -54,12 +49,12 @@ class AllWordsAdapter( private  val listener: OnItemClickListener
         }
         fun bind(item: Words, position: Int) {
             en_word.text = item.enWord
-            if (item.remember==false) {
+            if (!item.remember) {
                 en_word.setTextColor(Color.RED)
                 ru_word.setTextColor(Color.RED)
             }
             /////////////////////
-            if (item.remember==true) {
+            if (item.remember) {
                 en_word.setTextColor(Color.BLACK)
                 ru_word.setTextColor(Color.BLACK)
                 ///////////////////////
