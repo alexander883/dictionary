@@ -107,7 +107,7 @@ class StartFragment : Fragment() {
                     mytimer?.onFinish()
                     binding?.spinner?.isVisible=false
                     startviewmodel.setFlagTimer(false)
-                    if (startviewmodel.flag_end.value==true) {
+                    if (startviewmodel.flag_end.value==false) {
                         startviewmodel.setEnableNext(true)
                     }
                 }

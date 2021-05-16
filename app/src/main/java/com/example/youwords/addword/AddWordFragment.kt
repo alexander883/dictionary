@@ -49,17 +49,17 @@ class AddWordFragment : Fragment() {
     }
 
     fun insertWord() {// проверяем заполненность
-        val en_word = binding?.enEditText?.text.toString().trim()
+        val enWord = binding?.enEditText?.text.toString().trim()
         val ru_word = binding?.rusEditText?.text.toString().trim()
-        if (en_word.isEmpty() or ru_word.isEmpty()) {
+        if (enWord.isEmpty() or ru_word.isEmpty()) {
             val toast=Toast.makeText(requireContext(), R.string.empty_field, Toast.LENGTH_LONG)
                // toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0)
                 toast.show()
         }
         else {
-            val word = Words(id = 0, enWord = en_word, ruWord = ru_word)
+            val word = Words(id = 0, enWord = enWord, ruWord = ru_word)
                      allwordsviewmodel.addWord(word)
-                     Toast.makeText(requireContext(), "$en_word ${R.string.add_ru}", Toast.LENGTH_LONG).show()
+                     Toast.makeText(requireContext(), "$enWord добавлено", Toast.LENGTH_LONG).show()
                      findNavController().navigate(R.id.action_addWordFragment_to_startFragment)
                      transfer?.transferOnAddWordFragment()
          }

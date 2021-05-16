@@ -31,9 +31,9 @@ class FoundAdapter: RecyclerView.Adapter<FoundAdapter.ViewHolder>() {
     }
 
     class ViewHolder private constructor(itemView: View) : RecyclerView.ViewHolder(itemView){
-        val en_word: TextView = itemView.findViewById(R.id.en_word)
-        val ru_word: TextView = itemView.findViewById(R.id.rus_word)
-        val posit: TextView =itemView.findViewById(R.id.posit)
+        private val en_word: TextView = itemView.findViewById(R.id.en_word)
+        private val ru_word: TextView = itemView.findViewById(R.id.rus_word)
+        private val posit: TextView =itemView.findViewById(R.id.posit)
 
         fun bind(item: Words, position: Int) {
             en_word.text =item.enWord
