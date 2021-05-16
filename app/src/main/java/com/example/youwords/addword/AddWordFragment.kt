@@ -59,7 +59,7 @@ class AddWordFragment : Fragment() {
         else {
             val word = Words(id = 0, enWord = en_word, ruWord = ru_word)
                      allwordsviewmodel.addWord(word)
-                     Toast.makeText(requireContext(), "$en_word добавлено", Toast.LENGTH_LONG).show()
+                     Toast.makeText(requireContext(), "$en_word ${R.string.add_ru}", Toast.LENGTH_LONG).show()
                      findNavController().navigate(R.id.action_addWordFragment_to_startFragment)
                      transfer?.transferOnAddWordFragment()
          }

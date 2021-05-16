@@ -37,13 +37,13 @@ class StartViewModel(application:Application) : WordViewModel(application)  {
     /////////////флаги
     private val _dictionary_empty= MutableLiveData<Boolean>()
     var dictionary_empty: LiveData<Boolean> =_dictionary_empty
-
     private val _flag_next= MutableLiveData<Boolean>()
     var flag_next: LiveData<Boolean> =_flag_next
     // флаг окончания показа карточек(чтобы не показывать последнюю)
     private val _flag_end= MutableLiveData<Boolean>()
     var flag_end: LiveData<Boolean> =_flag_end
-
+    private val _flag_timer= MutableLiveData<Boolean>()///таймер работает
+    val flag_timer: LiveData<Boolean> =_flag_timer
     /////время выбираемое в spinner
     private var _time = MutableLiveData<Long>()
     val time : LiveData<Long> = _time
@@ -81,7 +81,7 @@ class StartViewModel(application:Application) : WordViewModel(application)  {
         ////
         _timeList.value = arrayOf("1 c", "3 c", "5 c", "10 c")
         _itemSpinner.value=0
-
+        _flag_timer.value=false
 
         _visible.value=true
 
@@ -112,8 +112,6 @@ class StartViewModel(application:Application) : WordViewModel(application)  {
         _ruText.value="пустой"
         _enText.value="empty"
     }
-
-
     fun setEnableRemember(enable:Boolean){
         _enabledRemember.value=enable
     }
@@ -152,6 +150,9 @@ class StartViewModel(application:Application) : WordViewModel(application)  {
     }
     fun setItemSpinner(item:Int){
         _itemSpinner.value=item
+    }
+    fun setFlagTimer(flag:Boolean){
+        _flag_timer.value=flag
     }
 
     inner class MyTimer(millisInFuture: Long, countDownInterval: Long

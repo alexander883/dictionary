@@ -71,9 +71,9 @@ open class WordViewModel(application:Application):AndroidViewModel(application) 
             repository.deleteAll()
         }
     }
-    fun updateRedact(w:Words) {
+    fun updateRedact(word:Words) {
         viewModelScope.launch(Dispatchers.IO) {
-            repository.updateRedact(w)
+            repository.updateRedact(word)
         }
     }
     val word_notremember: LiveData<List<Words>> = repository.word_notremember.asLiveData()

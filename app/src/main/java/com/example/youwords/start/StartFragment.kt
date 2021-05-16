@@ -36,8 +36,6 @@ class StartFragment : Fragment() {
         return fragmentBinding.root
     }
 
-
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         ///файл с хранимыми настройками
@@ -102,12 +100,16 @@ class StartFragment : Fragment() {
                     mytimer=startviewmodel.createTimer()
                     binding?.spinner?.isVisible=true
                     mytimer?.start()
-                   // startviewmodel.setEnableNext(false)
+                    startviewmodel.setFlagTimer(true)
+                    startviewmodel.setEnableNext(false)
                 }
                 else{
                     mytimer?.onFinish()
                     binding?.spinner?.isVisible=false
-                   // startviewmodel.setEnableNext(true)
+                    startviewmodel.setFlagTimer(false)
+                    if (startviewmodel.flag_end.value==true) {
+                        startviewmodel.setEnableNext(true)
+                    }
                 }
         }
 
@@ -134,8 +136,8 @@ class StartFragment : Fragment() {
                 Log.i("LOG", "не все слова показаны")
 
                 startviewmodel.get_Random_id(it)//получаем случайный id слова из диапазона которое показываем
-                //changeNext_on()
-                startviewmodel.setEnableNext(true)
+                if (startviewmodel.flag_timer.value==false)//если переключаем слова по таймеру
+                { startviewmodel.setEnableNext(true) }    /// кнопку next блокируем
                 startviewmodel.setEnableRemember(true)
                 binding?.checkBox?.isVisible=true
                 //
