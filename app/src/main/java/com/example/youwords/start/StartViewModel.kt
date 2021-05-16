@@ -47,7 +47,9 @@ class StartViewModel(application:Application) : WordViewModel(application)  {
     /////время выбираемое в spinner
     private var _time = MutableLiveData<Long>()
     val time : LiveData<Long> = _time
-    /////время таймера
+       //////таймер//////////////
+    //время через которое выкл таймер= countDownInterval*countCard
+    //пересчитываем каждый раз при изменении  countDownInterval или countCard
     private val _millisInFuture= MutableLiveData<Long>()
     var millisInFuture: LiveData<Long> =_millisInFuture
     private val _countDownInterval= MutableLiveData<Long>()
@@ -74,7 +76,7 @@ class StartViewModel(application:Application) : WordViewModel(application)  {
         _flag_next.value=true
         _flag_end.value=false
         /////таймер
-        _millisInFuture.value=90_0000
+        _millisInFuture.value=1_0000
         _countDownInterval.value=1_000
         ////
         _timeList.value = arrayOf("1 c", "3 c", "5 c", "10 c")
@@ -101,6 +103,7 @@ class StartViewModel(application:Application) : WordViewModel(application)  {
     }
     fun set_countCard(count:Int){
         _countCard.value=count
+        _millisInFuture.value=countCard.value!!*countDownInterval.value!!
     }
     fun setSize_Read(size:Int){
         _size_read.value=size
@@ -143,12 +146,9 @@ class StartViewModel(application:Application) : WordViewModel(application)  {
         super.updateRead(random_id.value!!)
         setFlagNext(true)
     }
-
-    fun setMillisInFuture(time:Long){
-        _millisInFuture.value=time
-    }
     fun setCountDownInterval(time:Long){
         _countDownInterval.value=time
+        _millisInFuture.value=countCard.value!!*countDownInterval.value!!
     }
     fun setItemSpinner(item:Int){
         _itemSpinner.value=item

@@ -127,7 +127,6 @@ class StartFragment : Fragment() {
         })
 /////////
         startviewmodel.all_id_read_not_remember.observe(viewLifecycleOwner, Observer {
-            // if (!dictionary_empty) {//если в словаре есть слова
             Log.i("LOG", "в словаре есть слова")
             //  val list_id=it
             startviewmodel.setSize_Read(it.size)
