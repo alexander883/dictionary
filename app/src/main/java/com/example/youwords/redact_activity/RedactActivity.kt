@@ -24,20 +24,20 @@ class RedactActivity : AppCompatActivity() {
                lifecycleOwner= LifecycleOwner { lifecycle }
         }
         val id=intent.getIntExtra("id", 0)// получаем Id редактируемого слова
-            redactviewmodel.word_by_id(id).observe(this, Observer {
+            redactviewmodel.wordById(id).observe(this, Observer {
             redactviewmodel.setWord(it)
         })
     }
 
     fun redactWord() {
-        val en_word =binding?.enEditText?.text.toString().trim()
-        val ru_word =binding?.rusEditText?.text.toString().trim()
+        val enWord =binding?.enEditText?.text.toString().trim()
+        val ruWord =binding?.rusEditText?.text.toString().trim()
 
-        if (en_word.isEmpty() or ru_word.isEmpty()) {     // проверяем заполненность
+        if (enWord.isEmpty() or ruWord.isEmpty()) {     // проверяем заполненность
             Toast.makeText(this, R.string.empty_pole, Toast.LENGTH_LONG).show()
         }
         else{
-            redactviewmodel.redact_Word(en_word, ru_word)
+            redactviewmodel.redactWord(enWord, ruWord)
             this.finish()
         }
     }

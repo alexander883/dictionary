@@ -20,7 +20,7 @@ import com.example.youwords.databinding.FragmentAllWordsBinding
 class AllWordsFragment : Fragment(), AllWordsAdapter.OnItemClickListener {
     private var binding: FragmentAllWordsBinding? = null
     private lateinit var allwordsviewmodel: AllWordsViewModel
-    val adapter = AllWordsAdapter(this)
+    private val adapter = AllWordsAdapter(this)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,26 +46,25 @@ class AllWordsFragment : Fragment(), AllWordsAdapter.OnItemClickListener {
               adapter.data=it
         })
         //получаем количество карточек
-        allwordsviewmodel.word_notremember.observe(viewLifecycleOwner, Observer {
-            it?.let { allwordsviewmodel.set_countCard(it.size) }
+        allwordsviewmodel.wordCard.observe(viewLifecycleOwner, Observer {
+            it?.let { allwordsviewmodel.setCountCard(it.size) }
         })
           }
 
     override fun onItemClick(position: Int) {
         val clickedItem =adapter.data[position]
-       // allwordsviewmodel.getClickedWord(clickedItem)
         alertDialog(clickedItem)
     }
 
     ///alert dialog
-   fun alertDialog(word:Words){
-        lateinit var str_items_1: String
-        if (word.remember==true)
-        {  str_items_1=getString(R.string.add_card)}
+    private fun alertDialog(word:Words){
+        lateinit var strItems1: String
+        if (word.remember)
+        {  strItems1=getString(R.string.add_card)}
         else{
-             str_items_1=getString(R.string.del_card)
+             strItems1=getString(R.string.del_card)
         }
-         val items = arrayOf(getString(R.string.del_from_dictionary),str_items_1 , getString(R.string.redact))
+         val items = arrayOf(getString(R.string.del_from_dictionary),strItems1 , getString(R.string.redact))
 
          val builder = AlertDialog.Builder(requireContext())
          with(builder)
@@ -74,7 +73,7 @@ class AllWordsFragment : Fragment(), AllWordsAdapter.OnItemClickListener {
              setItems(items) { dialog, which ->
                  when(which){
                      0-> deletWord(word)
-                     1->{if (word.remember==true)
+                     1->{if (word.remember)
                      {  setNotRemember(word)
                            }
                      else{

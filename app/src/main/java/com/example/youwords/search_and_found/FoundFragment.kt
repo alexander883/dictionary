@@ -1,11 +1,10 @@
 package com.example.youwords.search_and_found
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.youwords.adapter_found_word.FoundAdapter
 import com.example.youwords.databinding.FragmentFoundBinding
@@ -13,7 +12,7 @@ import com.example.youwords.databinding.FragmentFoundBinding
 class FoundFragment : Fragment() {
     private var binding: FragmentFoundBinding? = null
     private lateinit var searchviewmodel: SearchViewModel
-    val adapter = FoundAdapter()
+    private val adapter = FoundAdapter()
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -33,6 +32,6 @@ class FoundFragment : Fragment() {
             foundFragment = this@FoundFragment
             foundWordsList.adapter=adapter
         }
-        adapter.data=searchviewmodel.search_words.value!!
+        adapter.data=searchviewmodel.searchWords.value!!
     }
 }

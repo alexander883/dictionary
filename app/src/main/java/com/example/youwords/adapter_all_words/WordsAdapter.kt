@@ -33,9 +33,9 @@ class AllWordsAdapter( private  val listener: OnItemClickListener
 
    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
             View.OnClickListener {
-       val en_word: TextView = itemView.findViewById(R.id.en_word)
-       val ru_word: TextView = itemView.findViewById(R.id.rus_word)
-       val posit: TextView = itemView.findViewById(R.id.posit)
+       val enWord: TextView = itemView.findViewById(R.id.en_word)
+       private val ruWord: TextView = itemView.findViewById(R.id.rus_word)
+       private val posit: TextView = itemView.findViewById(R.id.posit)
 
         init {
             itemView.setOnClickListener(this)
@@ -48,18 +48,18 @@ class AllWordsAdapter( private  val listener: OnItemClickListener
             }
         }
         fun bind(item: Words, position: Int) {
-            en_word.text = item.enWord
+            enWord.text = item.enWord
             if (!item.remember) {
-                en_word.setTextColor(Color.RED)
-                ru_word.setTextColor(Color.RED)
+                enWord.setTextColor(Color.RED)
+                ruWord.setTextColor(Color.RED)
             }
             /////////////////////
             if (item.remember) {
-                en_word.setTextColor(Color.BLACK)
-                ru_word.setTextColor(Color.BLACK)
+                enWord.setTextColor(Color.BLACK)
+                ruWord.setTextColor(Color.BLACK)
                 ///////////////////////
             }
-            ru_word.text = item.ruWord
+            ruWord.text = item.ruWord
             posit.text=(position+1).toString()
         }
 

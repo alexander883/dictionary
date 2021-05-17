@@ -4,7 +4,6 @@ import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.youwords.data.WordViewModel
-import com.example.youwords.data.Words
 
 
 class  AllWordsViewModel(application: Application) : WordViewModel(application)  {
@@ -18,7 +17,7 @@ class  AllWordsViewModel(application: Application) : WordViewModel(application) 
         _size.value=size
     }
 
-    fun set_countCard(count:Int){
+    fun setCountCard(count:Int){
         _countCard.value=count
     }
 }

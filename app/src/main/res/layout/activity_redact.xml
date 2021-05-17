@@ -30,7 +30,7 @@
 
         <EditText
             android:id="@+id/en_editText"
-            android:text="@{redactViewModel.en_text.toString()}"
+            android:text="@{redactViewModel.enText.toString()}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -44,7 +44,7 @@
 
         <EditText
             android:id="@+id/rus_editText"
-            android:text="@{redactViewModel.ru_text.toString()}"
+            android:text="@{redactViewModel.ruText.toString()}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"

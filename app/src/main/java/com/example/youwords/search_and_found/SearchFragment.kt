@@ -20,7 +20,7 @@ import com.example.youwords.databinding.FragmentSearchBinding
 class SearchFragment : Fragment() {
     private var binding: FragmentSearchBinding? = null
     private lateinit var searchviewmodel:SearchViewModel
-    var transfer: ActivityInterractor?=null
+    private var transfer: ActivityInterractor?=null
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -49,7 +49,7 @@ class SearchFragment : Fragment() {
     fun searhWord(){
        val search=binding?.searchText?.text?.trim().toString()
         searchviewmodel.searchWord(search).observe(viewLifecycleOwner, Observer {
-            if (!it.isEmpty()){
+            if (it.isNotEmpty()){
                 searchviewmodel.getSize(it)
                 findNavController().navigate(R.id.action_searchFragment_to_foundFragment)
                 transfer?.transferOnSearchFragment()

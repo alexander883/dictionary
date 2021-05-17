@@ -199,7 +199,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), ActivityInterrac
         val builder = AlertDialog.Builder(this)
         builder.setTitle(R.string.question_remember_all)
         builder.setPositiveButton(R.string.yes){ _, _ ->
-            wordviewmodel.updateAll_Remember()
+            wordviewmodel.updateAllRemember()
         }
         builder.setNegativeButton(R.string.no){ _, _ ->
         }
@@ -209,7 +209,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), ActivityInterrac
         val builder = AlertDialog.Builder(this)
         builder.setTitle(R.string.question_remember_not_all)
         builder.setPositiveButton(R.string.yes){ _, _ ->
-            wordviewmodel.updateAll_Not_Remember()
+            wordviewmodel.updateAllNotRemember()
         }
         builder.setNegativeButton(R.string.no){ _, _ ->
         }

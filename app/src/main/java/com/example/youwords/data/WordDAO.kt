@@ -12,13 +12,13 @@ interface WordDAO {
      fun selectWord(id: Int?): Flow<Words>
 
     @Query("SELECT id FROM english WHERE read=0 AND remember=0") // получаем список id
-     fun getId_read_notremember(): Flow<List<Int>>
+     fun getIdRemainWord(): Flow<List<Int>>
 
-    @Query("UPDATE english SET read=1 WHERE id=:random_id") //Устанавливаем Слово прочитано
-    suspend fun updateRead(random_id:Int)
+    @Query("UPDATE english SET read=1 WHERE id=:randomId") //Устанавливаем Слово прочитано
+    suspend fun updateRead(randomId:Int)
 
     @Query("UPDATE english SET read=0") //Устанавливаем ВСе Слово не прочитано
-    suspend fun updateAll_Read()
+    suspend fun updateAllRead()
 
     @Query("SELECT * FROM english WHERE( enWord  LIKE  '% ' || :search OR enWord LIKE  :search " +
             "OR enWord LIKE  :search || ',%' OR enWord LIKE '% ' || :search || ',%') OR" +
@@ -35,10 +35,10 @@ interface WordDAO {
     suspend fun updateNotRemember(id:Int)
 
     @Query("UPDATE english SET remember=0") //Устанавливаем ВСе Слово не запомнено
-    suspend fun updateAll_Remember()
+    suspend fun updateAllRemember()
 
     @Query("UPDATE english SET remember=1")
-    suspend fun updateAll_Not_Remember()
+    suspend fun updateAllNotRemember()
 
     @Delete
     suspend fun deleteWord(word: Words)
@@ -46,9 +46,9 @@ interface WordDAO {
     @Query("DELETE FROM english")
     suspend fun deleteAll()
 
-    @Update() //Редактируем слово
+    @Update //Редактируем слово
     suspend fun updateRedact(word: Words)
 
     @Query("SELECT * FROM english WHERE remember=0") // card
-    fun getWord_notremember(): Flow<List<Words>>
+    fun getWordCard(): Flow<List<Words>>
 }

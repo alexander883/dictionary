@@ -9,13 +9,13 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 open class WordViewModel(application:Application):AndroidViewModel(application) {
-    val repository: WordRepository
+    private val repository: WordRepository
     init {
         val wordDao = WordDatabase.getDatabase(application).wordDao()
         repository = WordRepository(wordDao)
     }
 
-    val all_id_read_not_remember: LiveData<List<Int>> = repository.allId_read_not_remember.asLiveData()
+    val idRemainWord: LiveData<List<Int>> = repository.idRemainWord.asLiveData()
 
     fun addWord(word: Words) {
         viewModelScope.launch(Dispatchers.IO) {
@@ -33,11 +33,11 @@ open class WordViewModel(application:Application):AndroidViewModel(application) 
         }
     }
      //получаем cлово по id
-    val word_by_id:(Int?)->LiveData<Words> ={id->repository.word_by_id(id).asLiveData()}
+    val wordById:(Int?)->LiveData<Words> ={ id->repository.wordById(id).asLiveData()}
 
-    fun updateAll_Read() {
+    fun updateAllRead() {
         viewModelScope.launch(Dispatchers.IO) {
-            repository.updateAll_Read()
+            repository.updateAllRead()
         }
     }
 
@@ -51,14 +51,14 @@ open class WordViewModel(application:Application):AndroidViewModel(application) 
             repository.updateNotRemember(id)
         }
     }
-    fun updateAll_Remember() {
+    fun updateAllRemember() {
         viewModelScope.launch(Dispatchers.IO) {
-            repository.updateAll_Remember()
+            repository.updateAllRemember()
         }
     }
-    fun updateAll_Not_Remember() {
+    fun updateAllNotRemember() {
         viewModelScope.launch(Dispatchers.IO) {
-            repository.updateAll_Not_Remember()
+            repository.updateAllNotRemember()
         }
     }
     fun deleteWord(word: Words){
@@ -76,7 +76,7 @@ open class WordViewModel(application:Application):AndroidViewModel(application) 
             repository.updateRedact(word)
         }
     }
-    val word_notremember: LiveData<List<Words>> = repository.word_notremember.asLiveData()
+    val wordCard: LiveData<List<Words>> = repository.wordCard.asLiveData()
 }
 
 

@@ -3,7 +3,6 @@ package com.example.youwords.start
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
-import android.opengl.Visibility
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Log
@@ -17,12 +16,11 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.youwords.databinding.FragmentStartBinding
 import java.util.*
-import kotlin.concurrent.timer
 
 class StartFragment : Fragment() {
     private var binding: FragmentStartBinding?=null
     private lateinit var startviewmodel: StartViewModel
-    private var  random_id:Int?=null
+    private var  randomId:Int?=null
     private var mytimer: CountDownTimer?= null
     private var prefs: SharedPreferences?=null
 
@@ -96,7 +94,7 @@ class StartFragment : Fragment() {
 ///////////////////показываем спинер при включении checkBox
                //////включаем/выключаем таймер
         binding?.checkBox?.setOnCheckedChangeListener { buttonView, isChecked ->
-                if (isChecked==true ) {
+                if (isChecked) {
                     mytimer=startviewmodel.createTimer()
                     binding?.spinner?.isVisible=true
                     mytimer?.start()
@@ -117,7 +115,7 @@ class StartFragment : Fragment() {
         // если словарь пуст. подсчитываем слова в словаре
         startviewmodel.allWords.observe(viewLifecycleOwner, Observer {
             val size=it?.size ?: 0
-            startviewmodel.setSize_All(size)
+            startviewmodel.setSizeAll(size)
             if(it.isEmpty()){
                 startviewmodel.setEnableRemember(false)
                 binding?.checkBox?.isVisible=false
@@ -129,15 +127,15 @@ class StartFragment : Fragment() {
             }
         })
 /////////
-        startviewmodel.all_id_read_not_remember.observe(viewLifecycleOwner, Observer {
+        startviewmodel.idRemainWord.observe(viewLifecycleOwner, Observer {
             Log.i("LOG", "в словаре есть слова")
             //  val list_id=it
-            startviewmodel.setSize_Read(it.size)
-            if (!it.isEmpty()) {//если не все слова показаны
+            startviewmodel.setSizeRead(it.size)
+            if (it.isNotEmpty()) {//если не все слова показаны
                 Log.i("LOG", "не все слова показаны")
 
-                startviewmodel.get_Random_id(it)//получаем случайный id слова из диапазона которое показываем
-                if (startviewmodel.flag_timer.value==false)//если переключаем слова по таймеру
+                startviewmodel.getRandomId(it)//получаем случайный id слова из диапазона которое показываем
+                if (startviewmodel.flagTimer.value==false)//если переключаем слова по таймеру
                 { startviewmodel.setEnableNext(true)
                     Toast.makeText(requireContext(), "TRUE2", Toast.LENGTH_SHORT).show()}    /// кнопку next блокируем
                 startviewmodel.setEnableRemember(true)
@@ -146,29 +144,29 @@ class StartFragment : Fragment() {
 
 
                 //изменяем показывыемые слова
-                random_id=startviewmodel.random_id.value
-                Log.i("LOG", "получили рандом  id=$random_id")
+                randomId=startviewmodel.randomId.value
+                Log.i("LOG", "получили рандом  id=$randomId")
                 startviewmodel.setFlagEnd(true)
 
 
-                startviewmodel.word_by_id(startviewmodel.random_id.value).observe(viewLifecycleOwner, Observer {
+                startviewmodel.wordById(startviewmodel.randomId.value).observe(viewLifecycleOwner, Observer {
                     it?.let {
-                        if (startviewmodel.flag_next.value!!  and startviewmodel.flag_end.value!! and (it.id==random_id )) {
+                        if (startviewmodel.flagNext.value!!  and startviewmodel.flagEnd.value!! and (it.id==randomId )) {
                             Log.i("LOG", " устанавливаемый id=${it.id}")
-                            startviewmodel.set_enText(it.enWord)
-                            startviewmodel.set_ruText(it.ruWord)
-                            val r=startviewmodel.random_id.value
+                            startviewmodel.setEnText(it.enWord)
+                            startviewmodel.setRuText(it.ruWord)
+                            val r=startviewmodel.randomId.value
                             Log.i("LOG", "изменили текст id=$r")
                             startviewmodel.setFlagNext(false)
                             startviewmodel.setFlagEnd(false)
                         } }
                 })
             }
-            if(it.isEmpty() and !startviewmodel.dictionary_empty.value!!) {
+            if(it.isEmpty() and !startviewmodel.dictionaryEmpty.value!!) {
 
                 Toast.makeText(requireContext(), "END", Toast.LENGTH_SHORT).show()
                 startviewmodel.setEnableRemember(false)
-                startviewmodel.setEmpty_text()
+                startviewmodel.setEmptyText()
                 binding?.checkBox?.isVisible=false
                 binding?.checkBox?.isChecked=false
                 binding?.spinner?.isVisible=false
@@ -176,9 +174,9 @@ class StartFragment : Fragment() {
             }
         })
         //получаем количество карточек
-        startviewmodel.word_notremember.observe(viewLifecycleOwner, Observer {
+        startviewmodel.wordCard.observe(viewLifecycleOwner, Observer {
             it?.let {
-                startviewmodel.set_countCard(it.size)
+                startviewmodel.setCountCard(it.size)
                 if (it.isEmpty()){startviewmodel.setEnableReset(false)
                     }
                 else {startviewmodel.setEnableReset(true)}

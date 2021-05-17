@@ -26,18 +26,17 @@ class FoundAdapter: RecyclerView.Adapter<FoundAdapter.ViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-
         return ViewHolder.from(parent)
     }
 
     class ViewHolder private constructor(itemView: View) : RecyclerView.ViewHolder(itemView){
-        private val en_word: TextView = itemView.findViewById(R.id.en_word)
-        private val ru_word: TextView = itemView.findViewById(R.id.rus_word)
+        private val enWord: TextView = itemView.findViewById(R.id.en_word)
+        private val ruWord: TextView = itemView.findViewById(R.id.rus_word)
         private val posit: TextView =itemView.findViewById(R.id.posit)
 
         fun bind(item: Words, position: Int) {
-            en_word.text =item.enWord
-            ru_word.text = item.ruWord
+            enWord.text =item.enWord
+            ruWord.text = item.ruWord
             posit.text=(position+1).toString()
         }
 

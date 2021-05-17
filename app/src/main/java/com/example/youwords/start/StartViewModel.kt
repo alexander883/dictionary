@@ -2,23 +2,19 @@ package com.example.youwords.start
 
 import android.app.Application
 import android.os.CountDownTimer
-import android.util.Log
-import android.view.View
-import androidx.databinding.BindingAdapter
-import androidx.databinding.ObservableField
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.youwords.data.WordViewModel
 
 class StartViewModel(application:Application) : WordViewModel(application)  {
-    private val _random_id= MutableLiveData<Int>()//случайный id
-    val random_id: LiveData<Int> =_random_id
+    private val _randomId= MutableLiveData<Int>()//случайный id
+    val randomId: LiveData<Int> =_randomId
     // количество всех слов в словаре
-    private var _size_all = MutableLiveData<Int>()
-    val size_all : LiveData<Int> = _size_all
+    private var _sizeAll = MutableLiveData<Int>()
+    val sizeAll : LiveData<Int> = _sizeAll
 
-    private var _size_read = MutableLiveData<Int>()
-    val size_read : LiveData<Int> = _size_read
+    private var _sizeRead = MutableLiveData<Int>()
+    val sizeRead : LiveData<Int> = _sizeRead
 
     private val _ruText= MutableLiveData<String>()
     var ruText: LiveData<String> =_ruText
@@ -35,15 +31,15 @@ class StartViewModel(application:Application) : WordViewModel(application)  {
     private val _enabledRemember= MutableLiveData<Boolean>()
     var enabledRemember: LiveData<Boolean> =_enabledRemember
     /////////////флаги
-    private val _dictionary_empty= MutableLiveData<Boolean>()
-    var dictionary_empty: LiveData<Boolean> =_dictionary_empty
-    private val _flag_next= MutableLiveData<Boolean>()
-    var flag_next: LiveData<Boolean> =_flag_next
+    private val _dictionaryEmpty= MutableLiveData<Boolean>()
+    var dictionaryEmpty: LiveData<Boolean> =_dictionaryEmpty
+    private val _flagNext= MutableLiveData<Boolean>()
+    var flagNext: LiveData<Boolean> =_flagNext
     // флаг окончания показа карточек(чтобы не показывать последнюю)
-    private val _flag_end= MutableLiveData<Boolean>()
-    var flag_end: LiveData<Boolean> =_flag_end
-    private val _flag_timer= MutableLiveData<Boolean>()///таймер работает
-    val flag_timer: LiveData<Boolean> =_flag_timer
+    private val _flagEnd= MutableLiveData<Boolean>()
+    var flagEnd: LiveData<Boolean> =_flagEnd
+    private val _flagTimer= MutableLiveData<Boolean>()///таймер работает
+    val flagTimer: LiveData<Boolean> =_flagTimer
     /////время выбираемое в spinner
     private var _time = MutableLiveData<Long>()
     val time : LiveData<Long> = _time
@@ -51,9 +47,9 @@ class StartViewModel(application:Application) : WordViewModel(application)  {
     //время через которое выкл таймер= countDownInterval*countCard
     //пересчитываем каждый раз при изменении  countDownInterval или countCard
     private val _millisInFuture= MutableLiveData<Long>()
-    var millisInFuture: LiveData<Long> =_millisInFuture
+    private var millisInFuture: LiveData<Long> =_millisInFuture
     private val _countDownInterval= MutableLiveData<Long>()
-    var countDownInterval: LiveData<Long> =_countDownInterval
+    private var countDownInterval: LiveData<Long> =_countDownInterval
 
     /////////////////выпадающий список, задающий время
     private val _timeList= MutableLiveData<Array<String>>()
@@ -62,53 +58,49 @@ class StartViewModel(application:Application) : WordViewModel(application)  {
     private val _itemSpinner= MutableLiveData<Int>()
     val itemSpinner: LiveData<Int> =_itemSpinner
 
-
-    private val _visible= MutableLiveData<Boolean>()
-    val visible: LiveData<Boolean> =_visible
-
-    init { setEmpty_text()
-        _size_read.value=0
+    init { setEmptyText()
+        _sizeRead.value=0
         _enabledNext.value=false
         _enabledRemember.value=false
         _enabledReset.value=false
         _countCard.value=0
-        _dictionary_empty.value=true
-        _flag_next.value=true
-        _flag_end.value=false
+        _dictionaryEmpty.value=true
+        _flagNext.value=true
+        _flagEnd.value=false
         /////таймер
         _millisInFuture.value=1_0000
         _countDownInterval.value=1_000
         ////
         _timeList.value = arrayOf("1 c", "3 c", "5 c", "10 c")
         _itemSpinner.value=0
-        _flag_timer.value=false
+        _flagTimer.value=false
 
-        _visible.value=true
+
 
     }
 
-    fun get_Random_id(list:List<Int>){
+    fun getRandomId(list:List<Int>){
         val range:IntRange=list.indices// диапазон индексов списка
         val rand=range.random()//cлучайный индекс списка
-        _random_id.value=list.get(rand)//случайный id Words
+        _randomId.value= list[rand]//случайный id Words
     }
-    fun setSize_All(size:Int){
-        _size_all.value=size
+    fun setSizeAll(size:Int){
+        _sizeAll.value=size
     }
-    fun set_ruText(text:String){
+    fun setRuText(text:String){
         _ruText.value=text
     }
-    fun set_enText(text:String){
+    fun setEnText(text:String){
         _enText.value=text
     }
-    fun set_countCard(count:Int){
+    fun setCountCard(count:Int){
         _countCard.value=count
         _millisInFuture.value=countCard.value!!*countDownInterval.value!!
     }
-    fun setSize_Read(size:Int){
-        _size_read.value=size
+    fun setSizeRead(size:Int){
+        _sizeRead.value=size
     }
-    fun setEmpty_text(){
+    fun setEmptyText(){
         _ruText.value="пустой"
         _enText.value="empty"
     }
@@ -123,25 +115,25 @@ class StartViewModel(application:Application) : WordViewModel(application)  {
     }
 
     fun setDictionaryEmpty(flag:Boolean){
-        _dictionary_empty.value=flag
+        _dictionaryEmpty.value=flag
     }
     fun setFlagNext(flag:Boolean){
-        _flag_next.value=flag
+        _flagNext.value=flag
     }
     fun setFlagEnd(flag:Boolean){
-        _flag_end.value=flag
+        _flagEnd.value=flag
     }
     fun reset(){
-        super.updateAll_Read()
+        super.updateAllRead()
         setFlagNext(true)
     }
     fun remember(){
-        super.updateRemember(random_id.value!!)
-        super.updateRead(random_id.value!!)
+        super.updateRemember(randomId.value!!)
+        super.updateRead(randomId.value!!)
         setFlagNext(true)
     }
     fun next(){
-        super.updateRead(random_id.value!!)
+        super.updateRead(randomId.value!!)
         setFlagNext(true)
     }
     fun setCountDownInterval(time:Long){
@@ -152,20 +144,14 @@ class StartViewModel(application:Application) : WordViewModel(application)  {
         _itemSpinner.value=item
     }
     fun setFlagTimer(flag:Boolean){
-        _flag_timer.value=flag
+        _flagTimer.value=flag
     }
 
     inner class MyTimer(millisInFuture: Long, countDownInterval: Long
     ) : CountDownTimer(millisInFuture, countDownInterval){
-        var count=0
-        var init=0
-
         override fun onTick(millisUntilFinished: Long) {
-            count = (millisUntilFinished / 10000).toInt()
             next()
-            Log.i("LOG", "TIMer")
         }
-
         override fun onFinish() {
             super.cancel()
          //   setEnableNext(false)
