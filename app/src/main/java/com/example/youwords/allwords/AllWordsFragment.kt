@@ -79,7 +79,7 @@ class AllWordsFragment : Fragment(), AllWordsAdapter.OnItemClickListener {
                      else{
                         setRemember(word)
                      }}
-                     2->{
+                     2->{/////передаем в redactActivity id редактируемого слова
                          val bundle = Bundle()
                          bundle.putInt("id", word.id)
                          findNavController().navigate(R.id.action_allWordsFragment_to_redactActivity, bundle)

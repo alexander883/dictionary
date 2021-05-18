@@ -51,7 +51,6 @@ class AddWordFragment : Fragment() {
         val ruWord = binding?.rusEditText?.text.toString().trim()
         if (enWord.isEmpty() or ruWord.isEmpty()) {
             val toast=Toast.makeText(requireContext(), R.string.empty_field, Toast.LENGTH_LONG)
-               // toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0)
                 toast.show()
         }
         else {
@@ -60,9 +59,9 @@ class AddWordFragment : Fragment() {
                      Toast.makeText(requireContext(), "$enWord добавлено", Toast.LENGTH_LONG).show()
                      findNavController().navigate(R.id.action_addWordFragment_to_startFragment)
                      transfer?.transferOnAddWordFragment()
-         }
         }
     }
+}
 
 
 

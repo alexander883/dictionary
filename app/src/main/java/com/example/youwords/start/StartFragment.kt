@@ -5,11 +5,9 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.util.Log
 import android.view.*
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -56,40 +54,29 @@ class StartFragment : Fragment() {
         }
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
-
-//////////////////////////////////////////////////////////////////
-
-
 //////////////////обработка выбора позиции spinner (список секунд)
         binding?.spinner?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 val selectedItem = parent?.getItemAtPosition(position).toString()
                 when (selectedItem) {
                     "1 c" -> {startviewmodel.setCountDownInterval(1_000)
-                        Toast.makeText(requireContext(), "1c", Toast.LENGTH_SHORT).show()
                         startviewmodel.setItemSpinner(0)
                     }
                     "3 c" -> {startviewmodel.setCountDownInterval(3_000)
                         startviewmodel.setItemSpinner(1)
-                        Toast.makeText(requireContext(), "3c", Toast.LENGTH_SHORT).show()
                     }
                     "5 c" -> {startviewmodel.setCountDownInterval(5_000)
                         startviewmodel.setItemSpinner(2)
-                        Toast.makeText(requireContext(), "5c", Toast.LENGTH_SHORT).show()
                     }
                     "10 c" -> {startviewmodel.setCountDownInterval(10_000)
                         startviewmodel.setItemSpinner(3)
-                        Toast.makeText(requireContext(), "10c", Toast.LENGTH_SHORT).show()
-
                     }
                 }
                 resetTimer()
             }
             override fun onNothingSelected(parent: AdapterView<*>) {
-
             }
         }
-
 
 ///////////////////показываем спинер при включении checkBox
                //////включаем/выключаем таймер
@@ -106,12 +93,8 @@ class StartFragment : Fragment() {
                     startviewmodel.setEnableNext(true)
                     binding?.spinner?.isVisible=false
                     startviewmodel.setFlagTimer(false)
-
-                    Toast.makeText(requireContext(), "TRUE 1", Toast.LENGTH_SHORT).show()
-
                 }
         }
-
         // если словарь пуст. подсчитываем слова в словаре
         startviewmodel.allWords.observe(viewLifecycleOwner, Observer {
             val size=it?.size ?: 0
@@ -128,43 +111,28 @@ class StartFragment : Fragment() {
         })
 /////////
         startviewmodel.idRemainWord.observe(viewLifecycleOwner, Observer {
-            Log.i("LOG", "в словаре есть слова")
-            //  val list_id=it
             startviewmodel.setSizeRead(it.size)
             if (it.isNotEmpty()) {//если не все слова показаны
-                Log.i("LOG", "не все слова показаны")
-
                 startviewmodel.getRandomId(it)//получаем случайный id слова из диапазона которое показываем
-                if (startviewmodel.flagTimer.value==false)//если переключаем слова по таймеру
-                { startviewmodel.setEnableNext(true)
-                    Toast.makeText(requireContext(), "TRUE2", Toast.LENGTH_SHORT).show()}    /// кнопку next блокируем
+                if (startviewmodel.flagTimer.value==false){ //если переключаем слова по таймеру
+                    startviewmodel.setEnableNext(true)      /// кнопку next блокируем
+                }
                 startviewmodel.setEnableRemember(true)
                 binding?.checkBox?.isVisible=true
-                //
-
-
                 //изменяем показывыемые слова
                 randomId=startviewmodel.randomId.value
-                Log.i("LOG", "получили рандом  id=$randomId")
                 startviewmodel.setFlagEnd(true)
-
-
                 startviewmodel.wordById(startviewmodel.randomId.value).observe(viewLifecycleOwner, Observer {
                     it?.let {
                         if (startviewmodel.flagNext.value!!  and startviewmodel.flagEnd.value!! and (it.id==randomId )) {
-                            Log.i("LOG", " устанавливаемый id=${it.id}")
                             startviewmodel.setEnText(it.enWord)
                             startviewmodel.setRuText(it.ruWord)
-                            val r=startviewmodel.randomId.value
-                            Log.i("LOG", "изменили текст id=$r")
                             startviewmodel.setFlagNext(false)
                             startviewmodel.setFlagEnd(false)
                         } }
                 })
             }
             if(it.isEmpty() and !startviewmodel.dictionaryEmpty.value!!) {
-
-                Toast.makeText(requireContext(), "END", Toast.LENGTH_SHORT).show()
                 startviewmodel.setEnableRemember(false)
                 startviewmodel.setEmptyText()
                 binding?.checkBox?.isVisible=false
@@ -182,8 +150,6 @@ class StartFragment : Fragment() {
                 else {startviewmodel.setEnableReset(true)}
                }
         })
-
-
     }
     private fun resetTimer(){
         mytimer?.let {
@@ -199,7 +165,6 @@ class StartFragment : Fragment() {
         startviewmodel.remember()
     }
     fun clickNext(){
-        Log.i("LOG","нажали next")
         startviewmodel.next()
     }
 /////соханяем текущий выбор позиции spinner при остановки фрагмента

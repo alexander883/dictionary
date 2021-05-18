@@ -6,7 +6,6 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="103dp">
-
         <TextView
             android:id="@+id/posit"
             style="@style/Widget.TipTime.TextView"
@@ -29,9 +28,7 @@
             app:layout_constraintStart_toEndOf="@id/posit"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="englr4rfffffffffffffff" />
-
         <TextView
-
             android:id="@+id/rus_word"
             style="@style/Widget.TipTime.TextView"
             android:layout_width="325dp"
@@ -41,6 +38,5 @@
             app:layout_constraintStart_toEndOf="@+id/posit"
             app:layout_constraintTop_toBottomOf="@+id/en_word"
             tools:text="русское слово" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

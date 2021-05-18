@@ -40,4 +40,5 @@
     <string name="question_remember_not_all">Вы хотите удалить все слова из карточек?</string>
     <string name="not_found">Не найдено</string>
     <string name="add_ru">добавлено</string>
+    <string name="by_time">по времени</string>
 </resources>

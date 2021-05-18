@@ -14,7 +14,6 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
         <TextView
             android:id="@+id/ru_text"
             style="@style/Widget.TipTime.TextView"
@@ -41,7 +40,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/button_reset"
             app:layout_constraintVertical_bias="0.300"
-
             tools:text="english" />
 
         <Button
@@ -130,7 +128,6 @@
 
         <TextView
             android:id="@+id/text_count_card"
-
             style="@style/Widget.TipTime.TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -153,7 +150,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textRemain"
             app:layout_constraintVertical_bias="0.089" />
-
         <Spinner
             android:id="@+id/spinner"
             android:layout_width="101dp"
@@ -166,16 +162,13 @@
 
         <CheckBox
             android:id="@+id/checkBox"
-
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="По времени"
-
+            android:text="@string/by_time"
             android:visibility="invisible"
             app:layout_constraintBottom_toTopOf="@+id/button_next"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/button_reset"
             app:layout_constraintVertical_bias="0.041" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
