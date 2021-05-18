@@ -21,7 +21,6 @@ class FoundAdapter: RecyclerView.Adapter<FoundAdapter.ViewHolder>() {
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = data[position]
         holder.bind(item, position)
-
     }
 
 
