@@ -14,7 +14,6 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <!-- -->
         <TextView
             android:id="@+id/text_total"
             style="@style/Widget.TipTime.TextView"
@@ -26,7 +25,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="@string/total_words" />
-
         <TextView
             android:id="@+id/text_card"
             style="@style/Widget.TipTime.TextView"

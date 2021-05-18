@@ -58,21 +58,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), ActivityInterrac
             .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
         toolbar = findViewById(R.id.toolbar)
-
         setSupportActionBar(toolbar)
-        //  toolbar.setOnMenuItemClickListener(this)
-        // supportActionBar?.setDisplayShowHomeEnabled(true)
-        // toolbar.setNavigationIcon(R.drawable.ic_baseline_24)
-        //  toolbar.setNavigationOnClickListener{
-        //    Toast.makeText(this, "Введите значение", Toast.LENGTH_LONG).show()
-
-
-        //toolbar.inflateMenu(R.menu.menu_main)
-
-        // currentFragment =
-             //NavHostFragment.findNavController(navHostFragment).currentDestination?.id
-
-
 
         bottomNavigationView = findViewById(R.id.bottomNavigationView)
         bottomNavigationView.background = null

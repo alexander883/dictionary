@@ -6,12 +6,10 @@
         <variable
             name="SearchViewModel"
             type="com.example.youwords.search_and_found.SearchViewModel" />
-
         <variable
             name="foundFragment"
             type="com.example.youwords.search_and_found.FoundFragment" />
     </data>
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">

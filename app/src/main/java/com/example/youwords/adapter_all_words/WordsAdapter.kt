@@ -49,20 +49,18 @@ class AllWordsAdapter( private  val listener: OnItemClickListener
         }
         fun bind(item: Words, position: Int) {
             enWord.text = item.enWord
+            ////цвет/////
             if (!item.remember) {
                 enWord.setTextColor(Color.RED)
                 ruWord.setTextColor(Color.RED)
             }
-            /////////////////////
             if (item.remember) {
                 enWord.setTextColor(Color.BLACK)
                 ruWord.setTextColor(Color.BLACK)
-                ///////////////////////
             }
             ruWord.text = item.ruWord
             posit.text=(position+1).toString()
         }
-
 }
     interface OnItemClickListener {
         fun onItemClick(position: Int)

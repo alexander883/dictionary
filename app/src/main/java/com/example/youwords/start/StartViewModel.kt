@@ -30,7 +30,7 @@ class StartViewModel(application:Application) : WordViewModel(application)  {
     var enabledReset: LiveData<Boolean> =_enabledReset
     private val _enabledRemember= MutableLiveData<Boolean>()
     var enabledRemember: LiveData<Boolean> =_enabledRemember
-    /////////////флаги
+    //флаги
     private val _dictionaryEmpty= MutableLiveData<Boolean>()
     var dictionaryEmpty: LiveData<Boolean> =_dictionaryEmpty
     private val _flagNext= MutableLiveData<Boolean>()
@@ -48,6 +48,7 @@ class StartViewModel(application:Application) : WordViewModel(application)  {
     //пересчитываем каждый раз при изменении  countDownInterval или countCard
     private val _millisInFuture= MutableLiveData<Long>()
     private var millisInFuture: LiveData<Long> =_millisInFuture
+
     private val _countDownInterval= MutableLiveData<Long>()
     private var countDownInterval: LiveData<Long> =_countDownInterval
 
@@ -74,9 +75,6 @@ class StartViewModel(application:Application) : WordViewModel(application)  {
         _timeList.value = arrayOf("1 c", "3 c", "5 c", "10 c")
         _itemSpinner.value=0
         _flagTimer.value=false
-
-
-
     }
 
     fun getRandomId(list:List<Int>){
@@ -95,7 +93,7 @@ class StartViewModel(application:Application) : WordViewModel(application)  {
     }
     fun setCountCard(count:Int){
         _countCard.value=count
-        _millisInFuture.value=countCard.value!!*countDownInterval.value!!
+        setTimeOfTimer()
     }
     fun setSizeRead(size:Int){
         _sizeRead.value=size
@@ -138,13 +136,16 @@ class StartViewModel(application:Application) : WordViewModel(application)  {
     }
     fun setCountDownInterval(time:Long){
         _countDownInterval.value=time
-        _millisInFuture.value=countCard.value!!*countDownInterval.value!!
+        setTimeOfTimer()
     }
     fun setItemSpinner(item:Int){
         _itemSpinner.value=item
     }
     fun setFlagTimer(flag:Boolean){
         _flagTimer.value=flag
+    }
+    private fun setTimeOfTimer(){
+        _millisInFuture.value=countCard.value!!*countDownInterval.value!!
     }
 
     inner class MyTimer(millisInFuture: Long, countDownInterval: Long
@@ -154,21 +155,10 @@ class StartViewModel(application:Application) : WordViewModel(application)  {
         }
         override fun onFinish() {
             super.cancel()
-         //   setEnableNext(false)
         }
     }
     fun createTimer():MyTimer{
         return MyTimer(millisInFuture.value!!, countDownInterval.value!!)
     }
-
-    /*@BindingAdapter("android:visibility")
-    fun visibility (view : View, visible : Boolean) {
-        view.visibility = if (visible) View.VISIBLE else View.INVISIBLE
-    }
-    */
-
-
-
-
 }
 
