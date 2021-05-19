@@ -2,6 +2,8 @@ package com.example.youwords.start
 
 import android.app.Application
 import android.os.CountDownTimer
+import android.view.View
+import androidx.databinding.BindingAdapter
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.youwords.data.WordViewModel
@@ -59,6 +61,12 @@ class StartViewModel(application:Application) : WordViewModel(application)  {
     private val _itemSpinner= MutableLiveData<Int>()
     val itemSpinner: LiveData<Int> =_itemSpinner
 
+    private val _visibilitySpinner= MutableLiveData<Boolean>()
+    val visibilitySpinner: LiveData<Boolean> =_visibilitySpinner
+
+    private val _visibilityCheckBox= MutableLiveData<Boolean>()
+    val visibilityCheckBox: LiveData<Boolean> =_visibilityCheckBox
+
     init { setEmptyText()
         _sizeRead.value=0
         _enabledNext.value=false
@@ -75,6 +83,9 @@ class StartViewModel(application:Application) : WordViewModel(application)  {
         _timeList.value = arrayOf("1 c", "3 c", "5 c", "10 c")
         _itemSpinner.value=0
         _flagTimer.value=false
+
+        _visibilitySpinner.value=false
+        _visibilityCheckBox.value=false
     }
 
     fun getRandomId(list:List<Int>){
@@ -141,6 +152,12 @@ class StartViewModel(application:Application) : WordViewModel(application)  {
     fun setItemSpinner(item:Int){
         _itemSpinner.value=item
     }
+    fun setVisibilitySpinner(flag: Boolean){
+        _visibilitySpinner.value=flag
+    }
+    fun setVisibilityCheckBox(flag: Boolean){
+        _visibilityCheckBox.value=flag
+    }
     fun setFlagTimer(flag:Boolean){
         _flagTimer.value=flag
     }
@@ -161,4 +178,3 @@ class StartViewModel(application:Application) : WordViewModel(application)  {
         return MyTimer(millisInFuture.value!!, countDownInterval.value!!)
     }
 }
-

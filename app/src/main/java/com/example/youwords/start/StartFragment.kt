@@ -83,7 +83,8 @@ class StartFragment : Fragment() {
         binding?.checkBox?.setOnCheckedChangeListener { buttonView, isChecked ->
                 if (isChecked) {
                     mytimer=startviewmodel.createTimer()
-                    binding?.spinner?.isVisible=true
+                    startviewmodel.setVisibilitySpinner(true)
+                   // binding?.spinner?.isVisible=true
                     mytimer?.start()
                     startviewmodel.setFlagTimer(true)
                     startviewmodel.setEnableNext(false)
@@ -91,7 +92,8 @@ class StartFragment : Fragment() {
                 else{
                     mytimer?.onFinish()
                     startviewmodel.setEnableNext(true)
-                    binding?.spinner?.isVisible=false
+                    startviewmodel.setVisibilitySpinner(false)
+                   // binding?.spinner?.isVisible=false
                     startviewmodel.setFlagTimer(false)
                 }
         }
@@ -101,9 +103,11 @@ class StartFragment : Fragment() {
             startviewmodel.setSizeAll(size)
             if(it.isEmpty()){
                 startviewmodel.setEnableRemember(false)
-                binding?.checkBox?.isVisible=false
+                startviewmodel.setVisibilityCheckBox(false)
+              //  binding?.checkBox?.isVisible=false
                 binding?.checkBox?.isChecked=false
-                binding?.spinner?.isVisible=false
+                startviewmodel.setVisibilitySpinner(false)
+              //  binding?.spinner?.isVisible=false
             }
             else{
                 startviewmodel.setDictionaryEmpty(false)
@@ -118,7 +122,8 @@ class StartFragment : Fragment() {
                     startviewmodel.setEnableNext(true)      /// кнопку next блокируем
                 }
                 startviewmodel.setEnableRemember(true)
-                binding?.checkBox?.isVisible=true
+                startviewmodel.setVisibilityCheckBox(true)
+              //  binding?.checkBox?.isVisible=true
                 //изменяем показывыемые слова
                 randomId=startviewmodel.randomId.value
                 startviewmodel.setFlagEnd(true)
@@ -135,9 +140,11 @@ class StartFragment : Fragment() {
             if(it.isEmpty() and !startviewmodel.dictionaryEmpty.value!!) {
                 startviewmodel.setEnableRemember(false)
                 startviewmodel.setEmptyText()
-                binding?.checkBox?.isVisible=false
+                startviewmodel.setVisibilityCheckBox(false)
+               // binding?.checkBox?.isVisible=false
                 binding?.checkBox?.isChecked=false
-                binding?.spinner?.isVisible=false
+                startviewmodel.setVisibilitySpinner(false)
+                //binding?.spinner?.isVisible=false
                 startviewmodel.setEnableNext(false)
             }
         })
@@ -167,7 +174,7 @@ class StartFragment : Fragment() {
     fun clickNext(){
         startviewmodel.next()
     }
-/////соханяем текущий выбор позиции spinner при остановки фрагмента
+/////соханяем текущий выбор позиции spinner при остановкe фрагмента
     @SuppressLint("CommitPrefEdits")
     override fun onStop() {
         super.onStop()
