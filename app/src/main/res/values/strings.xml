@@ -32,7 +32,7 @@
     <string name="del_from_dictionary">Удалить из словаря</string>
     <string name="found_words">Найдено слов: %s</string>
     <string name="again">Заново</string>
-    <string name="english_word">english word</string>
+    <string name="english_word">слово</string>
     <string name="russian_word">перевод</string>
     <string name="search_rus">Искать</string>
     <string name="add_all_words">Добавить все слова в карточки</string>
