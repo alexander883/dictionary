@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.youwords">
+    package="com.myapp.simpledictionary">
 
     <application
         android:allowBackup="true"
@@ -10,10 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Youwords">
         <activity
-            android:name=".redact_activity.RedactActivity"
+            android:name="com.myapp.simpledictionary.redact_activity.RedactActivity"
             android:label="@string/title_activity_redact"
             android:theme="@style/Theme.Youwords.NoActionBar" />
-        <activity android:name=".main_activity.MainActivity">
+        <activity android:name="com.myapp.simpledictionary.main_activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

@@ -6,10 +6,10 @@
     <data>
         <variable
             name="AllWordsViewModel"
-            type="com.example.youwords.allwords.AllWordsViewModel" />
+            type="com.myapp.simpledictionary.allwords.AllWordsViewModel" />
         <variable
             name="addwordFragment"
-            type="com.example.youwords.addword.AddWordFragment" />
+            type="com.myapp.simpledictionary.addword.AddWordFragment" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

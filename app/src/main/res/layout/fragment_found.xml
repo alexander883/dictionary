@@ -5,10 +5,10 @@
     <data>
         <variable
             name="SearchViewModel"
-            type="com.example.youwords.search_and_found.SearchViewModel" />
+            type="com.myapp.simpledictionary.search_and_found.SearchViewModel" />
         <variable
             name="foundFragment"
-            type="com.example.youwords.search_and_found.FoundFragment" />
+            type="com.myapp.simpledictionary.search_and_found.FoundFragment" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

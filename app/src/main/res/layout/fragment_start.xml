@@ -6,10 +6,10 @@
     <data>
         <variable
             name="StartViewModel"
-            type="com.example.youwords.start.StartViewModel" />
+            type="com.myapp.simpledictionary.start.StartViewModel" />
         <variable
             name="startFragment"
-            type="com.example.youwords.start.StartFragment" />
+            type="com.myapp.simpledictionary.start.StartFragment" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

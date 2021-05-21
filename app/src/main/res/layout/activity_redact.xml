@@ -6,11 +6,11 @@
     <data>
         <variable
             name="redactViewModel"
-            type="com.example.youwords.redact_activity.RedactActivityViewModel" />
+            type="com.myapp.simpledictionary.redact_activity.RedactActivityViewModel" />
 
         <variable
             name="activityRedact"
-            type="com.example.youwords.redact_activity.RedactActivity" />
+            type="com.myapp.simpledictionary.redact_activity.RedactActivity" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
